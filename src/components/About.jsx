@@ -4,7 +4,7 @@ import { FaGraduationCap, FaLaptopCode, FaUniversity } from "react-icons/fa";
 
 const timeline = [
   {
-    date: "June 2025",
+    date: "May 2025",
     icon: <FaGraduationCap />,
     description:
       "Graduated Magna Cum Laude with a Bachelor of Science in Information Technology from West Visayas State University.",
