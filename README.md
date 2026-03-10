@@ -44,32 +44,3 @@ Deployment
 
 • Vercel / Netlify / AWS
 
-**📂 Project Structure**
-
-portfolio/
-
-│
-
-├── public
-
-│
-
-├── src
-
-│   ├── components
-
-│   ├── sections
-
-│   ├── assets
-
-│   └── App.jsx
-
-│
-
-├── screenshots
-
-│
-
-├── package.json
-
-└── README.md
