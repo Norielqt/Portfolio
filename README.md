@@ -1,66 +1,75 @@
-Noriel Fulgencio – Software Engineer Portfolio
+**Noriel Fulgencio – Software Engineer Portfolio**
 
 A modern, responsive developer portfolio built with React and Tailwind CSS to showcase my projects, skills, and experience as a Full Stack Software Engineer.
 
 This portfolio highlights my work in web development, UI/UX design, and full-stack application development, focusing on clean design, performance, and usability.
 
-🌐 Live Demo
+**🌐 Live Demo**
 
-🔗 [https://your-portfolio-link.com](https://portfolio-norielqtt.vercel.app/)
+🔗 https://portfolio-norielqtt.vercel.app/
 
-✨ Features
+**✨ Features**
 
 • Responsive design for desktop, tablet, and mobile
+
 • Smooth animations using Framer Motion
+
 • Light / Dark mode toggle
+
 • Interactive project showcase
+
 • Modern UI/UX layout
+
 • Optimized performance and fast loading
 
-🛠 Tech Stack
+**🛠 Tech Stack**
 
 Frontend
 
 • React
+
 • Tailwind CSS
+
 • Framer Motion
 
 Development Tools
 
 • Git
+
 • GitHub
+
 • VS Code
 
 Deployment
 
 • Vercel / Netlify / AWS
 
-📂 Project Structure
+**📂 Project Structure**
+
 portfolio/
+
 │
+
 ├── public
+
 │
+
 ├── src
+
 │   ├── components
+
 │   ├── sections
+
 │   ├── assets
+
 │   └── App.jsx
+
 │
+
 ├── screenshots
+
 │
+
 ├── package.json
+
 └── README.md
-
-⚡ Installation
-
-Clone the repository
-
-• git clone https://github.com/yourusername/portfolio.git
-• Navigate to the project directory
-• cd portfolio
-• Install dependencies
-• npm install
-
-Run the development server
-
-• npm run dev
