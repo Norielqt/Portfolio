@@ -1,9 +1,24 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const projects = [
   {
     id: 1,
+    title: "Park Cabins",
+    description:
+      "A CRM built for a cabin manufacturing company. It manages the full customer lifecycle — from initial enquiry and quoting, through production and project delivery, to invoicing and payment — giving staff a centralised platform to track customers, jobs, financials, and documents, while also providing customers their own portal to follow their project's progress. Built with React, Vite, Laravel (PHP), MySQL, and more.",
+    images: [
+      "/Project3a.png",
+      "/Project3b.png",
+      "/Project3c.png",
+      "/Project3d.png",
+      "/Project3e.png",
+      "/Project3f.png",
+      "/Project3g.png",
+    ],
+  },
+  {
+    id: 2,
     title: "Zonify",
     description:
       "A responsive web app built with Python (Flask), HTML, CSS, JavaScript, and Tensorflow for Machine Learning.",
@@ -22,7 +37,7 @@ const projects = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     title: "CICTScape",
     description:
       "A simple Room Management with Create, Delete, Update, and Delete functionality, using HTML, CSS, and  Javascript.",
@@ -43,19 +58,30 @@ export default function Projects() {
     setModalProjectId(null);
   };
 
-  const showNextImage = () => {
+  const showNextImage = useCallback(() => {
     const project = projects.find((p) => p.id === modalProjectId);
     if (project) {
       setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
     }
-  };
+  }, [modalProjectId]);
 
-  const showPrevImage = () => {
+  const showPrevImage = useCallback(() => {
     const project = projects.find((p) => p.id === modalProjectId);
     if (project) {
       setCurrentImageIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
     }
-  };
+  }, [modalProjectId]);
+
+  useEffect(() => {
+    const handleKey = (e) => {
+      if (modalProjectId === null) return;
+      if (e.key === "ArrowRight") showNextImage();
+      if (e.key === "ArrowLeft") showPrevImage();
+      if (e.key === "Escape") closeModal();
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [modalProjectId, showNextImage, showPrevImage]);
 
   return (
     <section id="projects" className="py-16 px-4 max-w-6xl mx-auto">
@@ -91,7 +117,7 @@ export default function Projects() {
             <div className="absolute top-3 left-3 bg-white text-black text-sm font-semibold px-3 py-1 rounded shadow">
               {project.images.length} image{project.images.length > 1 ? "s" : ""}
             </div>
-            <div className="absolute bottom-3 right-3 bg-blue-600 text-white text-sm px-3 py-1 rounded shadow opacity-80 group-hover:opacity-100 transition">
+            <div className="absolute bottom-3 right-3 bg-gray-900 text-white dark:bg-white dark:text-gray-900 text-sm font-medium px-3 py-1 rounded shadow opacity-80 group-hover:opacity-100 transition">
               View Gallery →
             </div>
           </div>
@@ -101,50 +127,87 @@ export default function Projects() {
         </motion.div>
       ))}
 
-      {modalProjectId !== null && (
-        <div
-          onClick={closeModal}
-          className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 cursor-pointer"
-        >
-          <div className="relative max-w-[65vw] max-h-[65vh]">
-            <img
-              src={
-                projects.find((p) => p.id === modalProjectId).images[currentImageIndex]
-              }
-              alt="Project screenshot preview"
-              className="max-w-full max-h-full rounded shadow-lg object-contain"
-              onClick={(e) => e.stopPropagation()}
-            />
+      {modalProjectId !== null && (() => {
+        const project = projects.find((p) => p.id === modalProjectId);
+        const total = project.images.length;
+        return (
+          <div
+            onClick={closeModal}
+            className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
+          >
+            {/* Close button */}
             <button
-              onClick={closeModal}
-              className="absolute top-3 right-3 text-white text-4xl font-bold focus:outline-none"
-              aria-label="Close image preview"
+              onClick={(e) => { e.stopPropagation(); closeModal(); }}
+              className="absolute top-4 right-5 z-10 text-white text-3xl leading-none w-10 h-10 flex items-center justify-center rounded-full bg-white bg-opacity-10 hover:bg-opacity-30 transition focus:outline-none"
+              aria-label="Close"
             >
               &times;
             </button>
+
+            {/* Counter */}
+            <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 text-white text-sm font-medium bg-black bg-opacity-40 px-3 py-1 rounded-full">
+              {currentImageIndex + 1} / {total}
+            </div>
+
+            {/* Prev button */}
             <button
-              onClick={(e) => {
-                e.stopPropagation();
-                showPrevImage();
-              }}
-              className="absolute left-2 top-1/2 transform -translate-y-1/2 text-white text-4xl font-bold px-3"
-              aria-label="Previous"
+              onClick={(e) => { e.stopPropagation(); showPrevImage(); }}
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center rounded-full bg-white bg-opacity-10 hover:bg-opacity-30 text-white transition focus:outline-none"
+              aria-label="Previous image"
             >
-              ‹
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+              </svg>
             </button>
+
+            {/* Image */}
+            <div
+              className="relative flex items-center justify-center w-full h-full px-20"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={currentImageIndex}
+                  src={project.images[currentImageIndex]}
+                  alt={`${project.title} screenshot ${currentImageIndex + 1}`}
+                  className="max-w-[80vw] max-h-[80vh] rounded-lg shadow-2xl object-contain"
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  transition={{ duration: 0.2 }}
+                />
+              </AnimatePresence>
+            </div>
+
+            {/* Next button */}
             <button
-              onClick={(e) => {
-                e.stopPropagation();
-                showNextImage();
-              }}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-white text-4xl font-bold px-3"
-              aria-label="Next"
+              onClick={(e) => { e.stopPropagation(); showNextImage(); }}
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center rounded-full bg-white bg-opacity-10 hover:bg-opacity-30 text-white transition focus:outline-none"
+              aria-label="Next image"
             >
-              ›
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+              </svg>
             </button>
+
+            {/* Dot indicators */}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex gap-2">
+              {project.images.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(i); }}
+                  className={`w-2.5 h-2.5 rounded-full transition-all focus:outline-none ${
+                    i === currentImageIndex
+                      ? "bg-white scale-110"
+                      : "bg-white bg-opacity-40 hover:bg-opacity-70"
+                  }`}
+                  aria-label={`Go to image ${i + 1}`}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        );
+      })()}
     </section>
   );
 }
