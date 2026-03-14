@@ -19,6 +19,20 @@ const projects = [
   },
   {
     id: 2,
+    title: "SaaS Project Management System",
+    description:
+      "A full-featured SaaS project management platform that enables teams to collaborate, track tasks, manage projects, and monitor progress in real time. Built with Laravel, PHP, React, Vite, Tailwind CSS, and Laravel Sanctum.",
+    images: [
+      "/Project4a.png",
+      "/Project4b.png",
+      "/Project4c.png",
+      "/Project4d.png",
+      "/Project4e.png",
+      "/Project4f.png",
+    ],
+  },
+  {
+    id: 3,
     title: "Zonify",
     description:
       "A responsive web app built with Python (Flask), HTML, CSS, JavaScript, and Tensorflow for Machine Learning.",
@@ -37,7 +51,7 @@ const projects = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     title: "CICTScape",
     description:
       "A simple Room Management with Create, Delete, Update, and Delete functionality, using HTML, CSS, and  Javascript.",
