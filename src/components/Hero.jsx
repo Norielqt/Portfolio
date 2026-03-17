@@ -8,9 +8,9 @@ const Hero = () => {
     <section className="flex flex-col md:flex-row items-center justify-between px-7 pt-24 md:pt-[10rem] pb-[5rem] max-w-6xl mx-auto gap-y-12 md:gap-x-20">
       {/* Text Section */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
         className="text-center md:text-left md:w-2/3 space-y-6"
       >
         <h1 className="text-5xl md:text-7xl font-extrabold text-gray-900 dark:text-white leading-tight">
@@ -23,23 +23,29 @@ const Hero = () => {
           I specialize in building efficient, scalable, and user-friendly websites and web applications.
         </p>
 
-        {/* Download CV Button */}
-        <div>
+        {/* Buttons */}
+        <div className="flex flex-wrap gap-3 justify-center md:justify-start">
           <a
             href="/NorielFulgencio_CV.pdf"
             download
-            className="inline-block px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+            className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium"
           >
             Download CV
           </a>
+          <button
+            onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+            className="inline-flex items-center px-6 py-3 border-2 border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-400 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition font-medium"
+          >
+            View My Work
+          </button>
         </div>
       </motion.div>
 
       {/* Image Section */}
       <motion.div
-        initial={{ opacity: 0, x: 30 }}
+        initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.9, ease: 'easeOut' }}
+        transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
         className="mt-12 md:mt-0 md:w-1/3 flex justify-center"
       >
         <img

@@ -39,13 +39,20 @@ const professionalTimeline = [
 const TimelineList = ({ items }) => (
   <div className="relative border-l-4 border-blue-500 ml-4 pl-6">
     {items.map((item, index) => (
-      <div key={index} className="mb-10">
+      <motion.div
+        key={index}
+        className="mb-10"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: index * 0.1 }}
+        viewport={{ once: true }}
+      >
         <div className="flex items-center mb-2">
           <div className="text-blue-500 mr-3 text-xl">{item.icon}</div>
           <h4 className="text-xl font-semibold">{item.date}</h4>
         </div>
         <p className="text-md text-gray-700 dark:text-gray-300">{item.description}</p>
-      </div>
+      </motion.div>
     ))}
   </div>
 );
@@ -57,6 +64,7 @@ const Experience = () => {
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
       >
         <h2 className="text-4xl font-bold mb-6 border-b-4 inline-block border-blue-500">Experience</h2>
 

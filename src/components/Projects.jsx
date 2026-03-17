@@ -1,12 +1,32 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import {
+  SiReact, SiVite, SiLaravel, SiMysql, SiTailwindcss, SiPython,
+  SiHtml5, SiCss3, SiJavascript, SiTensorflow, SiPhp,
+} from "react-icons/si";
+
+const iconMap = {
+  React:        { icon: <SiReact />,       color: "text-sky-400",    bg: "bg-sky-400/10 border-sky-400/30" },
+  Vite:         { icon: <SiVite />,        color: "text-purple-400", bg: "bg-purple-400/10 border-purple-400/30" },
+  Laravel:      { icon: <SiLaravel />,     color: "text-red-500",    bg: "bg-red-500/10 border-red-500/30" },
+  MySQL:        { icon: <SiMysql />,       color: "text-blue-400",   bg: "bg-blue-400/10 border-blue-400/30" },
+  "Tailwind CSS": { icon: <SiTailwindcss />, color: "text-teal-400", bg: "bg-teal-400/10 border-teal-400/30" },
+  Python:       { icon: <SiPython />,      color: "text-yellow-400", bg: "bg-yellow-400/10 border-yellow-400/30" },
+  Flask:        { icon: <SiPython />,      color: "text-gray-400",   bg: "bg-gray-400/10 border-gray-400/30" },
+  HTML:         { icon: <SiHtml5 />,       color: "text-orange-400", bg: "bg-orange-400/10 border-orange-400/30" },
+  CSS:          { icon: <SiCss3 />,        color: "text-blue-400",   bg: "bg-blue-400/10 border-blue-400/30" },
+  JavaScript:   { icon: <SiJavascript />,  color: "text-yellow-300", bg: "bg-yellow-300/10 border-yellow-300/30" },
+  TensorFlow:   { icon: <SiTensorflow />,  color: "text-orange-400", bg: "bg-orange-400/10 border-orange-400/30" },
+  PHP:          { icon: <SiPhp />,         color: "text-indigo-400", bg: "bg-indigo-400/10 border-indigo-400/30" },
+};
 
 const projects = [
   {
     id: 1,
     title: "Park Cabins",
     description:
-      "A CRM built for a cabin manufacturing company. It manages the full customer lifecycle — from initial enquiry and quoting, through production and project delivery, to invoicing and payment — giving staff a centralised platform to track customers, jobs, financials, and documents, while also providing customers their own portal to follow their project's progress. Built with React, Vite, Laravel (PHP), MySQL, and more.",
+      "A CRM built for a cabin manufacturing company. It manages the full customer lifecycle — from initial enquiry and quoting, through production and project delivery, to invoicing and payment — giving staff a centralised platform to track customers, jobs, financials, and documents, while also providing customers their own portal to follow their project's progress.",
+    stack: ["React", "Vite", "Laravel", "PHP", "MySQL", "Tailwind CSS"],
     images: [
       "/Project3a.png",
       "/Project3b.png",
@@ -21,7 +41,8 @@ const projects = [
     id: 2,
     title: "SaaS Project Management System",
     description:
-      "A full-featured SaaS project management platform that enables teams to collaborate, track tasks, manage projects, and monitor progress in real time. Built with Laravel, PHP, React, Vite, Tailwind CSS, and Laravel Sanctum.",
+      "A full-featured SaaS project management platform that enables teams to collaborate, track tasks, manage projects, and monitor progress in real time.",
+    stack: ["React", "Vite", "Laravel", "PHP", "Tailwind CSS", "MySQL"],
     images: [
       "/Project4a.png",
       "/Project4b.png",
@@ -35,7 +56,8 @@ const projects = [
     id: 3,
     title: "Zonify",
     description:
-      "A responsive web app built with Python (Flask), HTML, CSS, JavaScript, and Tensorflow for Machine Learning.",
+      "A responsive web app for zone classification using Machine Learning.",
+    stack: ["Python", "Flask", "TensorFlow", "HTML", "CSS", "JavaScript"],
     images: [
       "/Project1a.png",
       "/Project1b.png",
@@ -49,13 +71,6 @@ const projects = [
       "/Project1j.png",
       "/Project1k.png",
     ],
-  },
-  {
-    id: 4,
-    title: "CICTScape",
-    description:
-      "A simple Room Management with Create, Delete, Update, and Delete functionality, using HTML, CSS, and  Javascript.",
-    images: ["/Project2a.png", "/Project2b.png", "/Project2c.png", "/Project2d.png"],
   },
 ];
 
@@ -101,7 +116,7 @@ export default function Projects() {
     <section id="projects" className="py-16 px-4 max-w-6xl mx-auto">
       <motion.h3
         className="text-3xl font-semibold mb-8"
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
@@ -113,9 +128,9 @@ export default function Projects() {
         <motion.div
           key={project.id}
           className="bg-gray-100 dark:bg-gray-800 p-6 rounded shadow-lg hover:shadow-xl transition mb-16"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: index * 0.2 }}
+          transition={{ duration: 0.6, delay: index * 0.1 }}
           viewport={{ once: true }}
         >
           <div
@@ -137,7 +152,22 @@ export default function Projects() {
           </div>
 
           <h4 className="text-2xl font-bold mb-2">{project.title}</h4>
-          <p className="text-gray-700 dark:text-gray-300">{project.description}</p>
+          <p className="text-gray-700 dark:text-gray-300 mb-4">{project.description}</p>
+          <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Built With</p>
+          <div className="flex flex-wrap gap-2">
+            {project.stack.map((tech) => {
+              const t = iconMap[tech];
+              return (
+                <span
+                  key={tech}
+                  className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border ${t.bg}`}
+                >
+                  <span className={`text-sm leading-none ${t.color}`}>{t.icon}</span>
+                  <span className="text-gray-700 dark:text-gray-200">{tech}</span>
+                </span>
+              );
+            })}
+          </div>
         </motion.div>
       ))}
 
