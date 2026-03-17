@@ -11,6 +11,8 @@ import {
   SiGithub,
   SiMysql,
   SiDotnet,
+  SiLaravel,
+  SiAmazon,
 } from "react-icons/si";
 import { FaJava, FaServer } from "react-icons/fa";
 
@@ -27,6 +29,8 @@ const skills = [
   { name: "Git & GitHub", icon: <SiGithub className="inline-block mr-3 text-gray-800 dark:text-white text-4xl" /> },
   { name: "REST APIs", icon: <FaServer className="inline-block mr-3 text-indigo-500 text-4xl" /> },
   { name: "MySQL", icon: <SiMysql className="inline-block mr-3 text-blue-700 text-4xl" /> },
+  { name: "Laravel", icon: <SiLaravel className="inline-block mr-3 text-red-500 text-4xl" /> },
+  { name: "AWS", icon: <SiAmazon className="inline-block mr-3 text-orange-400 text-4xl" /> },
 ];
 
 export default function Skills() {

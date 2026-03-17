@@ -1,31 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaGraduationCap, FaLaptopCode, FaUniversity } from "react-icons/fa";
-
-const timeline = [
-  {
-    date: "May 2025",
-    icon: <FaGraduationCap />,
-    description:
-      "Graduated Magna Cum Laude with a Bachelor of Science in Information Technology from West Visayas State University.",
-  },
-  {
-    date: "May 2025",
-    icon: <FaLaptopCode />,
-    description: "Completed internship at Meralco PowerGen - IT Department.",
-  },
-  {
-    date: "February 2025",
-    icon: <FaLaptopCode />,
-    description: "Started internship at Meralco PowerGen - IT Department.",
-  },
-  {
-    date: "August 2021",
-    icon: <FaUniversity />,
-    description:
-      "Started pursuing a Bachelor of Science in Information Technology at West Visayas State University.",
-  },
-];
 
 const About = () => {
   return (
@@ -42,16 +16,37 @@ const About = () => {
           I enjoy solving complex problems and continuously learning new technologies to improve my craft.
         </p>
 
-        <div className="relative border-l-4 border-blue-500 ml-4 pl-6">
-          {timeline.map((item, index) => (
-            <div key={index} className="mb-10">
-              <div className="flex items-center mb-2">
-                <div className="text-blue-500 mr-3 text-xl">{item.icon}</div>
-                <h4 className="text-xl font-semibold">{item.date}</h4>
-              </div>
-              <p className="text-md text-gray-700 dark:text-gray-300">{item.description}</p>
+        <div className="mb-10 max-w-4xl">
+          <h3 className="text-2xl font-bold mb-6 text-blue-500">What I Do</h3>
+          <div className="grid grid-cols-1 gap-6">
+            <div>
+              <h4 className="text-lg font-semibold mb-2">Application Development</h4>
+              <ul className="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300 text-md">
+                <li>Build full-stack web applications with responsive interfaces and reliable backend systems</li>
+                <li>Translate business requirements into functional software that supports real operational workflows</li>
+              </ul>
             </div>
-          ))}
+            <div>
+              <h4 className="text-lg font-semibold mb-2">System & Data Architecture</h4>
+              <ul className="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300 text-md">
+                <li>Design structured databases and APIs to manage complex data efficiently</li>
+                <li>Develop modular platforms and dashboards for managing projects, users, and operations</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-2">Product & User Experience</h4>
+              <ul className="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300 text-md">
+                <li>Create intuitive user interfaces that make complex tools easy for teams to use</li>
+                <li>Improve existing systems by optimizing performance, usability, and maintainability</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-2">Deployment & DevOps</h4>
+              <ul className="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300 text-md">
+                <li>Manage server setup, environment configuration, and application deployment</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </motion.div>
     </section>

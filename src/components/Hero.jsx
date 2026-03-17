@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const Hero = () => {
+  const [hovered, setHovered] = useState(false);
+
   return (
-    <section className="flex flex-col md:flex-row items-center justify-between px-7 pt-[10rem] pb-[5rem] max-w-6xl mx-auto gap-y-12 md:gap-x-20">
+    <section className="flex flex-col md:flex-row items-center justify-between px-7 pt-24 md:pt-[10rem] pb-[5rem] max-w-6xl mx-auto gap-y-12 md:gap-x-20">
       {/* Text Section */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -41,9 +43,11 @@ const Hero = () => {
         className="mt-12 md:mt-0 md:w-1/3 flex justify-center"
       >
         <img
-          src="/NorielFulgencio.jpg"
+          src={hovered ? "/NorielFulgencio2.png" : "/NorielFulgencio.png"}
           alt="Noriel Fulgencio"
-          className="w-48 h-48 md:w-64 md:h-64 object-cover rounded-full shadow-xl border-4 border-blue-500"
+          className="w-48 h-48 md:w-64 md:h-64 object-cover rounded-full shadow-xl border-4 border-blue-500 transition-opacity duration-300 cursor-pointer"
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
         />
       </motion.div>
     </section>

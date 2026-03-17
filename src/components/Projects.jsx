@@ -119,7 +119,7 @@ export default function Projects() {
           viewport={{ once: true }}
         >
           <div
-            className="relative w-full h-96 mb-8 rounded overflow-hidden cursor-pointer group"
+            className="relative w-full h-56 sm:h-72 md:h-96 mb-8 rounded overflow-hidden cursor-pointer group"
             onClick={() => openModal(project.id, 0)}
           >
             <img
