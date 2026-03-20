@@ -39,6 +39,23 @@ const projects = [
   },
   {
     id: 2,
+    title: "RealtorHQ",
+    description:
+      "A full-stack real estate listing platform inspired by Zillow and Airbnb. Users can browse, search, and filter property listings for sale or rent across the Philippines, explore them on an interactive Leaflet map, save favorites, and submit booking requests to property owners. Features a REST API with 24 endpoints, Sanctum token auth, property management with gallery uploads, a booking dashboard, and a floating AI chatbot that parses natural language queries and returns property cards inline.",
+    stack: ["React", "Vite", "Laravel", "PHP", "MySQL", "CSS"],
+    images: [
+      "/Project5a.png",
+      "/Project5b.png",
+      "/Project5c.png",
+      "/Project5d.png",
+      "/Project5e.png",
+      "/Project5f.png",
+      "/Project5g.png",
+      "/Project5h.png",
+    ],
+  },
+  {
+    id: 3,
     title: "SaaS Project Management System",
     description:
       "A full-featured SaaS project management platform that enables teams to collaborate, track tasks, manage projects, and monitor progress in real time.",
@@ -53,7 +70,7 @@ const projects = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     title: "Zonify",
     description:
       "A responsive web app for zone classification using Machine Learning.",
