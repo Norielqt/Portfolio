@@ -53,7 +53,7 @@ const About = () => {
                 key={item.title}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
                 <h4 className="text-lg font-semibold mb-2">{item.title}</h4>

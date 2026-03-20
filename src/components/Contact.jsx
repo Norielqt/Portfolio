@@ -33,10 +33,10 @@ export default function Contact() {
   return (
     <section id="contact" className="py-16 px-4 bg-white dark:bg-gray-900 text-gray-800 dark:text-white">
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
+        transition={{ duration: 0.4 }}
+        viewport={{ once: true, margin: "0px 0px 80px 0px" }}
         className="max-w-2xl mx-auto text-center"
       >
         <h2 className="text-4xl font-bold mb-4 border-b-4 inline-block border-blue-500">Get In Touch</h2>
@@ -45,16 +45,12 @@ export default function Contact() {
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {contacts.map(({ label, value, href, icon }, index) => (
-            <motion.a
+          {contacts.map(({ label, value, href, icon }) => (
+            <a
               key={label}
               href={href}
               target={label !== "Email" ? "_blank" : undefined}
               rel="noreferrer"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
               className="flex items-center gap-4 p-4 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition group"
             >
               <div className="flex-shrink-0">{icon}</div>
@@ -62,7 +58,7 @@ export default function Contact() {
                 <p className="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wide">{label}</p>
                 <p className="text-sm font-semibold text-gray-800 dark:text-gray-100 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition">{value}</p>
               </div>
-            </motion.a>
+            </a>
           ))}
         </div>
       </motion.div>

@@ -45,7 +45,7 @@ const Hero = () => {
       <motion.div
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
         className="mt-12 md:mt-0 md:w-1/3 flex justify-center"
       >
         <img

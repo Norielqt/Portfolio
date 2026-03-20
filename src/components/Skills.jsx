@@ -40,7 +40,6 @@ const skillGroups = [
 ];
 
 export default function Skills() {
-  let globalIndex = 0;
   return (
     <section id="skills" className="mx-auto py-16 px-4">
       <motion.div
@@ -59,13 +58,12 @@ export default function Skills() {
               <h4 className="text-sm font-semibold uppercase tracking-widest text-blue-500 mb-4">{category}</h4>
               <ul className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-gray-700 dark:text-gray-300">
                 {items.map(({ name, icon }) => {
-                  const delay = globalIndex++ * 0.07;
                   return (
                     <motion.li
                       key={name}
                       initial={{ opacity: 0, y: 50 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay }}
+                      transition={{ duration: 0.6 }}
                       viewport={{ once: true }}
                       className="bg-gray-100 dark:bg-gray-800 rounded-xl py-3 px-4 shadow-sm flex items-center"
                     >

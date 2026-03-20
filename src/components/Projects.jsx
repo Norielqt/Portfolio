@@ -133,22 +133,18 @@ export default function Projects() {
     <section id="projects" className="py-16 px-4 max-w-6xl mx-auto">
       <motion.h3
         className="text-3xl font-semibold mb-8"
-        initial={{ opacity: 0, y: 50 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
+        transition={{ duration: 0.4 }}
+        viewport={{ once: true, margin: "0px 0px 80px 0px" }}
       >
         Projects
       </motion.h3>
 
       {projects.map((project, index) => (
-        <motion.div
+        <div
           key={project.id}
           className="bg-gray-100 dark:bg-gray-800 p-6 rounded shadow-lg hover:shadow-xl transition mb-16"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: index * 0.1 }}
-          viewport={{ once: true }}
         >
           <div
             className="relative w-full h-56 sm:h-72 md:h-96 mb-8 rounded overflow-hidden cursor-pointer group"
@@ -173,9 +169,9 @@ export default function Projects() {
           <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Built With</p>
           <div className="flex flex-wrap gap-2">
             {project.stack.map((tech) => {
-              const t = iconMap[tech];
-              return (
-                <span
+            const t = iconMap[tech];
+            return (
+              <span
                   key={tech}
                   className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border ${t.bg}`}
                 >
@@ -185,7 +181,7 @@ export default function Projects() {
               );
             })}
           </div>
-        </motion.div>
+        </div>
       ))}
 
       {modalProjectId !== null && (() => {
