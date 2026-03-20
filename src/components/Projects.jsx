@@ -23,22 +23,6 @@ const iconMap = {
 const projects = [
   {
     id: 1,
-    title: "Park Cabins",
-    description:
-      "A CRM built for a cabin manufacturing company. It manages the full customer lifecycle — from initial enquiry and quoting, through production and project delivery, to invoicing and payment — giving staff a centralised platform to track customers, jobs, financials, and documents, while also providing customers their own portal to follow their project's progress.",
-    stack: ["React", "Vite", "Laravel", "PHP", "MySQL", "Tailwind CSS"],
-    images: [
-      "/Project3a.png",
-      "/Project3b.png",
-      "/Project3c.png",
-      "/Project3d.png",
-      "/Project3e.png",
-      "/Project3f.png",
-      "/Project3g.png",
-    ],
-  },
-  {
-    id: 2,
     title: "RealtorHQ",
     description:
       "A full-stack real estate listing platform inspired by Zillow and Airbnb. Users can browse, search, and filter property listings for sale or rent across the Philippines, explore them on an interactive Leaflet map, save favorites, and submit booking requests to property owners. Features a REST API with 24 endpoints, Sanctum token auth, property management with gallery uploads, a booking dashboard, and a floating AI chatbot that parses natural language queries and returns property cards inline.",
@@ -52,6 +36,22 @@ const projects = [
       "/Project5f.png",
       "/Project5g.png",
       "/Project5h.png",
+    ],
+  },
+  {
+    id: 2,
+    title: "Park Cabins",
+    description:
+      "A CRM built for a cabin manufacturing company. It manages the full customer lifecycle — from initial enquiry and quoting, through production and project delivery, to invoicing and payment — giving staff a centralised platform to track customers, jobs, financials, and documents, while also providing customers their own portal to follow their project's progress.",
+    stack: ["React", "Vite", "Laravel", "PHP", "MySQL", "Tailwind CSS"],
+    images: [
+      "/Project3a.png",
+      "/Project3b.png",
+      "/Project3c.png",
+      "/Project3d.png",
+      "/Project3e.png",
+      "/Project3f.png",
+      "/Project3g.png",
     ],
   },
   {
