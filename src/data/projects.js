@@ -4,6 +4,7 @@ const projects = [
     title: "RealtorHQ",
     badge: "Featured Project",
     github: "https://github.com/Norielqt/real-estate-property-system",
+    demo: "https://realtor-hq.vercel.app/",
     description:
       "A full-stack real estate listing platform inspired by Zillow and Airbnb. Built a REST API with 24 endpoints, Sanctum token-based auth, and role-based access for buyers, owners, and admins. Supports property listings for sale and rent across the Philippines with advanced search and filtering, an interactive Leaflet map, gallery uploads, a booking request dashboard, and a floating AI chatbot that parses natural language queries and returns matching property cards inline — all across 10+ feature-complete pages.",
     stack: ["React", "Vite", "Laravel", "PHP", "MySQL", "CSS"],
