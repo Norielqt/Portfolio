@@ -41,8 +41,7 @@ const About = () => {
         <h2 className="text-4xl font-bold mb-6 border-b-4 inline-block border-blue-500">About Me</h2>
 
         <p className="mb-10 text-lg leading-relaxed max-w-4xl">
-          I am a passionate software engineer specializing in building efficient, scalable, and user-friendly web applications.
-          I enjoy solving complex problems and continuously learning new technologies to improve my craft.
+          I'm a full-stack software engineer from the Philippines with a Bachelor's in Information Technology (Magna Cum Laude) and hands-on experience building and shipping production systems — from a CRM actively used by a real company to a full real estate platform with an AI-powered chatbot. I gravitate toward backend-heavy work: designing relational schemas, building REST APIs, and making complex business logic actually usable for the people who depend on it. I'm looking to join a product-focused team where I can own meaningful features end-to-end and keep growing as an engineer.
         </p>
 
         <div className="mb-10 max-w-4xl">

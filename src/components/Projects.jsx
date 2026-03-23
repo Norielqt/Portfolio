@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { FiGithub } from "react-icons/fi";
 import {
   SiReact, SiVite, SiLaravel, SiMysql, SiTailwindcss, SiPython,
   SiHtml5, SiCss3, SiJavascript, SiTensorflow, SiPhp,
@@ -19,77 +20,7 @@ const iconMap = {
   TensorFlow:   { icon: <SiTensorflow />,  color: "text-orange-400", bg: "bg-orange-400/10 border-orange-400/30" },
   PHP:          { icon: <SiPhp />,         color: "text-indigo-400", bg: "bg-indigo-400/10 border-indigo-400/30" },
 };
-
-const projects = [
-  {
-    id: 1,
-    title: "RealtorHQ",
-    description:
-      "A full-stack real estate listing platform inspired by Zillow and Airbnb. Users can browse, search, and filter property listings for sale or rent across the Philippines, explore them on an interactive Leaflet map, save favorites, and submit booking requests to property owners. Features a REST API with 24 endpoints, Sanctum token auth, property management with gallery uploads, a booking dashboard, and a floating AI chatbot that parses natural language queries and returns property cards inline.",
-    stack: ["React", "Vite", "Laravel", "PHP", "MySQL", "CSS"],
-    images: [
-      "/Project5a.png",
-      "/Project5b.png",
-      "/Project5c.png",
-      "/Project5d.png",
-      "/Project5e.png",
-      "/Project5f.png",
-      "/Project5g.png",
-      "/Project5h.png",
-    ],
-  },
-  {
-    id: 2,
-    title: "Park Cabins",
-    description:
-      "A CRM built for a cabin manufacturing company. It manages the full customer lifecycle — from initial enquiry and quoting, through production and project delivery, to invoicing and payment — giving staff a centralised platform to track customers, jobs, financials, and documents, while also providing customers their own portal to follow their project's progress.",
-    stack: ["React", "Vite", "Laravel", "PHP", "MySQL", "Tailwind CSS"],
-    images: [
-      "/Project3a.png",
-      "/Project3b.png",
-      "/Project3c.png",
-      "/Project3d.png",
-      "/Project3e.png",
-      "/Project3f.png",
-      "/Project3g.png",
-    ],
-  },
-  {
-    id: 3,
-    title: "SaaS Project Management System",
-    description:
-      "A full-featured SaaS project management platform that enables teams to collaborate, track tasks, manage projects, and monitor progress in real time.",
-    stack: ["React", "Vite", "Laravel", "PHP", "Tailwind CSS", "MySQL"],
-    images: [
-      "/Project4a.png",
-      "/Project4b.png",
-      "/Project4c.png",
-      "/Project4d.png",
-      "/Project4e.png",
-      "/Project4f.png",
-    ],
-  },
-  {
-    id: 4,
-    title: "Zonify",
-    description:
-      "A responsive web app for zone classification using Machine Learning.",
-    stack: ["Python", "Flask", "TensorFlow", "HTML", "CSS", "JavaScript"],
-    images: [
-      "/Project1a.png",
-      "/Project1b.png",
-      "/Project1c.png",
-      "/Project1d.png",
-      "/Project1e.png",
-      "/Project1f.png",
-      "/Project1g.png",
-      "/Project1h.png",
-      "/Project1i.png",
-      "/Project1j.png",
-      "/Project1k.png",
-    ],
-  },
-];
+import projects from "../data/projects";
 
 export default function Projects() {
   const [modalProjectId, setModalProjectId] = useState(null);
@@ -164,9 +95,27 @@ export default function Projects() {
             </div>
           </div>
 
+          {project.badge && (
+            <span className="inline-flex items-center gap-1.5 mb-3 px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/10 border border-blue-500/30 text-blue-500 dark:text-blue-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-500 dark:bg-blue-400 inline-block"></span>
+              {project.badge}
+            </span>
+          )}
           <h4 className="text-2xl font-bold mb-2">{project.title}</h4>
           <p className="text-gray-700 dark:text-gray-300 mb-4">{project.description}</p>
-          <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Built With</p>
+          <div className="flex items-center justify-between mb-3">
+            <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Built With</p>
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-gray-900 dark:bg-white/10 text-white hover:bg-gray-700 dark:hover:bg-white/20 transition"
+              >
+                <FiGithub size={13} /> View on GitHub
+              </a>
+            )}
+          </div>
           <div className="flex flex-wrap gap-2">
             {project.stack.map((tech) => {
             const t = iconMap[tech];

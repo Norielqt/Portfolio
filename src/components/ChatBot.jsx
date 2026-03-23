@@ -1,7 +1,16 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import projects from "../data/projects";
 
-const SYSTEM_PROMPT = `You are an AI assistant for Noriel Fulgencio's portfolio website. Your job is to help visitors learn about Noriel in a friendly, professional tone. Only answer questions related to Noriel — if asked about anything unrelated, politely redirect the conversation back to him.
+const buildSystemPrompt = () => {
+  const projectList = projects
+    .map((p, i) => {
+      const badge = p.badge ? ` [${p.badge}]` : "";
+      return `${i + 1}. ${p.title}${badge} — ${p.description} Stack: ${p.stack.join(", ")}.`;
+    })
+    .join("\n");
+
+  return `You are an AI assistant for Noriel Fulgencio's portfolio website. Your job is to help visitors learn about Noriel in a friendly, professional tone. Only answer questions related to Noriel — if asked about anything unrelated, politely redirect the conversation back to him.
 
 Here is everything you know about Noriel:
 
@@ -21,9 +30,7 @@ INTERNSHIP:
 - Meralco PowerGen - IT Department | February 2025 – May 2025
 
 PROJECTS:
-1. Park Cabins CRM — A CRM for a cabin manufacturing company. Manages the full customer lifecycle (enquiry → quoting → production → invoicing → payment). Includes a staff platform and customer portal. Built with React, Vite, Laravel (PHP), MySQL.
-2. SaaS Project Management System — Full-featured SaaS platform for team collaboration, task tracking, and project management. Built with Laravel, PHP, React, Vite, Tailwind CSS, Laravel Sanctum.
-3. Zonify — A responsive web app for zone classification using Machine Learning. Built with Python (Flask), HTML, CSS, JavaScript, TensorFlow.
+${projectList}
 
 SKILLS:
 Languages: JavaScript, Python, PHP, Java, C++, C#, HTML & CSS
@@ -37,6 +44,9 @@ CONTACT:
 - Facebook: https://www.facebook.com/noryeeelqt
 
 Keep answers concise and helpful. If asked if Noriel is available for work or hire, say he is open to opportunities.`;
+};
+
+const SYSTEM_PROMPT = buildSystemPrompt();
 
 const SUGGESTED_QUESTIONS = [
   { icon: "🚀", label: "Projects", text: "What projects has Noriel built?" },

@@ -7,6 +7,7 @@ import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ChatBot from "./components/ChatBot";
+import { FiGithub, FiLinkedin, FiSun, FiMoon, FiMenu, FiX } from "react-icons/fi";
 
 const NAV_SECTIONS = [
   { label: "About", id: "about" },
@@ -61,6 +62,18 @@ export default function App() {
     return () => observer.disconnect();
   }, []);
 
+  // Close mobile menu on outside click
+  useEffect(() => {
+    if (!menuOpen) return;
+    const handler = (e) => {
+      if (!e.target.closest("#mobile-menu") && !e.target.closest("#hamburger-btn")) {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [menuOpen]);
+
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setMenuOpen(false);
@@ -71,84 +84,112 @@ export default function App() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow border-b border-gray-200/50 dark:border-gray-700/50"
-            : "bg-white dark:bg-gray-800 shadow"
+            ? "bg-white/75 dark:bg-gray-900/75 backdrop-blur-xl border-b border-gray-200/60 dark:border-white/10 shadow-sm"
+            : "bg-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-          <h1 className="font-bold text-xl">Noriel Fulgencio</h1>
+        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
 
-          {/* Desktop nav */}
-          <div className="hidden md:flex items-center space-x-6">
-            <nav className="flex items-center space-x-1">
+          {/* Logo / Name */}
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="flex items-center gap-2 group focus:outline-none"
+          >
+            <span className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-sm select-none">
+              NF
+            </span>
+            <span className="font-semibold text-sm hidden sm:block text-gray-900 dark:text-white">
+              Noriel Fulgencio
+            </span>
+          </button>
+
+          {/* Desktop nav — pill container */}
+          <nav className="hidden md:flex items-center gap-1 bg-gray-100/80 dark:bg-white/5 border border-gray-200/80 dark:border-white/10 rounded-full px-2 py-1.5 backdrop-blur-sm">
+            {NAV_SECTIONS.map(({ label, id }) => (
+              <button
+                key={id}
+                onClick={() => scrollTo(id)}
+                className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
+                  activeSection === id
+                    ? "bg-white dark:bg-white/10 text-blue-600 dark:text-blue-400 shadow-sm"
+                    : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </nav>
+
+          {/* Right actions */}
+          <div className="flex items-center gap-2">
+            <a
+              href="https://github.com/Norielqt"
+              target="_blank"
+              rel="noreferrer"
+              className="hidden md:flex w-9 h-9 items-center justify-center rounded-full text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition"
+              aria-label="GitHub"
+            >
+              <FiGithub size={18} />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/noriel-fulgencio-23887a259/"
+              target="_blank"
+              rel="noreferrer"
+              className="hidden md:flex w-9 h-9 items-center justify-center rounded-full text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition"
+              aria-label="LinkedIn"
+            >
+              <FiLinkedin size={18} />
+            </a>
+
+            {/* Dark mode toggle */}
+            <button
+              onClick={() => setDarkMode(!darkMode)}
+              className="w-9 h-9 flex items-center justify-center rounded-full text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition"
+              aria-label="Toggle Dark Mode"
+            >
+              {darkMode ? <FiSun size={18} /> : <FiMoon size={18} />}
+            </button>
+
+            {/* Hamburger */}
+            <button
+              id="hamburger-btn"
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="md:hidden w-9 h-9 flex items-center justify-center rounded-full text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition"
+              aria-label="Toggle Menu"
+            >
+              {menuOpen ? <FiX size={20} /> : <FiMenu size={20} />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile menu */}
+        {menuOpen && (
+          <div
+            id="mobile-menu"
+            className="md:hidden mx-4 mb-3 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-white/10 shadow-xl overflow-hidden"
+          >
+            <nav className="flex flex-col p-2">
               {NAV_SECTIONS.map(({ label, id }) => (
                 <button
                   key={id}
                   onClick={() => scrollTo(id)}
-                  className={`px-3 py-1.5 rounded-lg text-sm font-medium transition ${
+                  className={`text-left px-4 py-3 rounded-xl text-sm font-medium transition ${
                     activeSection === id
-                      ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30"
-                      : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                      ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20"
+                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5"
                   }`}
                 >
                   {label}
                 </button>
               ))}
             </nav>
-            <div className="flex items-center space-x-3 border-l pl-4 border-gray-200 dark:border-gray-700">
-              <button
-                onClick={() => setDarkMode(!darkMode)}
-                className="px-3 py-1 border rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition text-sm"
-                aria-label="Toggle Dark Mode"
-              >
-                {darkMode ? "☀️ Light" : "🌙 Dark"}
-              </button>
-              <a href="https://github.com/Norielqt" target="_blank" rel="noreferrer" className="text-sm hover:underline">GitHub</a>
-              <a href="https://www.linkedin.com/in/noriel-fulgencio-23887a259/" target="_blank" rel="noreferrer" className="text-sm hover:underline">LinkedIn</a>
-            </div>
-          </div>
-
-          {/* Mobile: dark mode + hamburger */}
-          <div className="flex md:hidden items-center space-x-2">
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className="px-2 py-1 border rounded text-sm hover:bg-gray-200 dark:hover:bg-gray-700 transition"
-              aria-label="Toggle Dark Mode"
-            >
-              {darkMode ? "☀️" : "🌙"}
-            </button>
-            <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition focus:outline-none"
-              aria-label="Toggle Menu"
-            >
-              <span className="block w-5 h-0.5 bg-current mb-1"></span>
-              <span className="block w-5 h-0.5 bg-current mb-1"></span>
-              <span className="block w-5 h-0.5 bg-current"></span>
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile dropdown */}
-        {menuOpen && (
-          <div className="md:hidden bg-white dark:bg-gray-800 border-t dark:border-gray-700 px-4 py-3 flex flex-col space-y-1">
-            {NAV_SECTIONS.map(({ label, id }) => (
-              <button
-                key={id}
-                onClick={() => scrollTo(id)}
-                className={`text-left px-3 py-2 rounded-lg text-sm font-medium transition ${
-                  activeSection === id
-                    ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30"
-                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
-                }`}
-              >
-                {label}
-              </button>
-            ))}
-            <div className="flex space-x-4 pt-2 border-t dark:border-gray-700">
-              <a href="https://github.com/Norielqt" target="_blank" rel="noreferrer" className="text-sm hover:underline">GitHub</a>
-              <a href="https://www.linkedin.com/in/noriel-fulgencio-23887a259/" target="_blank" rel="noreferrer" className="text-sm hover:underline">LinkedIn</a>
-              <a href="https://www.facebook.com/noryeeelqt" target="_blank" rel="noreferrer" className="text-sm hover:underline">Facebook</a>
+            <div className="flex items-center gap-3 px-4 py-3 border-t border-gray-100 dark:border-white/10">
+              <a href="https://github.com/Norielqt" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
+                <FiGithub size={16} /> GitHub
+              </a>
+              <a href="https://www.linkedin.com/in/noriel-fulgencio-23887a259/" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
+                <FiLinkedin size={16} /> LinkedIn
+              </a>
             </div>
           </div>
         )}
