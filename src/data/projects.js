@@ -1,6 +1,26 @@
 const projects = [
   {
     id: 1,
+    title: "ZentraCRM",
+    badge: "Latest Project",
+    github: "https://github.com/Norielqt/Zentra-crm",
+    demo: "https://zentra-crm-dun.vercel.app/",
+    description:
+      "A cloud-based CRM platform designed to help small sales teams stay organised and close more deals. Zentra gives your team a clear view of every lead, client, and task in one place, with a visual pipeline board, automated follow-up workflows, and a smart dashboard that tells you exactly where to focus your attention. Each business gets its own fully isolated workspace, with role-based access so admins and team members only see what's relevant to them.",
+    stack: ["React", "Vite", "Laravel", "PHP", "MySQL", "Docker", "Vercel"],
+    images: [
+      "/Project6a.png",
+      "/Project6b.png",
+      "/Project6c.png",
+      "/Project6d.png",
+      "/Project6e.png",
+      "/Project6f.png",
+      "/Project6g.png",
+      "/Project6h.png",
+    ],
+  },
+  {
+    id: 2,
     title: "RealtorHQ",
     badge: "Featured Project",
     github: "https://github.com/Norielqt/real-estate-property-system",
@@ -20,7 +40,7 @@ const projects = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     title: "Park Cabins",
     badge: "Built & Deployed for a Real Company",
     description:
@@ -37,7 +57,7 @@ const projects = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     title: "SaaS Project Management System",
     github: "https://github.com/Norielqt/saas-project-management",
     description:
@@ -53,7 +73,7 @@ const projects = [
     ],
   },
   {
-    id: 4,
+    id: 5,
     title: "Zonify",
     badge: "Best Thesis",
     github: "https://github.com/Norielqt/Zonify",
