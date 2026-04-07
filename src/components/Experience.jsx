@@ -1,61 +1,36 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaGraduationCap, FaLaptopCode, FaUniversity, FaBriefcase } from "react-icons/fa";
 
-const academicTimeline = [
+const timeline = [
   {
-    date: "May 2025",
-    icon: <FaGraduationCap />,
-    description:
-      "Graduated Magna Cum Laude with a Bachelor of Science in Information Technology from West Visayas State University.",
-  },
-  {
-    date: "May 2025",
-    icon: <FaLaptopCode />,
-    description: "Completed internship at Meralco PowerGen - IT Department.",
-  },
-  {
-    date: "February 2025",
-    icon: <FaLaptopCode />,
-    description: "Started internship at Meralco PowerGen - IT Department.",
-  },
-  {
-    date: "August 2021",
-    icon: <FaUniversity />,
-    description:
-      "Started pursuing a Bachelor of Science in Information Technology at West Visayas State University.",
-  },
-];
-
-const professionalTimeline = [
-  {
+    title: "Software Engineer",
+    company: "Park Cabins",
     date: "June 2025 – March 2026",
-    icon: <FaBriefcase />,
     description:
-      "Worked as a Software Engineer, developing and maintaining the Park Cabins CRM — a full-stack web application for managing customer relationships, bookings, and operational workflows for cabin accommodations.",
+      "Developed and maintained a full-stack CRM for managing customer relationships, bookings, and operational workflows for cabin accommodations.",
+  },
+  {
+    title: "Graduated Magna Cum Laude",
+    company: "West Visayas State University",
+    date: "May 2025",
+    description:
+      "Earned a Bachelor of Science in Information Technology, graduating Magna Cum Laude with Best Thesis.",
+  },
+  {
+    title: "Internship",
+    company: "Meralco PowerGen",
+    date: "February – May 2025",
+    description:
+      "Completed a 3-month internship at the IT Department, gaining exposure to enterprise systems and IT operations.",
+  },
+  {
+    title: "Started University",
+    company: "West Visayas State University",
+    date: "August 2021",
+    description:
+      "Began pursuing a Bachelor of Science in Information Technology.",
   },
 ];
-
-const TimelineList = ({ items }) => (
-  <div className="relative border-l-4 border-blue-500 ml-4 pl-6">
-    {items.map((item, index) => (
-      <motion.div
-        key={index}
-        className="mb-10"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <div className="flex items-center mb-2">
-          <div className="text-blue-500 mr-3 text-xl">{item.icon}</div>
-          <h4 className="text-xl font-semibold">{item.date}</h4>
-        </div>
-        <p className="text-md text-gray-700 dark:text-gray-300">{item.description}</p>
-      </motion.div>
-    ))}
-  </div>
-);
 
 const Experience = () => {
   return (
@@ -66,16 +41,57 @@ const Experience = () => {
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-4xl font-bold mb-6 border-b-4 inline-block border-blue-500">Experience</h2>
+        <h2 className="text-4xl font-bold mb-12">My Career Timeline</h2>
 
-        <div className="mb-12">
-          <h3 className="text-2xl font-bold mb-6 text-blue-500">Professional Experience</h3>
-          <TimelineList items={professionalTimeline} />
-        </div>
+        <div className="relative max-w-4xl mx-auto">
+          {/* Center vertical line */}
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-blue-500 hidden md:block" />
 
-        <div className="mb-12">
-          <h3 className="text-2xl font-bold mb-6 text-blue-500">Academic Experience</h3>
-          <TimelineList items={academicTimeline} />
+          {timeline.map((item, index) => {
+            const isLeft = index % 2 === 0;
+            const card = (
+              <div className={`bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 w-full ${isLeft ? "text-right" : "text-left"}`}>
+                <h4 className="text-lg font-bold">{item.title}</h4>
+                <p className="text-blue-500 font-semibold text-sm mt-0.5">{item.company}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 mb-2">{item.date}</p>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">{item.description}</p>
+              </div>
+            );
+
+            return (
+              <motion.div
+                key={index}
+                className="relative flex items-start mb-12"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                {/* Left slot */}
+                <div className="hidden md:flex w-1/2 justify-end pr-10">
+                  {isLeft && card}
+                </div>
+
+                {/* Center dot — absolutely positioned on the line */}
+                <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-6 z-10 w-4 h-4 rounded-full bg-blue-500 shrink-0" />
+
+                {/* Right slot */}
+                <div className="hidden md:flex w-1/2 pl-10">
+                  {!isLeft && card}
+                </div>
+
+                {/* Mobile: stacked */}
+                <div className="flex md:hidden w-full pl-5 border-l-4 border-blue-500">
+                  <div className="w-full">
+                    <h4 className="text-lg font-bold">{item.title}</h4>
+                    <p className="text-blue-500 font-semibold text-sm mt-0.5">{item.company}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 mb-2">{item.date}</p>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">{item.description}</p>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </motion.div>
     </section>

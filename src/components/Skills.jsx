@@ -50,7 +50,7 @@ export default function Skills() {
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
       >
-        <h3 className="text-3xl font-semibold mb-10 border-b-4 inline-block border-blue-500">
+        <h3 className="text-3xl font-semibold mb-10">
           Skills
         </h3>
 

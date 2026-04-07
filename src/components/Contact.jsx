@@ -39,7 +39,7 @@ export default function Contact() {
         viewport={{ once: true, margin: "0px 0px 80px 0px" }}
         className="max-w-2xl mx-auto text-center"
       >
-        <h2 className="text-4xl font-bold mb-4 border-b-4 inline-block border-blue-500">Get In Touch</h2>
+        <h2 className="text-4xl font-bold mb-4">Get In Touch</h2>
         <p className="text-lg text-gray-600 dark:text-gray-300 mt-6 mb-10">
           I'm open to new opportunities, collaborations, or just a friendly chat. Feel free to reach out through any of the channels below.
         </p>
