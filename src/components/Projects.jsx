@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FiGithub, FiGlobe } from "react-icons/fi";
 import {
   SiReact, SiVite, SiLaravel, SiMysql, SiTailwindcss, SiPython,
-  SiHtml5, SiCss3, SiJavascript, SiTensorflow, SiPhp,
+  SiHtml5, SiCss3, SiJavascript, SiTensorflow, SiPhp, SiDocker, SiVercel,
 } from "react-icons/si";
 
 const iconMap = {
@@ -19,6 +19,8 @@ const iconMap = {
   JavaScript:   { icon: <SiJavascript />,  color: "text-yellow-300", bg: "bg-yellow-300/10 border-yellow-300/30" },
   TensorFlow:   { icon: <SiTensorflow />,  color: "text-orange-400", bg: "bg-orange-400/10 border-orange-400/30" },
   PHP:          { icon: <SiPhp />,         color: "text-indigo-400", bg: "bg-indigo-400/10 border-indigo-400/30" },
+  Docker:       { icon: <SiDocker />,      color: "text-blue-500",   bg: "bg-blue-500/10 border-blue-500/30" },
+  Vercel:       { icon: <SiVercel />,      color: "text-gray-100",   bg: "bg-gray-100/10 border-gray-100/30" },
 };
 import projects from "../data/projects";
 

@@ -2,12 +2,12 @@ const projects = [
   {
     id: 1,
     title: "ZentraCRM",
-    badge: "Latest Project",
+    badge: "Featured Project",
     github: "https://github.com/Norielqt/Zentra-crm",
     demo: "https://zentra-crm-dun.vercel.app/",
     description:
       "A cloud-based CRM platform designed to help small sales teams stay organised and close more deals. Zentra gives your team a clear view of every lead, client, and task in one place, with a visual pipeline board, automated follow-up workflows, and a smart dashboard that tells you exactly where to focus your attention. Each business gets its own fully isolated workspace, with role-based access so admins and team members only see what's relevant to them.",
-    stack: ["React", "Vite", "Laravel", "PHP", "MySQL", "Docker", "Vercel"],
+    stack: ["React", "Vite", "Laravel", "PHP", "MySQL", "Docker"],
     images: [
       "/Project6a.png",
       "/Project6b.png",
