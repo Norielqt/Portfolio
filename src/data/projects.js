@@ -2,7 +2,9 @@ const projects = [
   {
     id: 1,
     title: "ZentraCRM",
+    category: "software-development",
     badge: "Featured Project",
+    thumbnail: "/ZentraCRM.png",
     github: "https://github.com/Norielqt/Zentra-crm",
     demo: "https://zentra-crm-dun.vercel.app/",
     description:
@@ -22,7 +24,9 @@ const projects = [
   {
     id: 2,
     title: "RealtorHQ",
+    category: "software-development",
     badge: "Featured Project",
+    thumbnail: "/RealtorHQ.png",
     github: "https://github.com/Norielqt/real-estate-property-system",
     demo: "https://realtor-hq.vercel.app/",
     description:
@@ -42,7 +46,9 @@ const projects = [
   {
     id: 3,
     title: "Park Cabins",
+    category: "software-development",
     badge: "Built & Deployed for a Real Company",
+    thumbnail: "/ParkCabins.png",
     description:
       "A production CRM deployed and actively used by a cabin manufacturing company. Covers 6 end-to-end workflows — enquiry, quoting, production tracking, project delivery, invoicing, and payment — replacing manual spreadsheet processes. Features a staff dashboard for managing customers, jobs, financials, and documents, plus a dedicated customer portal for real-time project progress visibility. Built with a fully relational MySQL schema to handle complex job and financial data.",
     stack: ["React", "Vite", "Laravel", "PHP", "MySQL", "Tailwind CSS"],
@@ -59,6 +65,8 @@ const projects = [
   {
     id: 4,
     title: "SaaS Project Management System",
+    category: "software-development",
+    thumbnail: "/SaasProjectManagement.png",
     github: "https://github.com/Norielqt/saas-project-management",
     description:
       "A multi-tenant SaaS project management platform with role-based access control for admins, project managers, and members. Supports full project and task lifecycle management — creation, assignment, prioritization, status tracking, and progress monitoring — across multiple teams and organizations from a single platform. Built with a RESTful Laravel API, real-time UI updates, and a responsive React dashboard covering 8+ core modules.",
@@ -75,7 +83,9 @@ const projects = [
   {
     id: 5,
     title: "Zonify",
+    category: "software-development",
     badge: "Best Thesis",
+    thumbnail: "/Zonify.png",
     github: "https://github.com/Norielqt/Zonify",
     description:
       "A web-based zone classification system powered by a TensorFlow deep learning model. Allows users to upload images and receive predicted zone classifications in real time through a Flask REST API. Trained on a custom dataset and deployed as a fully responsive single-page application, covering end-to-end ML integration from model inference to a clean browser UI — no external ML service required.",

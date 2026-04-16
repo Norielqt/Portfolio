@@ -630,6 +630,7 @@
     "react-icons": "^5.5.0",
     "react-is": "^17.0.2",
     "react-refresh": "^0.11.0",
+    "react-router-dom": "^7.14.1",
     "react-scripts": "^5.0.1",
     "read-cache": "^1.0.0",
     "readable-stream": "^3.6.2",

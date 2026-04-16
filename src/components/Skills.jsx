@@ -12,7 +12,7 @@ const skillGroups = [
     category: "Languages",
     items: [
       { name: "C#",         icon: <SiDotnet     className="inline-block mr-3 text-green-600  text-4xl" /> },
-      { name: "C++",        icon: <SiCplusplus  className="inline-block mr-3 text-blue-600   text-4xl" /> },
+      { name: "C++",        icon: <SiCplusplus  className="inline-block mr-3 text-brand text-4xl" /> },
       { name: "HTML & CSS", icon: <SiHtml5      className="inline-block mr-3 text-orange-500 text-4xl" /> },
       { name: "Java",       icon: <FaJava       className="inline-block mr-3 text-red-600    text-4xl" /> },
       { name: "JavaScript", icon: <SiJavascript className="inline-block mr-3 text-yellow-400 text-4xl" /> },
@@ -24,7 +24,7 @@ const skillGroups = [
     category: "Frameworks & Libraries",
     items: [
       { name: "Laravel",      icon: <SiLaravel     className="inline-block mr-3 text-red-500  text-4xl" /> },
-      { name: "React",        icon: <SiReact       className="inline-block mr-3 text-blue-500 text-4xl" /> },
+      { name: "React",        icon: <SiReact       className="inline-block mr-3 text-brand text-4xl" /> },
       { name: "Tailwind CSS", icon: <SiTailwindcss className="inline-block mr-3 text-teal-400 text-4xl" /> },
     ],
   },
@@ -32,8 +32,8 @@ const skillGroups = [
     category: "Tools & Platforms",
     items: [
       { name: "AWS",          icon: <SiAmazon      className="inline-block mr-3 text-orange-400 text-4xl" /> },
-      { name: "Git & GitHub", icon: <SiGithub      className="inline-block mr-3 text-gray-800 dark:text-white text-4xl" /> },
-      { name: "MySQL",        icon: <SiMysql       className="inline-block mr-3 text-blue-700  text-4xl" /> },
+      { name: "Git & GitHub", icon: <SiGithub      className="inline-block mr-3 text-brand dark:text-white text-4xl" /> },
+      { name: "MySQL",        icon: <SiMysql       className="inline-block mr-3 text-brand text-4xl" /> },
       { name: "PostgreSQL",   icon: <SiPostgresql  className="inline-block mr-3 text-sky-600   text-4xl" /> },
       { name: "Railway",      icon: <SiRailway     className="inline-block mr-3 text-violet-500 text-4xl" /> },
       { name: "REST APIs",    icon: <FaServer      className="inline-block mr-3 text-indigo-500 text-4xl" /> },
@@ -43,22 +43,22 @@ const skillGroups = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="mx-auto py-16 px-4">
+    <section id="skills" className="max-w-5xl mx-auto pt-24 pb-16 px-4">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
       >
-        <h3 className="text-3xl font-semibold mb-10">
+        <h3 className="text-4xl font-normal mb-10">
           Skills
         </h3>
 
         <div className="space-y-10">
           {skillGroups.map(({ category, items }) => (
             <div key={category}>
-              <h4 className="text-sm font-semibold uppercase tracking-widest text-blue-500 mb-4">{category}</h4>
-              <ul className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-gray-700 dark:text-gray-300">
+              <h4 className="text-sm font-semibold uppercase tracking-widest text-brand mb-4">{category}</h4>
+              <ul className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-brand dark:text-gray-300">
                 {items.map(({ name, icon }) => {
                   return (
                     <motion.li

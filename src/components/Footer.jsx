@@ -20,7 +20,7 @@ export default function Footer() {
               target={label !== "Email" ? "_blank" : undefined}
               rel="noreferrer"
               aria-label={label}
-              className="text-xl hover:text-blue-500 dark:hover:text-blue-400 transition"
+              className="text-xl hover:text-brand transition"
             >
               {icon}
             </a>

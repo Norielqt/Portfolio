@@ -5,28 +5,32 @@ import {
   SiReact, SiVite, SiLaravel, SiMysql, SiTailwindcss, SiPython,
   SiHtml5, SiCss3, SiJavascript, SiTensorflow, SiPhp, SiDocker, SiVercel,
 } from "react-icons/si";
+import Services from "./Services";
 
 const iconMap = {
   React:        { icon: <SiReact />,       color: "text-sky-400",    bg: "bg-sky-400/10 border-sky-400/30" },
   Vite:         { icon: <SiVite />,        color: "text-purple-400", bg: "bg-purple-400/10 border-purple-400/30" },
   Laravel:      { icon: <SiLaravel />,     color: "text-red-500",    bg: "bg-red-500/10 border-red-500/30" },
-  MySQL:        { icon: <SiMysql />,       color: "text-blue-400",   bg: "bg-blue-400/10 border-blue-400/30" },
+  MySQL:        { icon: <SiMysql />,       color: "text-brand",      bg: "bg-brand/10 border-brand/30" },
   "Tailwind CSS": { icon: <SiTailwindcss />, color: "text-teal-400", bg: "bg-teal-400/10 border-teal-400/30" },
   Python:       { icon: <SiPython />,      color: "text-yellow-400", bg: "bg-yellow-400/10 border-yellow-400/30" },
   Flask:        { icon: <SiPython />,      color: "text-gray-400",   bg: "bg-gray-400/10 border-gray-400/30" },
   HTML:         { icon: <SiHtml5 />,       color: "text-orange-400", bg: "bg-orange-400/10 border-orange-400/30" },
-  CSS:          { icon: <SiCss3 />,        color: "text-blue-400",   bg: "bg-blue-400/10 border-blue-400/30" },
+  CSS:          { icon: <SiCss3 />,        color: "text-brand",      bg: "bg-brand/10 border-brand/30" },
   JavaScript:   { icon: <SiJavascript />,  color: "text-yellow-300", bg: "bg-yellow-300/10 border-yellow-300/30" },
   TensorFlow:   { icon: <SiTensorflow />,  color: "text-orange-400", bg: "bg-orange-400/10 border-orange-400/30" },
   PHP:          { icon: <SiPhp />,         color: "text-indigo-400", bg: "bg-indigo-400/10 border-indigo-400/30" },
-  Docker:       { icon: <SiDocker />,      color: "text-blue-500",   bg: "bg-blue-500/10 border-blue-500/30" },
+  Docker:       { icon: <SiDocker />,      color: "text-brand",      bg: "bg-brand/10 border-brand/30" },
   Vercel:       { icon: <SiVercel />,      color: "text-gray-100",   bg: "bg-gray-100/10 border-gray-100/30" },
 };
 import projects from "../data/projects";
 
-export default function Projects() {
+export default function Projects({ category = null }) {
   const [modalProjectId, setModalProjectId] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Filter projects by category if provided
+  const filteredProjects = category ? projects.filter(p => p.category === category) : projects;
 
   const openModal = (projectId, index) => {
     setModalProjectId(projectId);
@@ -63,89 +67,110 @@ export default function Projects() {
   }, [modalProjectId, showNextImage, showPrevImage]);
 
   return (
-    <section id="projects" className="py-16 px-4 max-w-6xl mx-auto">
-      <motion.h3
-        className="text-3xl font-semibold mb-8"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-        viewport={{ once: true, margin: "0px 0px 80px 0px" }}
-      >
-        Projects
-      </motion.h3>
-
-      {projects.map((project, index) => (
-        <div
-          key={project.id}
-          className="bg-gray-100 dark:bg-gray-800 p-6 rounded shadow-lg hover:shadow-xl transition mb-16"
-        >
-          <div
-            className="relative w-full h-56 sm:h-72 md:h-96 mb-8 rounded overflow-hidden cursor-pointer group"
-            onClick={() => openModal(project.id, 0)}
-          >
-            <img
-              src={project.images[0]}
-              alt={`${project.title} screenshot 1`}
-              className="w-full h-full object-cover transition-transform group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-50 transition-opacity" />
-            <div className="absolute top-3 left-3 bg-white text-black text-sm font-semibold px-3 py-1 rounded shadow">
-              {project.images.length} image{project.images.length > 1 ? "s" : ""}
-            </div>
-            <div className="absolute bottom-3 right-3 bg-gray-900 text-white dark:bg-white dark:text-gray-900 text-sm font-medium px-3 py-1 rounded shadow opacity-80 group-hover:opacity-100 transition">
-              View Gallery →
+    <>
+      {!category && (
+        <>
+          <div style={{ backgroundColor: "#f6f8f5" }} className="pt-24 pb-16 px-4 min-h-[40vh] flex items-center">
+            <div className="max-w-6xl mx-auto w-full">
+              <h1 style={{ fontFamily: "DM Sans, sans-serif", fontSize: "76px", letterSpacing: "-3px" }} className="text-brand font-extrabold text-center">
+                My Projects
+              </h1>
             </div>
           </div>
+          <Services layout="grid" />
+        </>
+      )}
+      {category && (
+        <section id="projects" className="pt-24 pb-16 px-4 max-w-6xl mx-auto">
 
-          {project.badge && (
-            <span className="inline-flex items-center gap-1.5 mb-3 px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/10 border border-blue-500/30 text-blue-500 dark:text-blue-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-500 dark:bg-blue-400 inline-block"></span>
-              {project.badge}
-            </span>
-          )}
-          <h4 className="text-2xl font-bold mb-2">{project.title}</h4>
-          <p className="text-gray-700 dark:text-gray-300 mb-4">{project.description}</p>
-          <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Built With</p>
-          <div className="flex flex-wrap gap-2 mb-5">
-            {project.stack.map((tech) => {
-            const t = iconMap[tech];
+          {filteredProjects.map((project, index) => {
             return (
-              <span
-                  key={tech}
-                  className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border ${t.bg}`}
-                >
-                  <span className={`text-sm leading-none ${t.color}`}>{t.icon}</span>
-                  <span className="text-gray-700 dark:text-gray-200">{tech}</span>
-                </span>
-              );
-            })}
-          </div>
-          {(project.github || project.demo) && (
-            <div className="flex flex-wrap gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
-              {project.demo && (
-                <a
-                  href={project.demo}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition"
-                >
-                  <FiGlobe size={15} /> Visit Site
-                </a>
-              )}
-              {project.github && (
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition"
-                >
-                  <FiGithub size={15} /> View on GitHub
-                </a>
-              )}
-            </div>
-          )}
-        </div>
-      ))}
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="flex flex-col md:flex-row gap-8 items-start mb-20"
+              >
+                {/* Image - Always Left */}
+                <div className="md:w-1/2 flex-shrink-0 flex justify-center">
+                  <div
+                    className="relative w-2/3 h-80 sm:h-96 md:h-[450px] overflow-hidden cursor-pointer group shadow-lg"
+                    onClick={() => openModal(project.id, 0)}
+                  >
+                    <img
+                      src={project.thumbnail || project.images[0]}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-50 transition-opacity" />
+                    <div className="absolute top-3 left-3 bg-white text-black text-sm font-semibold px-3 py-1 rounded shadow">
+                      {project.images.length} image{project.images.length > 1 ? "s" : ""}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Content - Always Right */}
+                <div className="md:w-1/2">
+                  <div className="flex items-center gap-3 mb-4">
+                    <h4 style={{ fontFamily: "Forum, serif", fontSize: "28px" }} className="font-normal text-brand">{project.title}</h4>
+                    {project.badge && (
+                      <span style={{ fontSize: "15px", color: "#536942" }} className="font-normal flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand inline-block"></span>
+                        {project.badge}
+                      </span>
+                    )}
+                  </div>
+                  <p style={{ fontSize: "15px", color: "#536941E3" }} className="mb-4">{project.description}</p>
+                  
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.stack.map((tech) => {
+                      const t = iconMap[tech];
+                      return (
+                        <span
+                          key={tech}
+                          className="flex items-center gap-1.5 px-3 py-1 text-xs font-semibold text-brand"
+                        >
+                          <span className="text-sm leading-none text-brand">{t.icon}</span>
+                          <span>{tech}</span>
+                        </span>
+                      );
+                    })}
+                  </div>
+
+                  {(project.github || project.demo) && (
+                    <div className="flex flex-wrap gap-0">
+                      {project.demo && (
+                        <span style={{ fontSize: "15px" }} className="text-brand">
+                          Live: <a
+                            href={project.demo}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="underline hover:opacity-70 transition"
+                          >
+                            {project.demo}
+                          </a>
+                        </span>
+                      )}
+                      {project.github && (
+                        <span style={{ fontSize: "15px" }} className="text-brand">
+                          Github: <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="underline hover:opacity-70 transition"
+                          >
+                            {project.github}
+                          </a>
+                        </span>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            );
+          })}
 
       {modalProjectId !== null && (() => {
         const project = projects.find((p) => p.id === modalProjectId);
@@ -228,6 +253,42 @@ export default function Projects() {
           </div>
         );
       })()}
-    </section>
+        </section>
+      )}
+      
+      <section style={{ backgroundColor: "#f6f8f5" }} className="w-full py-20 px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="flex flex-col items-center text-center"
+        >
+          {/* Quote mark */}
+          <span className="text-8xl leading-none select-none" style={{ fontFamily: "Forum, serif", color: "#536942" }}>&ldquo;</span>
+
+          {/* Quote text */}
+          <h4
+            className="text-2xl md:text-3xl mt-2 mb-10 max-w-2xl"
+            style={{ fontFamily: "Forum, serif", color: "#536942" }}
+          >
+            A goal without a timeline is just a dream
+          </h4>
+
+          {/* Avatar circle */}
+          <div className="w-16 h-16 rounded-full overflow-hidden border-2 mb-3" style={{ borderColor: "#536942" }}>
+            <img
+              src="/RobertHerjavec.png"
+              alt="Robert Herjavec"
+              className="w-full h-full object-cover"
+              onError={(e) => { e.target.style.display = "none"; }}
+            />
+          </div>
+
+          {/* Name */}
+          <p style={{ fontSize: 14, color: "#536942" }}>Robert Herjavec</p>
+        </motion.div>
+      </section>
+    </>
   );
 }
