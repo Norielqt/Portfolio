@@ -38,7 +38,7 @@ const services = [
   },
 ];
 
-const Services = ({ layout = "grid" }) => {
+const Services = ({ layout = "grid", showDescription = true }) => {
   const navigate = useNavigate();
 
   const getServiceRoute = (title) => {
@@ -86,6 +86,9 @@ const Services = ({ layout = "grid" }) => {
                   />
                 </div>
                 <h4 className="mt-5 text-xl">{service.title}</h4>
+                {showDescription && (
+                  <p className="mt-2 text-sm" style={{ color: "#536941E3", fontFamily: "DM Sans, sans-serif", lineHeight: "1.6" }}>{service.description}</p>
+                )}
               </motion.div>
             ))}
           </div>

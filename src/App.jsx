@@ -14,7 +14,18 @@ import Contact from "./components/Contact";
 import Preloader from "./components/Preloader";
 import projects from "./data/projects";
 
-const Home = () => <div><Hero /><Services /><QuoteBanner /><About /></div>;
+const Home = () => (
+  <div>
+    <Hero />
+    <div className="max-w-6xl mx-auto px-6 pt-16 pb-2">
+      <h2 style={{ fontSize: "40px", color: "#536942", fontFamily: "DM Sans, sans-serif" }} className="text-center">What I Offer</h2>
+      <div className="mx-auto mt-3" style={{ width: "120px", height: "3px", backgroundColor: "#ffd936" }} />
+    </div>
+    <Services />
+    <QuoteBanner />
+    <About />
+  </div>
+);
 
 const ServicesPage = () => (
   <div>

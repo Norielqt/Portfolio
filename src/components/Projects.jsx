@@ -77,7 +77,7 @@ export default function Projects({ category = null }) {
               </h1>
             </div>
           </div>
-          <Services layout="grid" />
+          <Services layout="grid" showDescription={false} />
         </>
       )}
       {category && (
