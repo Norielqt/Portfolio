@@ -1,10 +1,13 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import service1Image from '../assets/Services1.png';
+import service2Image from '../assets/Services2.png';
+import service3Image from '../assets/Services3.png';
 
 const services = [
   {
-    image: "/Services1.png",
+    image: service1Image,
     title: "Web Development",
     price: "$10",
     description:
@@ -15,7 +18,7 @@ const services = [
     ],
   },
   {
-    image: "/Services3.png",
+    image: service3Image,
     title: "Automation",
     price: "$12",
     description:
@@ -26,7 +29,7 @@ const services = [
     ],
   },
   {
-    image: "/Services2.png",
+    image: service2Image,
     title: "Software Development",
     price: "$15",
     description:

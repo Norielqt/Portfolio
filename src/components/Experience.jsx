@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import steveImage from '../assets/SteveJobs.jpg';
 
 const timeline = [
   {
@@ -122,7 +123,7 @@ const Experience = () => {
         {/* Avatar circle */}
         <div className="w-16 h-16 rounded-full overflow-hidden border-2 mb-3" style={{ borderColor: "#536942" }}>
           <img
-            src="/SteveJobs.jpg"
+            src={steveImage}
             alt="Steve Jobs"
             className="w-full h-full object-cover"
             onError={(e) => { e.target.style.display = "none"; }}

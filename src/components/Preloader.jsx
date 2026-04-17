@@ -1,34 +1,36 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import noriAM from '../assets/NorielFulgencio_AboutMe.jpg';
+import noriProfile from '../assets/NorielFulgencio.png';
+import nori2 from '../assets/NorielFulgencio2.png';
+import zentraCRM from '../assets/ZentraCRM.png';
+import realtorHQ from '../assets/RealtorHQ.png';
+import parkCabins from '../assets/ParkCabins.png';
+import saasProjectMgmt from '../assets/SaasProjectManagement.png';
+import zonify from '../assets/Zonify.png';
+import service1 from '../assets/Services1.png';
+import service2 from '../assets/Services2.png';
+import service3 from '../assets/Services3.png';
+import service3a from '../assets/Services3a.png';
+import robertImage from '../assets/RobertHerjavec.png';
+import steveImage from '../assets/SteveJobs.jpg';
 
-// All public assets to preload
+// All asset images to preload
 const IMAGE_ASSETS = [
-  "/NorielFulgencio_AboutMe.jpg",
-  "/NorielFulgencio.png",
-  "/NorielFulgencio2.png",
-  "/ZentraCRM.png",
-  "/RealtorHQ.png",
-  "/ParkCabins.png",
-  "/SaasProjectManagement.png",
-  "/Zonify.png",
-  "/Services1.png",
-  "/Services2.png",
-  "/Services3.png",
-  "/Services3a.png",
-  "/RobertHerjavec.png",
-  "/SteveJobs.jpg",
-  "/Project1a.png", "/Project1b.png", "/Project1c.png", "/Project1d.png",
-  "/Project1e.png", "/Project1f.png", "/Project1g.png", "/Project1h.png",
-  "/Project1i.png", "/Project1j.png", "/Project1k.png",
-  "/Project2a.png", "/Project2b.png", "/Project2c.png", "/Project2d.png",
-  "/Project3a.png", "/Project3b.png", "/Project3c.png", "/Project3d.png",
-  "/Project3e.png", "/Project3f.png", "/Project3g.png",
-  "/Project4a.png", "/Project4b.png", "/Project4c.png", "/Project4d.png",
-  "/Project4e.png", "/Project4f.png",
-  "/Project5a.png", "/Project5b.png", "/Project5c.png", "/Project5d.png",
-  "/Project5e.png", "/Project5f.png", "/Project5g.png", "/Project5h.png",
-  "/Project6a.png", "/Project6b.png", "/Project6c.png", "/Project6d.png",
-  "/Project6e.png", "/Project6f.png", "/Project6g.png", "/Project6h.png",
+  noriAM,
+  noriProfile,
+  nori2,
+  zentraCRM,
+  realtorHQ,
+  parkCabins,
+  saasProjectMgmt,
+  zonify,
+  service1,
+  service2,
+  service3,
+  service3a,
+  robertImage,
+  steveImage,
 ];
 
 function preloadImages(urls) {

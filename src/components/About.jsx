@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import aboutImage from '../assets/NorielFulgencio_AboutMe.jpg';
 import {
   SiJavascript, SiReact, SiTailwindcss, SiPython,
   SiHtml5, SiPhp, SiCplusplus, SiGithub, SiMysql,
@@ -90,7 +91,7 @@ const About = () => {
           {/* Image Column */}
           <div className="flex-1 flex justify-center">
             <img
-              src="/NorielFulgencio_AboutMe.jpg"
+              src={aboutImage}
               alt="Noriel Fulgencio"
               className="shadow-lg"
               style={{ width: "370px", height: "450px", objectFit: "cover" }}

@@ -55,22 +55,9 @@ export default function Layout() {
             : "bg-transparent"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-center relative">
 
-          {/* Logo / Name */}
-          <Link
-            to="/"
-            className="flex items-center gap-2 group focus:outline-none"
-          >
-            <span className="w-8 h-8 rounded-lg bg-brand flex items-center justify-center text-white font-bold text-sm select-none">
-              NF
-            </span>
-            <span className="font-semibold text-sm hidden sm:block text-brand">
-              Noriel Fulgencio
-            </span>
-          </Link>
-
-          {/* Desktop nav — pill container */}
+          {/* Desktop nav — pill container - centered */}
           <nav className="hidden md:flex items-center gap-1 bg-gray-100/80 border border-gray-200/80 rounded-full px-2 py-1.5 backdrop-blur-sm">
             {NAV_LINKS.map(({ label, path }) => (
               <Link
@@ -87,8 +74,8 @@ export default function Layout() {
             ))}
           </nav>
 
-          {/* Right actions */}
-          <div className="flex items-center gap-2">
+          {/* Right actions - absolute positioned */}
+          <div className="absolute right-6 flex items-center gap-2">
             <a
               href="https://github.com/Norielqt"
               target="_blank"

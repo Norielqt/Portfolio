@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiGithub, FiGlobe } from "react-icons/fi";
+import robertImage from '../assets/RobertHerjavec.png';
 import {
   SiReact, SiVite, SiLaravel, SiMysql, SiTailwindcss, SiPython,
   SiHtml5, SiCss3, SiJavascript, SiTensorflow, SiPhp, SiDocker, SiVercel,
@@ -278,7 +279,7 @@ export default function Projects({ category = null }) {
           {/* Avatar circle */}
           <div className="w-16 h-16 rounded-full overflow-hidden border-2 mb-3" style={{ borderColor: "#536942" }}>
             <img
-              src="/RobertHerjavec.png"
+              src={robertImage}
               alt="Robert Herjavec"
               className="w-full h-full object-cover"
               onError={(e) => { e.target.style.display = "none"; }}

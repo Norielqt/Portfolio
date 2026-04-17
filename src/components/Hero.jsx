@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import heroVideo from '../assets/NorielFulgencioHi.mp4';
+import heroImage from '../assets/NorielFulgencio.png';
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -61,7 +63,7 @@ const Hero = () => {
         {showVideo ? (
           <video
             ref={videoRef}
-            src="/NorielFulgencioHi.mp4"
+            src={heroVideo}
             muted
             playsInline
             onEnded={() => setShowVideo(false)}
@@ -70,7 +72,7 @@ const Hero = () => {
         ) : (
           <img
             className="w-48 h-48 md:w-64 md:h-64 object-cover rounded-full shadow-xl border-4 border-brand"
-            src="/NorielFulgencio.png"
+            src={heroImage}
             alt="Noriel Fulgencio"
           />
         )}
