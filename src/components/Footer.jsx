@@ -26,7 +26,7 @@ export default function Footer() {
             </a>
           ))}
         </div>
-        <p className="text-sm">&copy; {new Date().getFullYear()} Noriel Fulgencio — All rights reserved.</p>
+        <p className="text-sm">&copy; {new Date().getFullYear()} Noriel Fulgencio. All rights reserved.</p>
       </div>
     </footer>
   );

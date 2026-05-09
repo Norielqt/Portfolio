@@ -47,8 +47,20 @@ function preloadImages(urls) {
   );
 }
 
+// Loading resource labels shown progressively
+const LOADING_STEPS = [
+  "Initializing...",
+  "Loading assets...",
+  "Loading projects...",
+  "Loading experience...",
+  "Loading services...",
+  "Almost there...",
+  "Ready.",
+];
+
 export default function Preloader({ onComplete }) {
   const [progress, setProgress] = useState(0);
+  const [stepLabel, setStepLabel] = useState(LOADING_STEPS[0]);
 
   useEffect(() => {
     let loaded = 0;
@@ -58,14 +70,30 @@ export default function Preloader({ onComplete }) {
       (src) =>
         new Promise((resolve) => {
           const img = new Image();
-          img.onload = () => { loaded++; setProgress(Math.round((loaded / total) * 100)); resolve(); };
-          img.onerror = () => { loaded++; setProgress(Math.round((loaded / total) * 100)); resolve(); };
+          img.onload = () => {
+            loaded++;
+            const pct = Math.round((loaded / total) * 100);
+            setProgress(pct);
+            const stepIndex = Math.min(
+              Math.floor((pct / 100) * (LOADING_STEPS.length - 1)),
+              LOADING_STEPS.length - 1
+            );
+            setStepLabel(LOADING_STEPS[stepIndex]);
+            resolve();
+          };
+          img.onerror = () => {
+            loaded++;
+            const pct = Math.round((loaded / total) * 100);
+            setProgress(pct);
+            resolve();
+          };
           img.src = src;
         })
     );
 
     Promise.all(promises).then(() => {
-      setTimeout(onComplete, 500);
+      setStepLabel("Ready.");
+      setTimeout(onComplete, 600);
     });
   }, [onComplete]);
 
@@ -87,17 +115,7 @@ export default function Preloader({ onComplete }) {
         Noriel Fulgencio
       </motion.p>
 
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3 }}
-        className="mt-1 text-sm"
-        style={{ color: "rgba(83,105,66,0.55)" }}
-      >
-        Software Engineer
-      </motion.p>
-
-      <div className="mt-10 w-48 h-[2px] relative overflow-hidden" style={{ backgroundColor: "rgba(83,105,66,0.12)" }}>
+      <div className="mt-5 w-48 h-[2px] relative overflow-hidden" style={{ backgroundColor: "rgba(83,105,66,0.12)" }}>
         <motion.div
           className="absolute left-0 top-0 h-full"
           style={{ background: "linear-gradient(90deg, #7aad5e, #536942)", width: `${progress}%` }}
@@ -105,12 +123,21 @@ export default function Preloader({ onComplete }) {
         />
       </div>
 
-      <motion.p
-        className="mt-3 text-xs tabular-nums"
-        style={{ color: "rgba(83,105,66,0.4)" }}
-      >
-        {progress}%
-      </motion.p>
+      <div className="mt-4 flex items-center justify-between w-48">
+        <motion.p
+          key={stepLabel}
+          initial={{ opacity: 0, y: 4 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.2 }}
+          className="text-xs"
+          style={{ color: "rgba(83,105,66,0.55)" }}
+        >
+          {stepLabel}
+        </motion.p>
+        <p className="text-xs tabular-nums" style={{ color: "rgba(83,105,66,0.35)" }}>
+          {progress}%
+        </p>
+      </div>
     </motion.div>
   );
 }

@@ -86,7 +86,7 @@ const projects = [
     github: "https://github.com/Norielqt/real-estate-property-system",
     demo: "https://realtor-hq.vercel.app/",
     description:
-      "A full-stack real estate listing platform inspired by Zillow and Airbnb. Built a REST API with 24 endpoints, Sanctum token-based auth, and role-based access for buyers, owners, and admins. Supports property listings for sale and rent across the Philippines with advanced search and filtering, an interactive Leaflet map, gallery uploads, a booking request dashboard, and a floating AI chatbot that parses natural language queries and returns matching property cards inline — all across 10+ feature-complete pages.",
+      "A full-stack real estate listing platform inspired by Zillow and Airbnb. Built a REST API with 24 endpoints, Sanctum token-based auth, and role-based access for buyers, owners, and admins. Supports property listings for sale and rent across the Philippines with advanced search and filtering, an interactive Leaflet map, gallery uploads, a booking request dashboard, and a floating AI chatbot that parses natural language queries and returns matching property cards inline. Covers 10+ feature-complete pages.",
     stack: ["React", "Vite", "Laravel", "PHP", "MySQL", "CSS"],
     images: [
       project5a,
@@ -106,7 +106,7 @@ const projects = [
     badge: "Built & Deployed for a Real Company",
     thumbnail: parkCabins,
     description:
-      "A production CRM deployed and actively used by a cabin manufacturing company. Covers 6 end-to-end workflows — enquiry, quoting, production tracking, project delivery, invoicing, and payment — replacing manual spreadsheet processes. Features a staff dashboard for managing customers, jobs, financials, and documents, plus a dedicated customer portal for real-time project progress visibility. Built with a fully relational MySQL schema to handle complex job and financial data.",
+      "A production CRM deployed and actively used by a cabin manufacturing company. Covers 6 end-to-end workflows: enquiry, quoting, production tracking, project delivery, invoicing, and payment, replacing manual spreadsheet processes. Features a staff dashboard for managing customers, jobs, financials, and documents, plus a dedicated customer portal for real-time project progress visibility. Built with a fully relational MySQL schema to handle complex job and financial data.",
     stack: ["React", "Vite", "Laravel", "PHP", "MySQL", "Tailwind CSS"],
     images: [
       project3a,
@@ -125,7 +125,7 @@ const projects = [
     thumbnail: saasProjectManagement,
     github: "https://github.com/Norielqt/saas-project-management",
     description:
-      "A multi-tenant SaaS project management platform with role-based access control for admins, project managers, and members. Supports full project and task lifecycle management — creation, assignment, prioritization, status tracking, and progress monitoring — across multiple teams and organizations from a single platform. Built with a RESTful Laravel API, real-time UI updates, and a responsive React dashboard covering 8+ core modules.",
+      "A multi-tenant SaaS project management platform with role-based access control for admins, project managers, and members. Supports full project and task lifecycle management including creation, assignment, prioritization, status tracking, and progress monitoring across multiple teams and organizations from a single platform. Built with a RESTful Laravel API, real-time UI updates, and a responsive React dashboard covering 8+ core modules.",
     stack: ["React", "Vite", "Laravel", "PHP", "Tailwind CSS", "MySQL"],
     images: [
       project4a,
@@ -144,7 +144,7 @@ const projects = [
     thumbnail: zonify,
     github: "https://github.com/Norielqt/Zonify",
     description:
-      "A web-based zone classification system powered by a TensorFlow deep learning model. Allows users to upload images and receive predicted zone classifications in real time through a Flask REST API. Trained on a custom dataset and deployed as a fully responsive single-page application, covering end-to-end ML integration from model inference to a clean browser UI — no external ML service required.",
+      "A web-based zone classification system powered by a TensorFlow deep learning model. Allows users to upload images and receive predicted zone classifications in real time through a Flask REST API. Trained on a custom dataset and deployed as a fully responsive single-page application, covering end-to-end ML integration from model inference to a clean browser UI. No external ML service required.",
     stack: ["Python", "Flask", "TensorFlow", "HTML", "CSS", "JavaScript"],
     images: [
       project1a,

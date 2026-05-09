@@ -5,8 +5,8 @@ import { FaGithub, FaLinkedin, FaFacebook, FaEnvelope } from "react-icons/fa";
 const contacts = [
   {
     label: "Email",
-    value: "norielfulgencio@gmail.com",
-    href: "mailto:norielfulgencio@gmail.com",
+    value: "norielfulgencio246@gmail.com",
+    href: "mailto:norielfulgencio246@gmail.com",
     icon: <FaEnvelope className="text-brand text-2xl" />,
   },
   {
@@ -32,11 +32,23 @@ const contacts = [
 export default function Contact() {
   return (
     <>
-      <div style={{ backgroundColor: "#f6f8f5" }} className="pt-24 pb-16 px-4 min-h-[40vh] flex items-center">
-        <div className="max-w-6xl mx-auto w-full">
-          <h1 style={{ fontFamily: "DM Sans, sans-serif", fontSize: "76px", letterSpacing: "-3px" }} className="text-brand font-extrabold text-center">
+      <div
+        style={{ background: "radial-gradient(ellipse at 30% 60%, #ddebd3 0%, #f6f8f5 50%, #f0f4ec 100%)" }}
+        className="pt-32 pb-16 px-4"
+      >
+        <div className="max-w-6xl mx-auto w-full text-center">
+          <p className="text-sm font-semibold tracking-[0.2em] uppercase text-brand/60 mb-4">
+            Get in touch
+          </p>
+          <h1
+            style={{ fontFamily: "DM Sans, sans-serif", letterSpacing: "-3px" }}
+            className="text-brand-800 font-extrabold text-5xl md:text-7xl"
+          >
             Contact Me
           </h1>
+          <p className="mt-6 text-brand-700/70 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+            Have a project in mind or just want to say hello? I'd love to hear from you. Let's build something great together.
+          </p>
         </div>
       </div>
       <section id="contact" className="pt-24 pb-16 px-4 max-w-5xl mx-auto text-brand dark:text-white">

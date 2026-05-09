@@ -1,9 +1,16 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import service1Image from '../assets/Services1.png';
-import service2Image from '../assets/Services2.png';
-import service3Image from '../assets/Services3.png';
+import service1Image from '../assets/webdev.png';
+import service2Image from '../assets/softdev.png';
+import service3Image from '../assets/automation.png';
+import {
+  SiReact, SiTailwindcss, SiJavascript, SiPhp, SiHtml5,
+  SiLaravel, SiMysql, SiPython, SiPostgresql,
+  SiAmazon, SiGithub, SiWordpress, SiShopify,
+  SiN8N, SiZapier, SiMake, SiElementor, SiWebflow, SiWix, SiSquarespace,
+} from "react-icons/si";
+import { FaServer, FaRobot } from "react-icons/fa";
 
 const services = [
   {
@@ -11,10 +18,21 @@ const services = [
     title: "Web Development",
     price: "$10",
     description:
-      "WordPress, Elementor, Shopify, or other CMS platforms, tell me what you need, I'll build it.",
+      "Responsive websites and web apps built with modern stacks or CMS platforms, clean, fast, and easy to manage.",
+    tools: [
+      { icon: <SiWordpress />, label: "WordPress" },
+      { icon: <SiShopify />, label: "Shopify" },
+      { icon: <SiElementor />, label: "Elementor" },
+      { icon: <SiWebflow />, label: "Webflow" },
+      { icon: <SiWix />, label: "Wix" },
+      { icon: <SiSquarespace />, label: "Squarespace" },
+      { icon: <SiReact />, label: "React" },
+      { icon: <SiTailwindcss />, label: "Tailwind" },
+      { icon: <SiHtml5 />, label: "HTML/CSS" },
+    ],
     descriptionPage: [
-      "If you don't have a website yet or just need one built, I can handle it. Just tell me what you're trying to do and I'll build something clean and responsive that works the way you expect—nothing overcomplicated, just a solid site you can actually use.",
-      "The main thing you get is something you don't have to worry about—I'll handle the build, and you end up with a site that just works. It's easy to manage, does what you need it to do, and you don't have to deal with the technical side every time you want to update something."
+      "If you don't have a website yet or just need one built, I can handle it. Just tell me what you're trying to do and I'll build something clean and responsive that works the way you expect. Nothing overcomplicated, just a solid site you can actually use.",
+      "The main thing you get is something you don't have to worry about. I'll handle the build, and you end up with a site that just works. It's easy to manage, does what you need it to do, and you don't have to deal with the technical side every time you want to update something."
     ],
   },
   {
@@ -22,7 +40,13 @@ const services = [
     title: "Automation",
     price: "$12",
     description:
-      "GoHighLevel, n8n, Make.com, Zapier, etc. if it's repetitive, I'll automate it.",
+      "Workflows and integrations that handle repetitive tasks so you can focus on real work.",
+    tools: [
+      { icon: <SiN8N />, label: "n8n" },
+      { icon: <SiMake />, label: "Make" },
+      { icon: <SiZapier />, label: "Zapier" },
+      { icon: <FaRobot />, label: "GHL" },
+    ],
     descriptionPage: [
       "If you're doing the same tasks over and over, sending messages, updating data, moving stuff between tools, that's time you're wasting every day. That's usually where automation comes in.",
       "I set things up so those tasks run on their own in the background, so you don't have to keep doing them manually. Less repetitive work, fewer mistakes, and you can focus on the stuff that actually matters."
@@ -33,7 +57,15 @@ const services = [
     title: "Software Development",
     price: "$15",
     description:
-      "Custom systems, CRM, SaaS, etc. if you need something tailored on your business, I got it.",
+      "Custom systems, CRMs, and SaaS tailored to how your business actually works.",
+    tools: [
+      { icon: <SiLaravel />, label: "Laravel" },
+      { icon: <SiPhp />, label: "PHP" },
+      { icon: <SiPython />, label: "Python" },
+      { icon: <SiMysql />, label: "MySQL" },
+      { icon: <SiPostgresql />, label: "PostgreSQL" },
+      { icon: <FaServer />, label: "REST APIs" },
+    ],
     descriptionPage: [
       "If your current tools don't really fit how you work, or you're juggling spreadsheets and different apps just to get things done, that usually means you need something custom.",
       "I build systems based on how you actually work, so everything's in one place and makes sense. It saves time, reduces manual work, and you're not forcing your process to fit someone else's software."
@@ -45,12 +77,7 @@ const Services = ({ layout = "grid", showDescription = true }) => {
   const navigate = useNavigate();
 
   const getServiceRoute = (title) => {
-    const routes = {
-      "Web Development": "/projects/web-development",
-      "Automation": "/projects/automation",
-      "Software Development": "/projects/software-development"
-    };
-    return routes[title] || "#";
+    return "/services";
   };
 
   const handleServiceClick = (title) => {
@@ -69,7 +96,7 @@ const Services = ({ layout = "grid", showDescription = true }) => {
       >
         {layout === "grid" ? (
           // Grid layout for home page
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
@@ -77,21 +104,26 @@ const Services = ({ layout = "grid", showDescription = true }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className={`flex flex-col items-start ${layout === "grid" ? "cursor-pointer" : ""}`}
                 onClick={() => handleServiceClick(service.title)}
+                className="group cursor-pointer bg-white rounded-2xl overflow-hidden border border-brand/10 hover:border-brand/30 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col"
               >
-                <div className={`w-full overflow-hidden ${layout === "grid" ? "hover:opacity-80 transition-opacity" : ""}`}>
+                <div className="overflow-hidden bg-brand-50 h-56">
                   <img
                     src={service.image}
                     alt={service.title}
-                    className="shadow-lg w-full object-cover block hover:scale-105 transition-transform"
-                    style={{ height: "clamp(260px, 40vw, 550px)", maxWidth: "none" }}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
-                <h4 className="mt-5 text-xl">{service.title}</h4>
-                {showDescription && (
-                  <p className="mt-2 text-sm" style={{ color: "#536941E3", fontFamily: "DM Sans, sans-serif", lineHeight: "1.6" }}>{service.description}</p>
-                )}
+                <div className="p-6 flex flex-col flex-1">
+                  <h4 className="text-xl font-bold text-brand-800 mb-2">{service.title}</h4>
+                  {showDescription && (
+                    <p className="text-sm text-brand-700/70 leading-relaxed flex-1">
+                      {service.description}
+                    </p>
+                  )}
+                  <div className="flex items-center gap-2 text-brand font-semibold text-sm mt-4 group-hover:gap-3 transition-all">
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>

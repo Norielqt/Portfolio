@@ -4,8 +4,9 @@ import {
   SiJavascript, SiReact, SiTailwindcss, SiPython,
   SiHtml5, SiPhp, SiCplusplus, SiGithub, SiMysql,
   SiDotnet, SiLaravel, SiAmazon, SiPostgresql, SiRailway,
+  SiN8N, SiZapier, SiMake, SiWordpress, SiShopify, SiElementor,
 } from "react-icons/si";
-import { FaJava, FaServer } from "react-icons/fa";
+import { FaJava, FaServer, FaRobot } from "react-icons/fa";
 
 const skillGroups = [
   {
@@ -37,6 +38,23 @@ const skillGroups = [
       { name: "PostgreSQL",   icon: <SiPostgresql  className="inline-block mr-3 text-sky-600   text-4xl" /> },
       { name: "Railway",      icon: <SiRailway     className="inline-block mr-3 text-violet-500 text-4xl" /> },
       { name: "REST APIs",    icon: <FaServer      className="inline-block mr-3 text-indigo-500 text-4xl" /> },
+    ],
+  },
+  {
+    category: "CMS Platforms",
+    items: [
+      { name: "WordPress",  icon: <SiWordpress  className="inline-block mr-3 text-blue-700   text-4xl" /> },
+      { name: "Shopify",    icon: <SiShopify    className="inline-block mr-3 text-green-600  text-4xl" /> },
+      { name: "Elementor",  icon: <SiElementor  className="inline-block mr-3 text-pink-600   text-4xl" /> },
+    ],
+  },
+  {
+    category: "Automation",
+    items: [
+      { name: "n8n",          icon: <SiN8N         className="inline-block mr-3 text-rose-500   text-4xl" /> },
+      { name: "Make.com",     icon: <SiMake        className="inline-block mr-3 text-fuchsia-500 text-4xl" /> },
+      { name: "Zapier",       icon: <SiZapier      className="inline-block mr-3 text-orange-500  text-4xl" /> },
+      { name: "GoHighLevel",  icon: <FaRobot       className="inline-block mr-3 text-brand       text-4xl" /> },
     ],
   },
 ];

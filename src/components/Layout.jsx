@@ -58,7 +58,7 @@ export default function Layout() {
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-center relative">
 
           {/* Desktop nav — pill container - centered */}
-          <nav className="hidden md:flex items-center gap-1 bg-gray-100/80 border border-gray-200/80 rounded-full px-2 py-1.5 backdrop-blur-sm">
+          <nav className="hidden md:flex items-center gap-1 border border-gray-200/80 rounded-full px-2 py-1.5 backdrop-blur-sm">
             {NAV_LINKS.map(({ label, path }) => (
               <Link
                 key={path}
