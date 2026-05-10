@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import heroVideo from '../assets/NorielFulgencioHi.mp4';
 import noriAM from '../assets/NorielFulgencio_AboutMe.jpg';
 import noriProfile from '../assets/NorielFulgencio.png';
 import nori2 from '../assets/NorielFulgencio2.png';
@@ -80,6 +81,22 @@ const IMAGE_ASSETS = [
   project6a, project6b, project6c, project6d, project6e, project6f, project6g, project6h,
 ];
 
+function preloadVideo(src) {
+  return new Promise((resolve) => {
+    const vid = document.createElement('video');
+    vid.preload = 'auto';
+    vid.muted = true;
+    vid.playsInline = true;
+    const done = () => resolve();
+    vid.addEventListener('canplaythrough', done, { once: true });
+    vid.addEventListener('error', done, { once: true });
+    // Fallback: resolve after 4 seconds even if canplaythrough never fires
+    setTimeout(done, 4000);
+    vid.src = src;
+    vid.load();
+  });
+}
+
 function preloadImages(urls) {
   return Promise.all(
     urls.map(
@@ -138,7 +155,7 @@ export default function Preloader({ onComplete }) {
         })
     );
 
-    Promise.all(promises).then(() => {
+    Promise.all([...promises, preloadVideo(heroVideo)]).then(() => {
       setStepLabel("Ready.");
       setTimeout(onComplete, 600);
     });
