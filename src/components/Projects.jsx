@@ -144,6 +144,7 @@ export default function Projects({ category = null }) {
                     <img
                       src={project.thumbnail || project.images[0]}
                       alt={project.title}
+                      loading="lazy"
                       className="w-full h-full object-cover transition-transform group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-50 transition-opacity" />
@@ -237,6 +238,7 @@ export default function Projects({ category = null }) {
                     <img
                       src={project.thumbnail || project.images[0]}
                       alt={project.title}
+                      loading="lazy"
                       className="w-full h-full object-cover transition-transform group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-50 transition-opacity" />

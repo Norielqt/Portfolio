@@ -34,10 +34,10 @@ const Hero = () => {
           Hi, I'm<br />Noriel Fulgencio
         </h1>
         <p className="text-xl md:text-2xl font-medium text-brand">
-          Software Engineer
+          Software Engineer &amp; Automation Specialist
         </p>
         <p className="text-base md:text-lg text-brand-700/70 max-w-md leading-relaxed">
-          I specialize in building efficient, scalable, and user-friendly websites and web applications.
+          I build full-stack web apps with React and Laravel and automate workflows for businesses — based in the Philippines, open to freelance and remote work.
         </p>
 
         {/* Buttons */}
@@ -75,6 +75,7 @@ const Hero = () => {
               src={heroVideo}
               muted
               playsInline
+              aria-label="Noriel Fulgencio waving hello"
               onEnded={() => setShowVideo(false)}
               className="w-64 h-64 md:w-80 md:h-80 object-cover rounded-full shadow-2xl shadow-brand/20 border-4 border-brand/30"
             />
@@ -82,7 +83,8 @@ const Hero = () => {
             <img
               className="w-64 h-64 md:w-80 md:h-80 object-cover rounded-full shadow-2xl shadow-brand/20 border-4 border-brand/30"
               src={heroImage}
-              alt="Noriel Fulgencio"
+              alt="Portrait of Noriel Fulgencio, Software Engineer and Automation Specialist from the Philippines"
+              loading="eager"
             />
           )}
         </div>

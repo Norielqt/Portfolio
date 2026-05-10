@@ -111,6 +111,7 @@ const Services = ({ layout = "grid", showDescription = true }) => {
                   <img
                     src={service.image}
                     alt={service.title}
+                    loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
@@ -144,6 +145,7 @@ const Services = ({ layout = "grid", showDescription = true }) => {
                   <img
                     src={service.image}
                     alt={service.title}
+                    loading="lazy"
                     className="shadow-lg w-full object-cover block"
                     style={{ height: "450px", maxWidth: "none" }}
                   />

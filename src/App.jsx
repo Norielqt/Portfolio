@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+import { HelmetProvider } from "react-helmet-async";
 import { Analytics } from "@vercel/analytics/react";
 import { FiCheckCircle, FiUsers, FiMail, FiAward, FiArrowLeft } from "react-icons/fi";
 import Layout from "./components/Layout";
@@ -12,10 +13,16 @@ import Experience from "./components/Experience";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Preloader from "./components/Preloader";
+import Seo from "./components/Seo";
 import projects from "./data/projects";
 
 const Home = () => (
   <div>
+    <Seo
+      title="Noriel Fulgencio — Software Engineer & Automation Dev"
+      description="Software Engineer from the Philippines building React & Laravel web apps and automations. Available for freelance and remote work worldwide."
+      path="/"
+    />
     <Hero />
     <About />
     <QuoteBanner />
@@ -36,6 +43,11 @@ const Home = () => (
 
 const ServicesPage = () => (
   <div>
+    <Seo
+      title="Services — Web Development & Automation | Noriel Fulgencio"
+      description="Freelance web development, custom software, and business automation services by a Software Engineer in the Philippines. React, Laravel, and more."
+      path="/services"
+    />
     <div
       style={{ background: "radial-gradient(ellipse at 30% 60%, #ddebd3 0%, #f6f8f5 50%, #f0f4ec 100%)" }}
       className="pt-32 pb-16 px-4"
@@ -104,10 +116,52 @@ const ProjectCategory = ({ category }) => {
     "software-development": "Software Development"
   };
 
+  const categoryDescriptions = {
+    "web-development": "Web development projects by Noriel Fulgencio — React and Laravel sites and web apps built for clients and personal work.",
+    "automation": "Automation projects by Noriel Fulgencio — scripts, integrations, and workflows that replace repetitive manual work for small businesses.",
+    "software-development": "Software development projects by Noriel Fulgencio — custom systems, CRMs, and internal tools built from scratch."
+  };
+
   const categoryTitle = categoryTitles[category] || "Projects";
+  const categoryDescription = categoryDescriptions[category] || "Selected projects by Noriel Fulgencio.";
+
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.norielfulgencio.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://www.norielfulgencio.com/projects" },
+      { "@type": "ListItem", "position": 3, "name": categoryTitle, "item": `https://www.norielfulgencio.com/projects/${category}` }
+    ]
+  };
+
+  const categoryProjects = projects.filter(p => p.category === category);
+  const itemListLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": `${categoryTitle} Projects by Noriel Fulgencio`,
+    "itemListElement": categoryProjects.map((p, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "item": {
+        "@type": "CreativeWork",
+        "name": p.title,
+        "description": p.description,
+        "author": { "@type": "Person", "name": "Noriel Fulgencio" },
+        "url": p.demo || p.github || `https://www.norielfulgencio.com/projects/${category}`,
+        "keywords": (p.stack || []).join(", ")
+      }
+    }))
+  };
 
   return (
     <div>
+      <Seo
+        title={`${categoryTitle} Projects — Noriel Fulgencio`}
+        description={categoryDescription}
+        path={`/projects/${category}`}
+        jsonLd={[breadcrumbLd, itemListLd]}
+      />
       <div style={{ backgroundColor: "#f6f8f5" }} className="pt-24 pb-16 px-4 min-h-[40vh] flex items-center">
         <div className="max-w-6xl mx-auto w-full">
           <button
@@ -136,21 +190,59 @@ export default function App() {
         {!loaded && <Preloader onComplete={() => setLoaded(true)} />}
       </AnimatePresence>
       {loaded && (
-        <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="/timeline" element={<Experience />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/projects/web-development" element={<ProjectCategory category="web-development" />} />
-          <Route path="/projects/automation" element={<ProjectCategory category="automation" />} />
-          <Route path="/projects/software-development" element={<ProjectCategory category="software-development" />} />
-          <Route path="/contact" element={<Contact />} />
-        </Route>
-      </Routes>
-      <Analytics />
-        </BrowserRouter>
+        <HelmetProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route element={<Layout />}>
+                <Route index element={<Home />} />
+                <Route
+                  path="/timeline"
+                  element={
+                    <>
+                      <Seo
+                        title="Experience & Timeline — Noriel Fulgencio"
+                        description="Career timeline and experience of Noriel Fulgencio, Software Engineer and Automation Specialist from the Philippines."
+                        path="/timeline"
+                      />
+                      <Experience />
+                    </>
+                  }
+                />
+                <Route path="/services" element={<ServicesPage />} />
+                <Route
+                  path="/projects"
+                  element={
+                    <>
+                      <Seo
+                        title="Projects — Noriel Fulgencio"
+                        description="Web development, automation, and software development projects by Noriel Fulgencio. React, Laravel, and custom systems."
+                        path="/projects"
+                      />
+                      <Projects />
+                    </>
+                  }
+                />
+                <Route path="/projects/web-development" element={<ProjectCategory category="web-development" />} />
+                <Route path="/projects/automation" element={<ProjectCategory category="automation" />} />
+                <Route path="/projects/software-development" element={<ProjectCategory category="software-development" />} />
+                <Route
+                  path="/contact"
+                  element={
+                    <>
+                      <Seo
+                        title="Contact — Hire Noriel Fulgencio"
+                        description="Get in touch with Noriel Fulgencio for freelance web development, automation, and software projects. Open to remote work worldwide."
+                        path="/contact"
+                      />
+                      <Contact />
+                    </>
+                  }
+                />
+              </Route>
+            </Routes>
+            <Analytics />
+          </BrowserRouter>
+        </HelmetProvider>
       )}
     </>
   );
