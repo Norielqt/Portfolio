@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import aboutImage from '../assets/NorielFulgencio_AboutMe.jpg';
+import aboutImage from '../assets/NorielFulgencio_AboutMe.webp';
 import {
   SiJavascript, SiReact, SiTailwindcss, SiPython,
   SiHtml5, SiPhp, SiCplusplus, SiGithub, SiMysql,

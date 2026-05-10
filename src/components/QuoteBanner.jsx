@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import joelImage from '../assets/JoelSpolsky.jpg';
+import joelImage from '../assets/JoelSpolsky.webp';
 
 const QuoteBanner = () => {
   return (

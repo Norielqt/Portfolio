@@ -2,10 +2,10 @@ import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { FiGithub, FiGlobe, FiArrowRight, FiCode, FiZap, FiLayers } from "react-icons/fi";
-import robertImage from '../assets/RobertHerjavec.png';
-import webdevImage from '../assets/webdev.png';
-import automationImage from '../assets/automation.png';
-import softdevImage from '../assets/softdev.png';
+import robertImage from '../assets/RobertHerjavec.webp';
+import webdevImage from '../assets/webdev.webp';
+import automationImage from '../assets/automation.webp';
+import softdevImage from '../assets/softdev.webp';
 import {
   SiReact, SiVite, SiLaravel, SiMysql, SiTailwindcss, SiPython,
   SiHtml5, SiCss3, SiJavascript, SiTensorflow, SiPhp, SiDocker, SiVercel,

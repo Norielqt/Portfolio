@@ -857,6 +857,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.3",
+    "sharp": "^0.34.5",
     "tailwindcss": "^3.4.17"
   },
   "browserslist": {

@@ -1,9 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import service1Image from '../assets/webdev.png';
-import service2Image from '../assets/softdev.png';
-import service3Image from '../assets/automation.png';
+import service1Image from '../assets/webdev.webp';
+import service2Image from '../assets/softdev.webp';
+import service3Image from '../assets/automation.webp';
 import {
   SiReact, SiTailwindcss, SiJavascript, SiPhp, SiHtml5,
   SiLaravel, SiMysql, SiPython, SiPostgresql,

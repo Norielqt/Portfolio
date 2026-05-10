@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import heroVideo from '../assets/NorielFulgencioHi.mp4';
-import heroImage from '../assets/NorielFulgencio.png';
+import heroImage from '../assets/NorielFulgencio.webp';
 
 const Hero = () => {
   const navigate = useNavigate();

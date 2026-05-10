@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import steveImage from '../assets/SteveJobs.jpg';
+import steveImage from '../assets/SteveJobs.webp';
 import { FaBriefcase, FaGraduationCap, FaCode } from "react-icons/fa";
 
 const timeline = [
