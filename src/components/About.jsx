@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import aboutImage from '../assets/NorielFulgencio_AboutMe.webp';
+import aboutImage1x from '../assets/NorielFulgencio_AboutMe_1x.webp';
 import {
   SiJavascript, SiReact, SiTailwindcss, SiPython,
   SiHtml5, SiPhp, SiCplusplus, SiGithub, SiMysql,
@@ -93,6 +94,8 @@ const About = () => {
           <div className="flex justify-center">
             <img
               src={aboutImage}
+              srcSet={`${aboutImage1x} 370w, ${aboutImage} 740w`}
+              sizes="370px"
               alt="Noriel Fulgencio working at his desk — Software Engineer and Automation Specialist from Western Visayas, Philippines"
               className="shadow-lg w-full"
               loading="lazy"
@@ -126,6 +129,8 @@ const About = () => {
           <div className="flex-1 flex justify-center w-full">
             <img
               src={aboutImage}
+              srcSet={`${aboutImage1x} 370w, ${aboutImage} 740w`}
+              sizes="370px"
               alt="Noriel Fulgencio working at his desk — Software Engineer and Automation Specialist from Western Visayas, Philippines"
               className="shadow-lg w-full"
               loading="lazy"

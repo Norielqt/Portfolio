@@ -2,8 +2,14 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import service1Image from '../assets/webdev.webp';
+import service1Image1x from '../assets/webdev_1x.webp';
+import service1Image2x from '../assets/webdev_2x.webp';
 import service2Image from '../assets/softdev.webp';
+import service2Image1x from '../assets/softdev_1x.webp';
+import service2Image2x from '../assets/softdev_2x.webp';
 import service3Image from '../assets/automation.webp';
+import service3Image1x from '../assets/automation_1x.webp';
+import service3Image2x from '../assets/automation_2x.webp';
 import {
   SiReact, SiTailwindcss, SiJavascript, SiPhp, SiHtml5,
   SiLaravel, SiMysql, SiPython, SiPostgresql,
@@ -15,6 +21,8 @@ import { FaServer, FaRobot } from "react-icons/fa";
 const services = [
   {
     image: service1Image,
+    image1x: service1Image1x,
+    image2x: service1Image2x,
     title: "Web Development",
     price: "$10",
     description:
@@ -37,6 +45,8 @@ const services = [
   },
   {
     image: service3Image,
+    image1x: service3Image1x,
+    image2x: service3Image2x,
     title: "Automation",
     price: "$12",
     description:
@@ -54,6 +64,8 @@ const services = [
   },
   {
     image: service2Image,
+    image1x: service2Image1x,
+    image2x: service2Image2x,
     title: "Software Development",
     price: "$15",
     description:
@@ -100,7 +112,9 @@ const Services = ({ layout = "grid", showDescription = true }) => {
               >
                 <div className="overflow-hidden bg-brand-50 h-56">
                   <img
-                    src={service.image}
+                    src={service.image2x}
+                    srcSet={`${service.image1x} 313w, ${service.image2x} 626w`}
+                    sizes="313px"
                     alt={service.title}
                     loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -129,7 +143,9 @@ const Services = ({ layout = "grid", showDescription = true }) => {
                   {/* Image banner — compact height */}
                   <div className="w-full overflow-hidden" style={{ height: "200px" }}>
                     <img
-                      src={service.image}
+                      src={service.image2x}
+                      srcSet={`${service.image1x} 313w, ${service.image2x} 626w`}
+                      sizes="313px"
                       alt={service.title}
                       loading="lazy"
                       className="w-full h-full object-cover"
@@ -178,7 +194,9 @@ const Services = ({ layout = "grid", showDescription = true }) => {
                 <div className="hidden md:flex flex-row gap-8 items-center">
                   <div className="md:w-1/3 flex-shrink-0 md:ml-auto w-full">
                     <img
-                      src={service.image}
+                      src={service.image2x}
+                      srcSet={`${service.image1x} 313w, ${service.image2x} 626w`}
+                      sizes="(min-width: 768px) 33vw, 100vw"
                       alt={service.title}
                       loading="lazy"
                       className="shadow-lg w-full object-cover block md:max-w-none"
