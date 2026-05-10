@@ -7,12 +7,13 @@ import heroImage from '../assets/NorielFulgencio.png';
 const Hero = () => {
   const navigate = useNavigate();
   const [showVideo, setShowVideo] = useState(true);
-  const videoRef = useRef(null);
+  const mobileVideoRef = useRef(null);
+  const desktopVideoRef = useRef(null);
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.play();
-    }
+    // Play whichever video ref is currently mounted
+    if (mobileVideoRef.current) mobileVideoRef.current.play().catch(() => {});
+    if (desktopVideoRef.current) desktopVideoRef.current.play().catch(() => {});
   }, []);
 
   return (
@@ -33,9 +34,10 @@ const Hero = () => {
             <div className="absolute inset-0 rounded-full border border-brand/10 scale-125" />
             {showVideo ? (
               <video
-                ref={videoRef}
+                ref={mobileVideoRef}
                 src={heroVideo}
                 muted
+                autoPlay
                 playsInline
                 aria-label="Noriel Fulgencio waving hello"
                 onEnded={() => setShowVideo(false)}
@@ -60,9 +62,9 @@ const Hero = () => {
           className="text-center space-y-4"
         >
           <h1 className="text-4xl font-extrabold text-brand-800 leading-[1.05] tracking-tight">
-            Hi, I'm<br />Noriel Fulgencio
+            Noriel Fulgencio
           </h1>
-          <p className="text-lg font-medium text-brand">
+          <p className="text-lg font-medium text-brand !mt-1">
             Software Engineer &amp; Automation Specialist
           </p>
           <p className="text-sm text-brand-700/70 leading-relaxed">
@@ -136,9 +138,10 @@ const Hero = () => {
           <div className="absolute inset-0 rounded-full border border-brand/10 scale-125" />
           {showVideo ? (
             <video
-              ref={videoRef}
+              ref={desktopVideoRef}
               src={heroVideo}
               muted
+              autoPlay
               playsInline
               aria-label="Noriel Fulgencio waving hello"
               onEnded={() => setShowVideo(false)}
