@@ -41,7 +41,7 @@ export default function Contact() {
             Get in touch
           </p>
           <h1
-            style={{ fontFamily: "DM Sans, sans-serif", letterSpacing: "-3px" }}
+            style={{ fontFamily: "DM Sans, sans-serif", letterSpacing: "clamp(-1.5px, -0.4vw, -3px)" }}
             className="text-brand-800 font-extrabold text-5xl md:text-7xl"
           >
             Contact Me

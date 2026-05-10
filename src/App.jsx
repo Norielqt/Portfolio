@@ -57,7 +57,7 @@ const ServicesPage = () => (
           What I do
         </p>
         <h1
-          style={{ fontFamily: "DM Sans, sans-serif", letterSpacing: "-3px" }}
+          style={{ fontFamily: "DM Sans, sans-serif", letterSpacing: "clamp(-1.5px, -0.4vw, -3px)" }}
           className="text-brand-800 font-extrabold text-5xl md:text-7xl"
         >
           My Services
@@ -70,7 +70,7 @@ const ServicesPage = () => (
     <Services layout="list" />
     <div style={{ backgroundColor: "#f6f8f5" }} className="py-16 px-4 min-h-[40vh] flex items-start pt-20">
       <div className="max-w-6xl mx-auto w-full">
-        <h4 style={{ fontFamily: "Forum, serif", fontSize: "40px" }} className="text-brand text-left">
+        <h4 style={{ fontFamily: "Forum, serif", fontSize: "clamp(28px, 7vw, 40px)" }} className="text-brand text-left">
           Why Choose Me
         </h4>
         <div className="flex flex-col md:flex-row gap-12 mt-6">
@@ -171,7 +171,7 @@ const ProjectCategory = ({ category }) => {
             <FiArrowLeft size={20} />
             Back to Projects
           </button>
-          <h1 style={{ fontFamily: "DM Sans, sans-serif", fontSize: "76px", letterSpacing: "-3px" }} className="text-brand font-extrabold text-center">
+          <h1 style={{ fontFamily: "DM Sans, sans-serif", fontSize: "clamp(40px, 12vw, 76px)", letterSpacing: "clamp(-1.5px, -0.4vw, -3px)" }} className="text-brand font-extrabold text-center">
             {categoryTitle}
           </h1>
         </div>

@@ -88,22 +88,13 @@ const Services = ({ layout = "grid", showDescription = true }) => {
 
   return (
     <section className="py-16 px-4 max-w-5xl mx-auto text-brand dark:text-white" id="services">
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
+      <div>
         {layout === "grid" ? (
           // Grid layout for home page
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => (
-              <motion.div
+              <div
                 key={service.title}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
                 onClick={() => handleServiceClick(service.title)}
                 className="group cursor-pointer bg-white rounded-2xl overflow-hidden border border-brand/10 hover:border-brand/30 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col"
               >
@@ -125,55 +116,98 @@ const Services = ({ layout = "grid", showDescription = true }) => {
                   <div className="flex items-center gap-2 text-brand font-semibold text-sm mt-4 group-hover:gap-3 transition-all">
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         ) : (
           // List layout for services page
           <div className="space-y-16">
             {services.map((service, index) => (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="flex flex-col md:flex-row gap-8 items-center"
-              >
-                {/* Image on left */}
-                <div className="md:w-1/3 flex-shrink-0 md:ml-auto">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    loading="lazy"
-                    className="shadow-lg w-full object-cover block"
-                    style={{ height: "450px", maxWidth: "none" }}
-                  />
+              <div key={service.title}>
+                {/* MOBILE card */}
+                <div className="md:hidden rounded-3xl overflow-hidden shadow-md" style={{ background: "linear-gradient(160deg, #f6f8f5 60%, #ddebd3 100%)" }}>
+                  {/* Image banner — compact height */}
+                  <div className="w-full overflow-hidden" style={{ height: "200px" }}>
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  {/* Content */}
+                  <div className="px-6 py-6">
+                    {/* Price badge */}
+                    <span
+                      className="inline-block text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4"
+                      style={{ background: "#536942", color: "#fff", opacity: 0.8 }}
+                    >
+                      Starting at {service.price}/hr
+                    </span>
+
+                    {/* Title */}
+                    <h4
+                      className="mb-4"
+                      style={{ fontFamily: "Forum, serif", fontSize: "28px", color: "#243011", lineHeight: "1.2" }}
+                    >
+                      {service.title}
+                    </h4>
+
+                    {/* Divider */}
+                    <div className="w-10 h-0.5 mb-4 rounded-full" style={{ background: "#536942", opacity: 0.3 }} />
+
+                    {/* Description */}
+                    <div className="space-y-3">
+                      {Array.isArray(service.descriptionPage) ? (
+                        service.descriptionPage.map((para, i) => (
+                          <p key={i} style={{ fontFamily: "DM Sans, sans-serif", fontSize: "14px", color: "#536941CC", lineHeight: "1.7" }}>
+                            {para}
+                          </p>
+                        ))
+                      ) : (
+                        <p style={{ fontFamily: "DM Sans, sans-serif", fontSize: "14px", color: "#536941CC", lineHeight: "1.7" }}>
+                          {service.descriptionPage || service.description}
+                        </p>
+                      )}
+                    </div>
+                  </div>
                 </div>
 
-                {/* Title and description on right */}
-                <div className="md:w-1/2 md:ml-auto">
-                  <h4 style={{ fontFamily: "Forum, serif", fontSize: "28px" }} className="mb-4">{service.title}</h4>
-                  <div className="space-y-4">
-                    {Array.isArray(service.descriptionPage) ? (
-                      service.descriptionPage.map((para, i) => (
-                        <p key={i} style={{ fontFamily: "DM Sans, sans-serif", fontSize: "15px", color: "#536941E3", letterSpacing: "1px" }}>
-                          {para}
-                        </p>
-                      ))
-                    ) : (
-                      <p style={{ fontFamily: "DM Sans, sans-serif", fontSize: "15px", color: "#536941E3", letterSpacing: "1px" }}>
-                        {service.descriptionPage || service.description}
-                      </p>
-                    )}
+                {/* DESKTOP layout — untouched */}
+                <div className="hidden md:flex flex-row gap-8 items-center">
+                  <div className="md:w-1/3 flex-shrink-0 md:ml-auto w-full">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      loading="lazy"
+                      className="shadow-lg w-full object-cover block md:max-w-none"
+                      style={{ height: "clamp(260px, 55vw, 450px)" }}
+                    />
                   </div>
-                  <h3 style={{ fontFamily: "DM Sans, sans-serif", fontSize: "21px" }} className="mt-6">For {service.price}/hr</h3>
+                  <div className="md:w-1/2 md:ml-auto">
+                    <h4 style={{ fontFamily: "Forum, serif", fontSize: "28px" }} className="mb-4">{service.title}</h4>
+                    <div className="space-y-4">
+                      {Array.isArray(service.descriptionPage) ? (
+                        service.descriptionPage.map((para, i) => (
+                          <p key={i} style={{ fontFamily: "DM Sans, sans-serif", fontSize: "15px", color: "#536941E3", letterSpacing: "1px" }}>
+                            {para}
+                          </p>
+                        ))
+                      ) : (
+                        <p style={{ fontFamily: "DM Sans, sans-serif", fontSize: "15px", color: "#536941E3", letterSpacing: "1px" }}>
+                          {service.descriptionPage || service.description}
+                        </p>
+                      )}
+                    </div>
+                    <h3 style={{ fontFamily: "DM Sans, sans-serif", fontSize: "21px" }} className="mt-6">For {service.price}/hr</h3>
+                  </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         )}
-      </motion.div>
+      </div>
     </section>
   );
 };

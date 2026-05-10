@@ -75,10 +75,33 @@ const About = () => {
       >
         <p className="text-left mb-2 text-brand font-medium uppercase" style={{ fontSize: "12px" }}>About Me</p>
 
-        <div className="flex flex-col md:flex-row gap-12 items-start">
+        {/* MOBILE layout: h2 → image → paragraphs */}
+        <div className="md:hidden flex flex-col gap-6 text-left">
+          <h2 className="mb-0" style={{ fontFamily: "Forum, serif", fontSize: "clamp(28px, 7vw, 40px)", letterSpacing: "clamp(-1px, -0.3vw, -2px)", lineHeight: "1.2" }}>
+            I'm Noriel Fulgencio, a Software Engineer and Automation Specialist from the Philippines.
+          </h2>
+          <div className="flex justify-center">
+            <img
+              src={aboutImage}
+              alt="Noriel Fulgencio working at his desk — Software Engineer and Automation Specialist from Western Visayas, Philippines"
+              className="shadow-lg w-full"
+              loading="lazy"
+              style={{ maxWidth: "370px", aspectRatio: "37 / 45", objectFit: "cover" }}
+            />
+          </div>
+          <p className="leading-relaxed" style={{ fontSize: "15px" }}>
+            I build full-stack web applications with React on the front end and Laravel on the back end, with a bias toward clean APIs, reliable data, and systems that hold up once real users get in. See my <Link to="/projects/web-development" className="underline decoration-brand/40 hover:decoration-brand">React and Laravel web development projects</Link> or browse my <Link to="/projects/automation" className="underline decoration-brand/40 hover:decoration-brand">automation work</Link>. I recently shipped a production CRM from the ground up in my first professional role, and I'm currently freelancing while looking for my next full-time opportunity.
+          </p>
+          <p className="leading-relaxed" style={{ fontSize: "15px" }}>
+            These days I mostly build websites, custom systems, and business automations that cut down repetitive manual work for small teams. I graduated Magna Cum Laude in IT from West Visayas State University in 2025, where my thesis was awarded Best Thesis. Open to freelance projects and remote engineering roles worldwide — <Link to="/contact" className="underline decoration-brand/40 hover:decoration-brand">get in touch to discuss your project</Link>.
+          </p>
+        </div>
+
+        {/* DESKTOP layout: text left, image right — untouched */}
+        <div className="hidden md:flex flex-row gap-12 items-start">
           {/* Text Column */}
           <div className="text-left flex-1">
-            <h2 className="mb-4" style={{ fontFamily: "Forum, serif", fontSize: "40px", letterSpacing: "-2px", lineHeight: "1.2" }}>
+            <h2 className="mb-4" style={{ fontFamily: "Forum, serif", fontSize: "clamp(28px, 7vw, 40px)", letterSpacing: "clamp(-1px, -0.3vw, -2px)", lineHeight: "1.2" }}>
               I'm Noriel Fulgencio, a Software Engineer and Automation Specialist from the Philippines.
             </h2>
             <p className="mb-4 leading-relaxed" style={{ fontSize: "16px" }}>
@@ -90,13 +113,13 @@ const About = () => {
           </div>
 
           {/* Image Column */}
-          <div className="flex-1 flex justify-center">
+          <div className="flex-1 flex justify-center w-full">
             <img
               src={aboutImage}
               alt="Noriel Fulgencio working at his desk — Software Engineer and Automation Specialist from Western Visayas, Philippines"
-              className="shadow-lg"
+              className="shadow-lg w-full"
               loading="lazy"
-              style={{ width: "370px", height: "450px", objectFit: "cover" }}
+              style={{ maxWidth: "370px", aspectRatio: "37 / 45", objectFit: "cover" }}
             />
           </div>
         </div>

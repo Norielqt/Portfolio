@@ -48,7 +48,7 @@ const Experience = () => {
             Timeline
           </p>
           <h1
-            style={{ fontFamily: "DM Sans, sans-serif", letterSpacing: "-3px" }}
+            style={{ fontFamily: "DM Sans, sans-serif", letterSpacing: "clamp(-1.5px, -0.4vw, -3px)" }}
             className="text-brand-800 font-extrabold text-5xl md:text-7xl"
           >
             My Journey
@@ -127,25 +127,55 @@ const Experience = () => {
                   {!isLeft && card}
                 </div>
 
-                {/* Mobile: stacked */}
-                <div className="flex md:hidden w-full">
-                  <motion.div 
-                    className={`border-l-4 ${colors.border} pl-5 w-full`}
-                    initial={{ x: -20 }}
-                    whileInView={{ x: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                    viewport={{ once: true }}
+                {/* Mobile: editorial card timeline */}
+                <div className="flex md:hidden w-full flex-col mb-6">
+                  <div
+                    className="relative rounded-3xl overflow-hidden shadow-md"
+                    style={{ background: "linear-gradient(135deg, #f6f8f5 60%, #ddebd3 100%)" }}
                   >
-                    <div className={`flex items-center gap-2 mb-2 ${colors.bg} rounded-lg p-3 ${colors.border}`}>
-                      <div className={`text-lg ${colors.icon}`}>
-                        {getIcon()}
+                    {/* Thick left accent bar */}
+                    <div
+                      className={`absolute left-0 top-0 bottom-0 w-1.5 rounded-l-3xl ${colors.dot}`}
+                    />
+
+                    <div className="pl-7 pr-5 py-6">
+                      {/* Type badge + icon */}
+                      <div className="flex items-center gap-2 mb-4">
+                        <div className={`w-9 h-9 rounded-xl flex items-center justify-center text-white text-base shadow-sm ${colors.dot}`}>
+                          {getIcon()}
+                        </div>
+                        <span className={`text-xs font-bold uppercase tracking-widest ${colors.icon}`}>
+                          {item.type === "work" ? "Work" : item.type === "education" ? "Education" : "Milestone"}
+                        </span>
                       </div>
-                      <h4 className="font-bold text-brand-800 text-base">{item.title}</h4>
+
+                      {/* Title */}
+                      <h4
+                        style={{ fontFamily: "Forum, serif", fontSize: "22px", lineHeight: "1.2", color: "#243011" }}
+                        className="mb-1"
+                      >
+                        {item.title}
+                      </h4>
+
+                      {/* Company */}
+                      <p className="text-sm font-semibold text-brand/70 mb-3">{item.company}</p>
+
+                      {/* Date pill */}
+                      <span
+                        className="inline-block text-xs font-medium px-3 py-1 rounded-full"
+                        style={{ background: "#536942", color: "#fff", opacity: 0.75 }}
+                      >
+                        {item.date}
+                      </span>
+
+                      {item.description && <p className="text-brand-700/70 text-sm mt-3">{item.description}</p>}
                     </div>
-                    <p className="text-brand-700/80 font-semibold text-sm mb-1">{item.company}</p>
-                    <p className="text-xs text-brand-600/60">{item.date}</p>
-                    {item.description && <p className="text-brand-700/70 text-sm mt-2">{item.description}</p>}
-                  </motion.div>
+                  </div>
+
+                  {/* Connecting line between cards */}
+                  {index < timeline.length - 1 && (
+                    <div className="self-center w-0.5 h-6" style={{ background: "linear-gradient(to bottom, #536942, transparent)", opacity: 0.3 }} />
+                  )}
                 </div>
               </motion.div>
             );

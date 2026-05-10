@@ -107,38 +107,54 @@ export default function Layout() {
           </div>
         </div>
 
-        {/* Mobile menu */}
-        {menuOpen && (
-          <div
-            id="mobile-menu"
-            className="md:hidden mx-4 mb-3 rounded-2xl bg-white border border-gray-200 shadow-xl overflow-hidden"
-          >
-            <nav className="flex flex-col p-2">
-              {NAV_LINKS.map(({ label, path }) => (
-                <Link
-                  key={path}
-                  to={path}
-                  className={`text-left px-4 py-3 rounded-xl text-sm font-medium transition ${
-                    (path === "/" ? location.pathname === "/" : location.pathname === path)
-                      ? "text-brand bg-brand/5"
-                      : "text-brand hover:bg-gray-50"
-                  }`}
-                >
-                  {label}
-                </Link>
-              ))}
-            </nav>
-            <div className="flex items-center gap-3 px-4 py-3 border-t border-gray-100">
-              <a href="https://github.com/Norielqt" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm text-gray-600 hover:text-brand transition">
-                <FiGithub size={16} /> GitHub
-              </a>
-              <a href="https://www.linkedin.com/in/noriel-fulgencio-23887a259/" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm text-gray-600 hover:text-brand transition">
-                <FiLinkedin size={16} /> LinkedIn
-              </a>
-            </div>
-          </div>
-        )}
       </header>
+
+      {/* Mobile menu — full screen overlay (outside header to avoid backdrop-filter stacking context bug) */}
+      {menuOpen && (
+        <div
+          id="mobile-menu"
+          className="md:hidden fixed inset-0 z-50 flex flex-col"
+          style={{ background: "radial-gradient(ellipse at 30% 60%, #ddebd3 0%, #f6f8f5 50%, #f0f4ec 100%)" }}
+        >
+          {/* Close button */}
+          <div className="flex justify-end px-6 pt-5">
+            <button
+              onClick={() => setMenuOpen(false)}
+              className="w-10 h-10 flex items-center justify-center rounded-full text-brand/70 hover:text-brand hover:bg-brand/10 transition"
+              aria-label="Close menu"
+            >
+              <FiX size={22} />
+            </button>
+          </div>
+
+          {/* Nav links — centered, large */}
+          <nav className="flex flex-col items-center justify-center flex-1 gap-2">
+            {NAV_LINKS.map(({ label, path }) => (
+              <Link
+                key={path}
+                to={path}
+                className={`text-3xl font-bold tracking-tight transition py-2 ${
+                  (path === "/" ? location.pathname === "/" : location.pathname === path)
+                    ? "text-brand"
+                    : "text-brand-800/60 hover:text-brand"
+                }`}
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Social links at bottom */}
+          <div className="flex items-center justify-center gap-6 pb-12">
+            <a href="https://github.com/Norielqt" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm font-medium text-brand/60 hover:text-brand transition">
+              <FiGithub size={18} /> GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/noriel-fulgencio-23887a259/" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm font-medium text-brand/60 hover:text-brand transition">
+              <FiLinkedin size={18} /> LinkedIn
+            </a>
+          </div>
+        </div>
+      )}
 
       <main>
         <Outlet />

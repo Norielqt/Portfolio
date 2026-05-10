@@ -113,7 +113,7 @@ export default function Projects({ category = null }) {
                 Portfolio
               </p>
               <h1
-                style={{ fontFamily: "DM Sans, sans-serif", letterSpacing: "-3px" }}
+                style={{ fontFamily: "DM Sans, sans-serif", letterSpacing: "clamp(-1.5px, -0.4vw, -3px)" }}
                 className="text-brand-800 font-extrabold text-5xl md:text-7xl"
               >
                 My Projects
@@ -133,8 +133,69 @@ export default function Projects({ category = null }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
                 viewport={{ once: true }}
-                className="flex flex-col md:flex-row gap-8 items-start mb-20"
+                className="mb-10 md:mb-20"
               >
+                {/* MOBILE card */}
+                <div className="md:hidden rounded-3xl overflow-hidden shadow-md" style={{ background: "linear-gradient(160deg, #f6f8f5 60%, #ddebd3 100%)" }}>
+                  <div
+                    className="relative w-full overflow-hidden cursor-pointer group"
+                    style={{ height: "220px" }}
+                    onClick={() => openModal(project.id, 0)}
+                  >
+                    <img
+                      src={project.thumbnail || project.images[0]}
+                      alt={project.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all" />
+                    <div className="absolute top-3 left-3 bg-white/90 text-brand text-xs font-bold px-3 py-1 rounded-full shadow">
+                      {project.images.length} photo{project.images.length > 1 ? "s" : ""}
+                    </div>
+                  </div>
+                  <div className="px-5 py-5">
+                    <div className="flex items-center gap-2 mb-1">
+                      <h4 style={{ fontFamily: "Forum, serif", fontSize: "24px", color: "#243011", lineHeight: "1.2" }}>{project.title}</h4>
+                    </div>
+                    {project.badge && (
+                      <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand/70 mb-3">
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand inline-block"></span>
+                        {project.badge}
+                      </span>
+                    )}
+                    <p style={{ fontSize: "13px", color: "#536941CC", lineHeight: "1.7" }} className="mb-4">{project.description}</p>
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {project.stack.map((tech) => {
+                        const t = iconMap[tech];
+                        return (
+                          <span key={tech} className="flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-white/70 border border-brand/10 text-brand">
+                            <span className="text-sm leading-none">{t?.icon}</span>
+                            {tech}
+                          </span>
+                        );
+                      })}
+                    </div>
+                    {(project.demo || project.github) && (
+                      <div className="flex gap-3 pt-1">
+                        {project.demo && (
+                          <a href={project.demo} target="_blank" rel="noreferrer"
+                            className="flex items-center gap-1.5 text-xs font-bold px-4 py-2 rounded-full bg-brand text-white shadow-sm hover:opacity-80 transition">
+                            <FiGlobe size={13} /> Live
+                          </a>
+                        )}
+                        {project.github && (
+                          <a href={project.github} target="_blank" rel="noreferrer"
+                            className="flex items-center gap-1.5 text-xs font-bold px-4 py-2 rounded-full border border-brand/30 text-brand hover:bg-brand/5 transition">
+                            <FiGithub size={13} /> GitHub
+                          </a>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* DESKTOP layout — untouched */}
+                <div className="hidden md:flex flex-row gap-8 items-start">
                 {/* Image - Always Left */}
                 <div className="md:w-1/2 flex-shrink-0 flex justify-center">
                   <div
@@ -211,6 +272,7 @@ export default function Projects({ category = null }) {
                     </div>
                   )}
                 </div>
+                </div>
               </motion.div>
             ))}
           </section>
@@ -218,7 +280,6 @@ export default function Projects({ category = null }) {
       )}
       {category && (
         <section id="projects" className="pt-24 pb-16 px-4 max-w-6xl mx-auto">
-
           {filteredProjects.map((project, index) => {
             return (
               <motion.div
@@ -227,83 +288,123 @@ export default function Projects({ category = null }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="flex flex-col md:flex-row gap-8 items-start mb-20"
+                className="mb-10 md:mb-20"
               >
-                {/* Image - Always Left */}
-                <div className="md:w-1/2 flex-shrink-0 flex justify-center">
+                {/* MOBILE card */}
+                <div className="md:hidden rounded-3xl overflow-hidden shadow-md" style={{ background: "linear-gradient(160deg, #f6f8f5 60%, #ddebd3 100%)" }}>
                   <div
-                    className="relative w-2/3 h-80 sm:h-96 md:h-[450px] overflow-hidden cursor-pointer group shadow-lg"
+                    className="relative w-full overflow-hidden cursor-pointer group"
+                    style={{ height: "220px" }}
                     onClick={() => openModal(project.id, 0)}
                   >
                     <img
                       src={project.thumbnail || project.images[0]}
                       alt={project.title}
                       loading="lazy"
-                      className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-50 transition-opacity" />
-                    <div className="absolute top-3 left-3 bg-white text-black text-sm font-semibold px-3 py-1 rounded shadow">
-                      {project.images.length} image{project.images.length > 1 ? "s" : ""}
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all" />
+                    <div className="absolute top-3 left-3 bg-white/90 text-brand text-xs font-bold px-3 py-1 rounded-full shadow">
+                      {project.images.length} photo{project.images.length > 1 ? "s" : ""}
                     </div>
                   </div>
-                </div>
-
-                {/* Content - Always Right */}
-                <div className="md:w-1/2">
-                  <div className="flex items-center gap-3 mb-4">
-                    <h4 style={{ fontFamily: "Forum, serif", fontSize: "28px" }} className="font-normal text-brand">{project.title}</h4>
+                  <div className="px-5 py-5">
+                    <div className="flex items-center gap-2 mb-1">
+                      <h4 style={{ fontFamily: "Forum, serif", fontSize: "24px", color: "#243011", lineHeight: "1.2" }}>{project.title}</h4>
+                    </div>
                     {project.badge && (
-                      <span style={{ fontSize: "15px", color: "#536942" }} className="font-normal flex items-center gap-1.5">
+                      <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand/70 mb-3">
                         <span className="w-1.5 h-1.5 rounded-full bg-brand inline-block"></span>
                         {project.badge}
                       </span>
                     )}
+                    <p style={{ fontSize: "13px", color: "#536941CC", lineHeight: "1.7" }} className="mb-4">{project.description}</p>
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {project.stack.map((tech) => {
+                        const t = iconMap[tech];
+                        return (
+                          <span key={tech} className="flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-white/70 border border-brand/10 text-brand">
+                            <span className="text-sm leading-none">{t?.icon}</span>
+                            {tech}
+                          </span>
+                        );
+                      })}
+                    </div>
+                    {(project.demo || project.github) && (
+                      <div className="flex gap-3 pt-1">
+                        {project.demo && (
+                          <a href={project.demo} target="_blank" rel="noreferrer"
+                            className="flex items-center gap-1.5 text-xs font-bold px-4 py-2 rounded-full bg-brand text-white shadow-sm hover:opacity-80 transition">
+                            <FiGlobe size={13} /> Live
+                          </a>
+                        )}
+                        {project.github && (
+                          <a href={project.github} target="_blank" rel="noreferrer"
+                            className="flex items-center gap-1.5 text-xs font-bold px-4 py-2 rounded-full border border-brand/30 text-brand hover:bg-brand/5 transition">
+                            <FiGithub size={13} /> GitHub
+                          </a>
+                        )}
+                      </div>
+                    )}
                   </div>
-                  <p style={{ fontSize: "15px", color: "#536941E3", letterSpacing: "0.03em" }} className="mb-4">{project.description}</p>
-                  
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.stack.map((tech) => {
-                      const t = iconMap[tech];
-                      return (
-                        <span
-                          key={tech}
-                          className="flex items-center gap-1.5 px-3 py-1 text-xs font-semibold text-brand"
-                        >
-                          <span className="text-sm leading-none text-brand">{t.icon}</span>
-                          <span>{tech}</span>
-                        </span>
-                      );
-                    })}
-                  </div>
+                </div>
 
-                  {(project.github || project.demo) && (
-                    <div className="flex flex-wrap gap-0">
-                      {project.demo && (
-                        <span style={{ fontSize: "15px" }} className="text-brand">
-                          Live: <a
-                            href={project.demo}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="underline hover:opacity-70 transition"
-                          >
-                            {project.demo}
-                          </a>
-                        </span>
-                      )}
-                      {project.github && (
-                        <span style={{ fontSize: "15px" }} className="text-brand">
-                          Github: <a
-                            href={project.github}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="underline hover:opacity-70 transition"
-                          >
-                            {project.github}
-                          </a>
+                {/* DESKTOP layout — untouched */}
+                <div className="hidden md:flex flex-row gap-8 items-start">
+                  <div className="md:w-1/2 flex-shrink-0 flex justify-center">
+                    <div
+                      className="relative w-2/3 h-80 sm:h-96 md:h-[450px] overflow-hidden cursor-pointer group shadow-lg"
+                      onClick={() => openModal(project.id, 0)}
+                    >
+                      <img
+                        src={project.thumbnail || project.images[0]}
+                        alt={project.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-50 transition-opacity" />
+                      <div className="absolute top-3 left-3 bg-white text-black text-sm font-semibold px-3 py-1 rounded shadow">
+                        {project.images.length} image{project.images.length > 1 ? "s" : ""}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="md:w-1/2">
+                    <div className="flex items-center gap-3 mb-4">
+                      <h4 style={{ fontFamily: "Forum, serif", fontSize: "28px" }} className="font-normal text-brand">{project.title}</h4>
+                      {project.badge && (
+                        <span style={{ fontSize: "15px", color: "#536942" }} className="font-normal flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-brand inline-block"></span>
+                          {project.badge}
                         </span>
                       )}
                     </div>
-                  )}
+                    <p style={{ fontSize: "15px", color: "#536941E3", letterSpacing: "0.03em" }} className="mb-4">{project.description}</p>
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.stack.map((tech) => {
+                        const t = iconMap[tech];
+                        return (
+                          <span key={tech} className="flex items-center gap-1.5 px-3 py-1 text-xs font-semibold text-brand">
+                            <span className="text-sm leading-none text-brand">{t?.icon}</span>
+                            <span>{tech}</span>
+                          </span>
+                        );
+                      })}
+                    </div>
+                    {(project.github || project.demo) && (
+                      <div className="flex flex-wrap gap-0">
+                        {project.demo && (
+                          <span style={{ fontSize: "15px" }} className="text-brand">
+                            Live: <a href={project.demo} target="_blank" rel="noreferrer" className="underline hover:opacity-70 transition">{project.demo}</a>
+                          </span>
+                        )}
+                        {project.github && (
+                          <span style={{ fontSize: "15px" }} className="text-brand">
+                            Github: <a href={project.github} target="_blank" rel="noreferrer" className="underline hover:opacity-70 transition">{project.github}</a>
+                          </span>
+                        )}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </motion.div>
             );
