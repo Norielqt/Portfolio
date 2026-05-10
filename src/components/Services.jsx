@@ -200,7 +200,7 @@ const Services = ({ layout = "grid", showDescription = true }) => {
                         </p>
                       )}
                     </div>
-                    <h3 style={{ fontFamily: "DM Sans, sans-serif", fontSize: "21px" }} className="mt-6">For {service.price}/hr</h3>
+                    <h3 style={{ fontFamily: "DM Sans, sans-serif", fontSize: "21px" }} className="mt-6">Starts at {service.price}/hr</h3>
                   </div>
                 </div>
               </div>

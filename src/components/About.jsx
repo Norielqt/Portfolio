@@ -7,8 +7,9 @@ import {
   SiHtml5, SiPhp, SiCplusplus, SiGithub, SiMysql,
   SiDotnet, SiLaravel, SiAmazon, SiPostgresql, SiRailway,
   SiWordpress, SiShopify, SiWebflow, SiWix, SiSquarespace, SiNextdotjs, SiVercel,
+  SiN8N, SiZapier, SiMake,
 } from "react-icons/si";
-import { FaJava, FaServer } from "react-icons/fa";
+import { FaJava, FaServer, FaRobot } from "react-icons/fa";
 import { FiLayout } from "react-icons/fi";
 
 const skillGroups = [
@@ -21,6 +22,15 @@ const skillGroups = [
       { name: "Webflow",      icon: <SiWebflow     className="inline-block mr-3 text-blue-500 text-4xl" /> },
       { name: "Wix",          icon: <SiWix         className="inline-block mr-3 text-yellow-500 text-4xl" /> },
       { name: "Squarespace",  icon: <SiSquarespace className="inline-block mr-3 text-gray-700 text-4xl" /> },
+    ],
+  },
+  {
+    category: "Automation",
+    items: [
+      { name: "n8n",          icon: <SiN8N         className="inline-block mr-3 text-rose-500    text-4xl" /> },
+      { name: "Zapier",       icon: <SiZapier      className="inline-block mr-3 text-orange-500  text-4xl" /> },
+      { name: "GoHighLevel",  icon: <img src={require("../assets/Gohighlevel.ico")} alt="GoHighLevel" className="inline-block mr-3 flex-shrink-0" style={{width:"36px",height:"36px",objectFit:"contain"}} /> },
+      { name: "Make.com",     icon: <SiMake        className="inline-block mr-3 text-fuchsia-500 text-4xl" /> },
     ],
   },
   {
