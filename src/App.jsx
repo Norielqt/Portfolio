@@ -21,7 +21,7 @@ const ProjectCategory = lazy(() => import("./components/ProjectCategory"));
 const Home = () => (
   <div>
     <Seo
-      title="Noriel Fulgencio — Software Engineer & Automation Dev"
+      title="Noriel Fulgencio - Software Engineer & Automation Dev"
       description="Software Engineer from the Philippines building React & Laravel web apps and automations. Available for freelance and remote work worldwide."
       path="/"
     />
@@ -46,7 +46,7 @@ const Home = () => (
 const ServicesPage = () => (
   <div>
     <Seo
-      title="Services — Web Development & Automation | Noriel Fulgencio"
+      title="Services - Web Development & Automation | Noriel Fulgencio"
       description="Freelance web development, custom software, and business automation services by a Software Engineer in the Philippines. React, Laravel, and more."
       path="/services"
     />
@@ -130,7 +130,7 @@ export default function App() {
                     element={
                       <>
                         <Seo
-                          title="Experience & Timeline — Noriel Fulgencio"
+                          title="Experience & Timeline - Noriel Fulgencio"
                           description="Career timeline and experience of Noriel Fulgencio, Software Engineer and Automation Specialist from the Philippines."
                           path="/timeline"
                         />
@@ -144,7 +144,7 @@ export default function App() {
                     element={
                       <>
                         <Seo
-                          title="Projects — Noriel Fulgencio"
+                          title="Projects - Noriel Fulgencio"
                           description="Web development, automation, and software development projects by Noriel Fulgencio. React, Laravel, and custom systems."
                           path="/projects"
                         />
@@ -160,7 +160,7 @@ export default function App() {
                     element={
                       <>
                         <Seo
-                          title="Contact — Hire Noriel Fulgencio"
+                          title="Contact - Hire Noriel Fulgencio"
                           description="Get in touch with Noriel Fulgencio for freelance web development, automation, and software projects. Open to remote work worldwide."
                           path="/contact"
                         />
