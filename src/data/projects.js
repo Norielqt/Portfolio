@@ -56,9 +56,19 @@ import zonify from '../assets/Zonify.webp';
 
 const projects = [
   {
+    id: 6,
+    title: "Verada Consulting",
+    category: "websites",
+    demo: "https://websites.norielfulgencio.com/verada",
+    description:
+      "A production-ready consulting firm website I designed and developed. Features include a hero section with animated statistics, service cards with hover effects, a 4-step process visualization, client testimonials, and a functional contact form. Built with semantic HTML5, responsive CSS3 Grid/Flexbox, and vanilla JavaScript. Fully accessible and optimized for conversion.",
+    stack: ["HTML", "CSS", "JavaScript"],
+    images: [],
+  },
+  {
     id: 1,
     title: "ZentraCRM",
-    category: "software-development",
+    category: "web-application",
     badge: "Featured Project",
     thumbnail: zentraCRM,
     github: "https://github.com/Norielqt/Zentra-crm",
@@ -80,7 +90,7 @@ const projects = [
   {
     id: 2,
     title: "RealtorHQ",
-    category: "software-development",
+    category: "web-application",
     badge: "Featured Project",
     thumbnail: realtorHQ,
     github: "https://github.com/Norielqt/real-estate-property-system",
@@ -102,7 +112,7 @@ const projects = [
   {
     id: 3,
     title: "Park Cabins",
-    category: "software-development",
+    category: "web-application",
     badge: "Built & Deployed for a Real Company",
     thumbnail: parkCabins,
     description:
@@ -121,7 +131,7 @@ const projects = [
   {
     id: 4,
     title: "SaaS Project Management System",
-    category: "software-development",
+    category: "web-application",
     thumbnail: saasProjectManagement,
     github: "https://github.com/Norielqt/saas-project-management",
     description:
@@ -139,7 +149,7 @@ const projects = [
   {
     id: 5,
     title: "Zonify",
-    category: "software-development",
+    category: "web-application",
     badge: "Best Thesis",
     thumbnail: zonify,
     github: "https://github.com/Norielqt/Zonify",

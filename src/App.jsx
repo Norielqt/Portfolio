@@ -155,6 +155,8 @@ export default function App() {
                   <Route path="/projects/web-development" element={<ProjectCategory category="web-development" />} />
                   <Route path="/projects/automation" element={<ProjectCategory category="automation" />} />
                   <Route path="/projects/software-development" element={<ProjectCategory category="software-development" />} />
+                  <Route path="/projects/websites" element={<ProjectCategory category="websites" />} />
+                  <Route path="/projects/web-application" element={<ProjectCategory category="web-application" />} />
                   <Route
                     path="/contact"
                     element={

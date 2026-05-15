@@ -8,13 +8,17 @@ import projects from "../data/projects";
 const categoryTitles = {
   "web-development": "Web Development",
   "automation": "Automation",
-  "software-development": "Software Development"
+  "software-development": "Software Development",
+  "websites": "Websites",
+  "web-application": "Web Application"
 };
 
 const categoryDescriptions = {
   "web-development": "Web development projects by Noriel Fulgencio — React and Laravel sites and web apps built for clients and personal work.",
   "automation": "Automation projects by Noriel Fulgencio — scripts, integrations, and workflows that replace repetitive manual work for small businesses.",
-  "software-development": "Software development projects by Noriel Fulgencio — custom systems, CRMs, and internal tools built from scratch."
+  "software-development": "Software development projects by Noriel Fulgencio — custom systems, CRMs, and internal tools built from scratch.",
+  "websites": "Website projects by Noriel Fulgencio — clean, fast, and professional websites built for real businesses using HTML, CSS, and JavaScript.",
+  "web-application": "Web application projects by Noriel Fulgencio — full-stack web applications with rich features, smooth UX, and modern frameworks."
 };
 
 const ProjectCategory = ({ category }) => {

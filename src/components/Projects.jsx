@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { FiGithub, FiGlobe, FiArrowRight, FiCode, FiZap, FiLayers } from "react-icons/fi";
+import { FiGithub, FiGlobe, FiArrowRight, FiCode, FiZap, FiLayers, FiLayout, FiMonitor } from "react-icons/fi";
 import robertImage from '../assets/RobertHerjavec.webp';
 import webdevImage from '../assets/webdev.webp';
 import automationImage from '../assets/automation.webp';
@@ -14,28 +14,20 @@ import Services from "./Services";
 
 const categoryCards = [
   {
-    title: "Web Development",
-    slug: "web-development",
+    title: "Websites",
+    slug: "websites",
     image: webdevImage,
-    icon: FiCode,
-    description: "Responsive websites and web apps built with modern stacks.",
-    tags: ["React", "Next.js", "Tailwind"],
+    icon: FiGlobe,
+    description: "Clean, fast, and professional websites built for real businesses.",
+    tags: ["HTML", "CSS", "JavaScript"],
   },
   {
-    title: "Automation",
-    slug: "automation",
-    image: automationImage,
-    icon: FiZap,
-    description: "Workflow automations that save hours of repetitive work.",
-    tags: ["n8n", "Make.com", "Zapier"],
-  },
-  {
-    title: "Software Development",
-    slug: "software-development",
+    title: "Web Application",
+    slug: "web-application",
     image: softdevImage,
-    icon: FiLayers,
-    description: "Custom systems, CRMs, and SaaS tailored to your business.",
-    tags: ["Laravel", "Python", "MySQL"],
+    icon: FiMonitor,
+    description: "Full-stack web applications with rich features and smooth UX.",
+    tags: ["React", "Laravel", "MySQL"],
   },
 ];
 
@@ -124,157 +116,77 @@ export default function Projects({ category = null }) {
             </div>
           </div>
 
-          {/* All Projects */}
-          <section id="projects" className="pt-12 pb-16 px-4 max-w-6xl mx-auto">
-            {projects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                viewport={{ once: true }}
-                className="mb-10 md:mb-20"
+          {/* Category Navigation */}
+          <section className="pt-16 pb-20 px-4 max-w-6xl mx-auto">
+            <div className="text-center mb-10">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand/50 mb-3">
+                Browse by Category
+              </p>
+              <h2
+                style={{ fontFamily: "Forum, serif", color: "#243011" }}
+                className="text-3xl md:text-4xl"
               >
-                {/* MOBILE card */}
-                <div className="md:hidden rounded-3xl overflow-hidden shadow-md" style={{ background: "linear-gradient(160deg, #f6f8f5 60%, #ddebd3 100%)" }}>
-                  <div
-                    className="relative w-full overflow-hidden cursor-pointer group"
-                    style={{ height: "220px" }}
-                    onClick={() => openModal(project.id, 0)}
+                Pick where you'd like to start
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+              {categoryCards.map((cat, i) => {
+                const Icon = cat.icon;
+                const count = projects.filter((p) => p.category === cat.slug).length;
+                return (
+                  <motion.button
+                    key={cat.slug}
+                    onClick={() => navigate(`/projects/${cat.slug}`)}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                    viewport={{ once: true }}
+                    whileHover={{ y: -6 }}
+                    className="group relative rounded-3xl overflow-hidden text-left shadow-md hover:shadow-2xl transition-all duration-500 focus:outline-none focus:ring-2 focus:ring-brand/40"
+                    style={{ background: "linear-gradient(160deg, #f6f8f5 0%, #eaf1e2 100%)" }}
                   >
-                    <img
-                      src={project.thumbnail || project.images[0]}
-                      alt={project.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all" />
-                    <div className="absolute top-3 left-3 bg-white/90 text-brand text-xs font-bold px-3 py-1 rounded-full shadow">
-                      {project.images.length} photo{project.images.length > 1 ? "s" : ""}
-                    </div>
-                  </div>
-                  <div className="px-5 py-5">
-                    <div className="flex items-center gap-2 mb-1">
-                      <h4 style={{ fontFamily: "Forum, serif", fontSize: "24px", color: "#243011", lineHeight: "1.2" }}>{project.title}</h4>
-                    </div>
-                    {project.badge && (
-                      <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand/70 mb-3">
+                    {/* Image header */}
+                    <div className="relative h-72 md:h-96 overflow-hidden">
+                      <img
+                        src={cat.image}
+                        alt={cat.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          background:
+                            "linear-gradient(180deg, rgba(36,48,17,0.15) 0%, rgba(36,48,17,0.55) 100%)",
+                        }}
+                      />
+
+                      {/* Count badge */}
+                      <div className="absolute top-4 left-4 flex items-center gap-1.5 bg-white/95 backdrop-blur-sm text-brand text-xs font-bold px-3 py-1.5 rounded-full shadow-sm">
                         <span className="w-1.5 h-1.5 rounded-full bg-brand inline-block"></span>
-                        {project.badge}
-                      </span>
-                    )}
-                    <p style={{ fontSize: "13px", color: "#536941CC", lineHeight: "1.7" }} className="mb-4">{project.description}</p>
-                    <div className="flex flex-wrap gap-1.5 mb-4">
-                      {project.stack.map((tech) => {
-                        const t = iconMap[tech];
-                        return (
-                          <span key={tech} className="flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-white/70 border border-brand/10 text-brand">
-                            <span className="text-sm leading-none">{t?.icon}</span>
-                            {tech}
-                          </span>
-                        );
-                      })}
-                    </div>
-                    {(project.demo || project.github) && (
-                      <div className="flex gap-3 pt-1">
-                        {project.demo && (
-                          <a href={project.demo} target="_blank" rel="noreferrer"
-                            className="flex items-center gap-1.5 text-xs font-bold px-4 py-2 rounded-full bg-brand text-white shadow-sm hover:opacity-80 transition">
-                            <FiGlobe size={13} /> Live
-                          </a>
-                        )}
-                        {project.github && (
-                          <a href={project.github} target="_blank" rel="noreferrer"
-                            className="flex items-center gap-1.5 text-xs font-bold px-4 py-2 rounded-full border border-brand/30 text-brand hover:bg-brand/5 transition">
-                            <FiGithub size={13} /> GitHub
-                          </a>
-                        )}
+                        {count} {count === 1 ? "Project" : "Projects"}
                       </div>
-                    )}
-                  </div>
-                </div>
 
-                {/* DESKTOP layout — untouched */}
-                <div className="hidden md:flex flex-row gap-8 items-start">
-                {/* Image - Always Left */}
-                <div className="md:w-1/2 flex-shrink-0 flex justify-center">
-                  <div
-                    className="relative w-2/3 h-80 sm:h-96 md:h-[450px] overflow-hidden cursor-pointer group shadow-lg"
-                    onClick={() => openModal(project.id, 0)}
-                  >
-                    <img
-                      src={project.thumbnail || project.images[0]}
-                      alt={project.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-transform group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-50 transition-opacity" />
-                    <div className="absolute top-3 left-3 bg-white text-black text-sm font-semibold px-3 py-1 rounded shadow">
-                      {project.images.length} image{project.images.length > 1 ? "s" : ""}
-                    </div>
-                  </div>
-                </div>
+                      {/* Icon */}
+                      <div className="absolute top-4 right-4 w-11 h-11 rounded-full bg-white/95 backdrop-blur-sm flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+                        <Icon className="text-brand" size={20} />
+                      </div>
 
-                {/* Content - Always Right */}
-                <div className="md:w-1/2">
-                  <div className="flex items-center gap-3 mb-4">
-                    <h4 style={{ fontFamily: "Forum, serif", fontSize: "28px" }} className="font-normal text-brand">{project.title}</h4>
-                    {project.badge && (
-                      <span style={{ fontSize: "15px", color: "#536942" }} className="font-normal flex items-center gap-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-brand inline-block"></span>
-                        {project.badge}
-                      </span>
-                    )}
-                  </div>
-                  <p style={{ fontSize: "15px", color: "#536941E3", letterSpacing: "0.03em" }} className="mb-4">{project.description}</p>
-
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.stack.map((tech) => {
-                      const t = iconMap[tech];
-                      return (
-                        <span
-                          key={tech}
-                          className="flex items-center gap-1.5 px-3 py-1 text-xs font-semibold text-brand"
+                      {/* Title overlay */}
+                      <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
+                        <h3
+                          style={{ fontFamily: "Forum, serif" }}
+                          className="text-white text-3xl md:text-4xl leading-tight"
                         >
-                          <span className="text-sm leading-none text-brand">{t?.icon}</span>
-                          <span>{tech}</span>
-                        </span>
-                      );
-                    })}
-                  </div>
-
-                  {(project.github || project.demo) && (
-                    <div className="flex flex-wrap gap-0">
-                      {project.demo && (
-                        <span style={{ fontSize: "15px" }} className="text-brand">
-                          Live: <a
-                            href={project.demo}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="underline hover:opacity-70 transition"
-                          >
-                            {project.demo}
-                          </a>
-                        </span>
-                      )}
-                      {project.github && (
-                        <span style={{ fontSize: "15px" }} className="text-brand">
-                          Github: <a
-                            href={project.github}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="underline hover:opacity-70 transition"
-                          >
-                            {project.github}
-                          </a>
-                        </span>
-                      )}
+                          {cat.title}
+                        </h3>
+                      </div>
                     </div>
-                  )}
-                </div>
-                </div>
-              </motion.div>
-            ))}
+                  </motion.button>
+                );
+              })}
+            </div>
           </section>
         </>
       )}
@@ -293,20 +205,30 @@ export default function Projects({ category = null }) {
                 {/* MOBILE card */}
                 <div className="md:hidden rounded-3xl overflow-hidden shadow-md" style={{ background: "linear-gradient(160deg, #f6f8f5 60%, #ddebd3 100%)" }}>
                   <div
-                    className="relative w-full overflow-hidden cursor-pointer group"
+                    className="relative w-full overflow-hidden group"
                     style={{ height: "220px" }}
-                    onClick={() => openModal(project.id, 0)}
+                    onClick={() => project.images.length > 0 && openModal(project.id, 0)}
                   >
-                    <img
-                      src={project.thumbnail || project.images[0]}
-                      alt={project.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all" />
-                    <div className="absolute top-3 left-3 bg-white/90 text-brand text-xs font-bold px-3 py-1 rounded-full shadow">
-                      {project.images.length} photo{project.images.length > 1 ? "s" : ""}
-                    </div>
+                    {(project.thumbnail || project.images[0]) ? (
+                      <>
+                        <img
+                          src={project.thumbnail || project.images[0]}
+                          alt={project.title}
+                          loading="lazy"
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all" />
+                        {project.images.length > 0 && (
+                          <div className="absolute top-3 left-3 bg-white/90 text-brand text-xs font-bold px-3 py-1 rounded-full shadow cursor-pointer">
+                            {project.images.length} photo{project.images.length > 1 ? "s" : ""}
+                          </div>
+                        )}
+                      </>
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center bg-brand/5">
+                        <span className="text-brand/30 text-sm">No preview</span>
+                      </div>
+                    )}
                   </div>
                   <div className="px-5 py-5">
                     <div className="flex items-center gap-2 mb-1">
@@ -353,19 +275,29 @@ export default function Projects({ category = null }) {
                 <div className="hidden md:flex flex-row gap-8 items-start">
                   <div className="md:w-1/2 flex-shrink-0 flex justify-center">
                     <div
-                      className="relative w-2/3 h-80 sm:h-96 md:h-[450px] overflow-hidden cursor-pointer group shadow-lg"
-                      onClick={() => openModal(project.id, 0)}
+                      className="relative w-2/3 h-80 sm:h-96 md:h-[450px] overflow-hidden shadow-lg"
+                      onClick={() => project.images.length > 0 && openModal(project.id, 0)}
                     >
-                      <img
-                        src={project.thumbnail || project.images[0]}
-                        alt={project.title}
-                        loading="lazy"
-                        className="w-full h-full object-cover transition-transform group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-50 transition-opacity" />
-                      <div className="absolute top-3 left-3 bg-white text-black text-sm font-semibold px-3 py-1 rounded shadow">
-                        {project.images.length} image{project.images.length > 1 ? "s" : ""}
-                      </div>
+                      {(project.thumbnail || project.images[0]) ? (
+                        <>
+                          <img
+                            src={project.thumbnail || project.images[0]}
+                            alt={project.title}
+                            loading="lazy"
+                            className="w-full h-full object-cover transition-transform group-hover:scale-105 cursor-pointer"
+                          />
+                          <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-50 transition-opacity" />
+                          {project.images.length > 0 && (
+                            <div className="absolute top-3 left-3 bg-white text-black text-sm font-semibold px-3 py-1 rounded shadow cursor-pointer">
+                              {project.images.length} image{project.images.length > 1 ? "s" : ""}
+                            </div>
+                          )}
+                        </>
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center bg-brand/5">
+                          <span className="text-brand/30 text-sm">No preview</span>
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div className="md:w-1/2">
