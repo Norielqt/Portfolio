@@ -1,4 +1,12 @@
 {
+  "projects": {
+    "default": {
+      "rootDirectory": "."
+    },
+    "projects": {
+      "rootDirectory": "projects"
+    }
+  },
   "rewrites": [
     {
       "source": "/((?!sitemap\\.xml|robots\\.txt).*)",
