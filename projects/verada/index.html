@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Verada Consulting partners with ambitious leaders to drive clarity, accelerate growth, and build lasting competitive advantages through strategic business advisory.">
+<meta name="theme-color" content="#FAF7F2">
+<meta property="og:title" content="Verada Consulting | Strategic Business Advisory">
+<meta property="og:description" content="Strategic consulting for ambitious businesses. Clarity, growth, and lasting impact.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="Main_Logo.png">
+<title>Verada Consulting | Strategic Business Advisory</title>
+<link rel="icon" type="image/png" href="Main_Logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#FAF7F2;--surface:#F2EDE4;--surface2:#E8E0D2;
+  --ink:#1A1410;--ink-soft:#352D23;--ink-muted:#6B6055;
+  --amber:#A8722A;--amber-light:#C8935A;--amber-dim:#6F4A18;
+  --amber-pale:#F0E2CC;--amber-xpale:#FBF4EB;--white:#FFFFFF;
+  --border:rgba(168,114,42,0.15);--border-med:rgba(168,114,42,0.30);--border-strong:rgba(168,114,42,0.55);
+  --shadow-sm:0 2px 8px rgba(26,20,16,0.06),0 1px 2px rgba(26,20,16,0.04);
+  --shadow-md:0 8px 32px rgba(26,20,16,0.10),0 2px 8px rgba(26,20,16,0.06);
+  --shadow-lg:0 20px 60px rgba(26,20,16,0.14),0 6px 20px rgba(26,20,16,0.08);
+  --shadow-amber:0 8px 32px rgba(168,114,42,0.25);
+  --nav-h:72px;
+  --ease:cubic-bezier(.25,.46,.45,.94);
+  --ease-out:cubic-bezier(0,0,.2,1);
+}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;line-height:1.6}
+img{display:block;max-width:100%}
+a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:2px}
+::selection{background:var(--amber);color:var(--white)}
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--white);padding:.75rem 1.25rem;z-index:300;font-size:.85rem;letter-spacing:.08em;text-decoration:none}
+.skip-link:focus{left:1rem;top:1rem}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 5rem;background:rgba(250,247,242,0.72);backdrop-filter:blur(20px) saturate(1.5);-webkit-backdrop-filter:blur(20px) saturate(1.5);border-bottom:1px solid transparent;transition:padding .4s var(--ease),background .4s var(--ease),border-color .4s var(--ease),box-shadow .4s var(--ease)}
+nav.scrolled{padding:.9rem 5rem;background:rgba(250,247,242,0.97);border-bottom-color:var(--border);box-shadow:0 1px 0 var(--border),0 4px 24px rgba(26,20,16,0.05)}
+.nav-logo img{height:36px;width:auto;object-fit:contain;transition:opacity .25s var(--ease)}
+.nav-logo:hover img{opacity:.8}
+.nav-links{display:flex;gap:2.75rem;list-style:none;align-items:center}
+.nav-links a{text-decoration:none;color:var(--ink-muted);font-size:0.8rem;letter-spacing:0.08em;font-weight:400;transition:color .25s var(--ease);position:relative;padding:.3rem 0}
+.nav-links a:not(.nav-cta)::after{content:'';position:absolute;left:0;bottom:-3px;width:100%;height:1px;background:var(--amber);transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease)}
+.nav-links a:not(.nav-cta):hover::after,.nav-links a.active::after{transform:scaleX(1);transform-origin:left}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-cta{background:var(--ink)!important;color:var(--white)!important;padding:0.7rem 1.6rem!important;font-size:0.74rem!important;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;transition:background .25s,box-shadow .25s!important;box-shadow:0 0 0 0 rgba(26,20,16,0)}
+.nav-cta:hover{background:var(--amber-dim)!important;box-shadow:0 4px 16px rgba(26,20,16,0.2)!important}
+.nav-cta::after{display:none!important}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;width:40px;height:40px;flex-direction:column;justify-content:center;align-items:center;gap:5px;padding:0;z-index:201}
+.nav-toggle span{display:block;width:22px;height:1.5px;background:var(--ink);transition:transform .35s var(--ease),opacity .25s}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 0.85fr;padding-top:72px;position:relative;overflow:hidden;background:var(--bg)}
+.hero::before{content:'';position:absolute;right:-80px;top:60px;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(168,114,42,0.07) 0%,rgba(168,114,42,0.02) 50%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;left:0;bottom:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:5.5rem 3rem 5.5rem 5rem;position:relative;z-index:1}
+.eyebrow{display:inline-flex;align-items:center;gap:0.85rem;font-size:0.68rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-bottom:2rem}
+.eyebrow-line{width:36px;height:1px;background:var(--amber);flex-shrink:0}
+h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,5.2vw,5rem);font-weight:500;line-height:1.04;color:var(--ink);margin-bottom:1.6rem;letter-spacing:-0.02em}
+h1 em{font-style:italic;color:var(--amber);font-weight:400}
+.hero-sub{font-size:1rem;color:var(--ink-muted);line-height:1.9;max-width:440px;margin-bottom:3rem;font-weight:300}
+.hero-btns{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.btn-fill{background:var(--amber);color:var(--white);border:none;padding:1rem 2.4rem;font-family:'DM Sans',sans-serif;font-size:0.76rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;cursor:pointer;transition:background .25s,box-shadow .25s,transform .2s;text-decoration:none;display:inline-block;box-shadow:0 0 0 0 rgba(168,114,42,0)}
+.btn-fill:hover{background:var(--amber-dim);box-shadow:var(--shadow-amber);transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--ink-soft);border:1px solid var(--border-med);padding:1rem 2.4rem;font-family:'DM Sans',sans-serif;font-size:0.76rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:400;cursor:pointer;transition:all .25s;text-decoration:none;display:inline-block}
+.btn-ghost:hover{border-color:var(--amber);color:var(--amber);background:var(--amber-xpale)}
+.hero-badges{display:flex;gap:3rem;margin-top:3.5rem;padding-top:3rem;border-top:1px solid var(--border)}
+.badge-num{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:500;color:var(--ink);display:block;line-height:1;letter-spacing:-0.02em}
+.badge-num span{color:var(--amber)}
+.badge-label{font-size:0.71rem;color:var(--ink-muted);letter-spacing:0.1em;margin-top:0.4rem;display:block;text-transform:uppercase}
+
+.hero-right{display:flex;align-items:center;justify-content:center;padding:5rem 5rem 5rem 2rem;position:relative}
+.hero-card-stack{position:relative;width:340px;height:470px}
+.hero-card-back{position:absolute;bottom:-18px;right:-18px;width:100%;height:100%;background:var(--amber-pale);border:1px solid var(--border-med)}
+.hero-card-main{position:absolute;inset:0;background:var(--white);border:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;box-shadow:var(--shadow-lg)}
+.hero-card-img{flex:1;background:var(--surface);overflow:hidden;position:relative;min-height:280px}
+.hero-card-img img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .6s var(--ease)}
+.hero-card-main:hover .hero-card-img img{transform:scale(1.04)}
+.hero-card-body{padding:1.5rem 1.75rem;border-top:1px solid var(--border);background:var(--white)}
+.hero-card-tag{font-size:0.6rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-bottom:0.5rem}
+.hero-card-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:500;color:var(--ink);margin-bottom:0.35rem;line-height:1.3}
+.hero-card-sub{font-size:0.78rem;color:var(--ink-muted);font-weight:400}
+.hero-float-badge{position:absolute;top:2.5rem;left:-3rem;background:var(--amber);color:var(--white);padding:1.1rem 1.4rem;display:flex;flex-direction:column;align-items:center;gap:0.15rem;box-shadow:0 12px 40px rgba(168,114,42,0.35);min-width:116px;z-index:2}
+.hero-float-num{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:500;line-height:1;letter-spacing:-0.02em}
+.hero-float-txt{font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;opacity:0.85;text-align:center}
+
+.clients-bar{background:var(--surface);padding:2rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;position:relative}
+.clients-bar::before,.clients-bar::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
+.clients-bar::before{left:0;background:linear-gradient(to right,var(--surface),transparent)}
+.clients-bar::after{right:0;background:linear-gradient(to left,var(--surface),transparent)}
+.clients-track{display:flex;align-items:center;width:max-content;animation:marquee 28s linear infinite}
+.clients-track:hover{animation-play-state:paused}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.client-logo{display:inline-flex;align-items:center;padding:0 3.5rem;opacity:0.55;filter:grayscale(1);transition:opacity .35s var(--ease),filter .35s var(--ease);flex-shrink:0}
+.client-logo img{height:44px;width:auto;max-width:150px;object-fit:contain;display:block}
+.client-logo:hover{opacity:1;filter:grayscale(0)}
+
+#services{padding:8rem 5rem;background:var(--bg)}
+.section-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:4.5rem;flex-wrap:wrap;gap:1rem}
+.section-eyebrow{font-size:0.66rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--amber);font-weight:500;display:flex;align-items:center;gap:0.7rem;margin-bottom:0.7rem}
+.section-eyebrow::before{content:'';width:30px;height:1px;background:var(--amber)}
+h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.2vw,2.8rem);font-weight:500;line-height:1.1;color:var(--ink);letter-spacing:-0.015em}
+h2 em{font-style:italic;color:var(--amber);font-weight:400}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:var(--border)}
+.service-card{background:var(--bg);border:none;padding:2.5rem;transition:background .35s var(--ease),transform .35s var(--ease);cursor:default;position:relative;overflow:hidden}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--amber),var(--amber-light));transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.service-card:hover{background:var(--white);transform:none}
+.service-card:hover::before{transform:scaleX(1)}
+.service-icon{width:54px;height:54px;border-radius:2px;background:var(--amber-pale);display:flex;align-items:center;justify-content:center;margin-bottom:1.75rem;color:var(--amber);transition:background .35s var(--ease),color .35s var(--ease),transform .35s var(--ease)}
+.service-icon svg{width:22px;height:22px;stroke-width:1.5}
+.service-card:hover .service-icon{background:var(--amber);color:var(--white);transform:scale(1.08)}
+.service-num{font-size:0.6rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--border-strong);font-weight:500;margin-bottom:0.65rem}
+.service-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:500;color:var(--ink);margin-bottom:0.85rem;line-height:1.25}
+.service-desc{font-size:0.85rem;color:var(--ink-muted);line-height:1.85;font-weight:300}
+.service-link{display:inline-flex;align-items:center;gap:0.45rem;margin-top:1.5rem;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--amber);font-weight:500;text-decoration:none;transition:gap .25s var(--ease),opacity .25s}
+.service-link:hover{gap:0.75rem}
+.service-card:hover .service-link{opacity:1}
+
+#process{padding:8rem 5rem;background:var(--surface)}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:4.5rem;position:relative}
+.process-steps::before{content:'';position:absolute;top:27px;left:calc(12.5% + 14px);right:calc(12.5% + 14px);height:1px;background:linear-gradient(90deg,var(--border-med),var(--border-med));z-index:0}
+.step{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 2rem;position:relative;z-index:1}
+.step-dot{width:54px;height:54px;border-radius:50%;background:var(--bg);border:1px solid var(--border-med);display:flex;align-items:center;justify-content:center;margin-bottom:1.75rem;flex-shrink:0;font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:500;color:var(--amber);transition:background .35s var(--ease),border-color .35s var(--ease),color .35s var(--ease),box-shadow .35s var(--ease);cursor:default}
+.step:hover .step-dot{background:var(--amber);color:var(--white);border-color:var(--amber);box-shadow:var(--shadow-amber)}
+.step-title{font-family:'Playfair Display',serif;font-size:1.08rem;font-weight:500;color:var(--ink);margin-bottom:0.65rem;letter-spacing:-0.01em}
+.step-desc{font-size:0.82rem;color:var(--ink-muted);line-height:1.8;font-weight:300}
+
+#about{padding:8rem 5rem;background:var(--bg);display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:center}
+.about-visual{position:relative}
+.about-img-main{width:100%;aspect-ratio:4/5;overflow:hidden;border:1px solid var(--border);position:relative;background:var(--surface2)}
+.about-img-main img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .6s var(--ease)}
+.about-img-main:hover img{transform:scale(1.03)}
+.about-accent-card{position:absolute;bottom:-2.5rem;right:-2.5rem;background:var(--amber);color:var(--white);padding:1.6rem 2.2rem;box-shadow:0 16px 48px rgba(168,114,42,0.3)}
+.about-accent-num{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:500;display:block;line-height:1;letter-spacing:-0.02em}
+.about-accent-txt{font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;opacity:0.85;margin-top:0.35rem;display:block}
+.about-body{font-size:0.96rem;color:var(--ink-muted);line-height:1.95;font-weight:300;margin-bottom:1.2rem}
+.about-body strong{color:var(--ink);font-weight:500}
+.about-list{list-style:none;margin:1.75rem 0 2.2rem;display:flex;flex-direction:column;gap:1rem}
+.about-list li{display:flex;align-items:center;gap:0.9rem;font-size:0.88rem;color:var(--ink-soft);font-weight:400}
+.about-list li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--amber);flex-shrink:0}
+
+#testimonials{padding:8rem 5rem;background:var(--ink)}
+#testimonials .section-eyebrow{color:var(--amber-light)}
+#testimonials .section-eyebrow::before{background:var(--amber-light)}
+#testimonials h2{color:var(--bg)}
+#testimonials h2 em{color:var(--amber-light)}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:rgba(168,114,42,0.12);margin-top:4.5rem}
+.testimonial-card{background:#1E1812;padding:2.5rem;transition:background .35s var(--ease)}
+.testimonial-card:hover{background:#23201A}
+.testimonial-quote{font-family:'Playfair Display',serif;font-size:2.5rem;color:var(--amber-light);opacity:0.4;line-height:0.8;margin-bottom:1.25rem;font-style:italic}
+.testimonial-text{font-size:0.92rem;color:rgba(250,247,242,0.6);line-height:1.9;font-weight:300;margin-bottom:1.75rem;font-style:italic}
+.testimonial-author{border-top:1px solid rgba(168,114,42,0.12);padding-top:1.4rem;display:flex;align-items:center;gap:1.1rem}
+.testimonial-avatar{width:46px;height:46px;border-radius:50%;overflow:hidden;flex-shrink:0;border:1.5px solid rgba(168,114,42,0.25);background:var(--surface)}
+.testimonial-avatar img{width:100%;height:100%;object-fit:cover}
+.testimonial-name{font-size:0.86rem;font-weight:500;color:rgba(250,247,242,0.9);letter-spacing:0.03em}
+.testimonial-role{font-size:0.73rem;color:var(--amber-light);margin-top:0.2rem;opacity:0.8}
+
+.cta-banner{padding:7rem 5rem;background:var(--ink-soft);display:flex;align-items:center;justify-content:space-between;gap:4rem;position:relative;overflow:hidden}
+.cta-banner::before{content:'';position:absolute;right:-80px;top:-80px;width:480px;height:480px;border-radius:50%;background:rgba(168,114,42,0.08);pointer-events:none}
+.cta-banner::after{content:'';position:absolute;left:5rem;bottom:-60px;width:200px;height:200px;border-radius:50%;background:rgba(168,114,42,0.05);pointer-events:none}
+.cta-text h2{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:500;color:var(--white);line-height:1.08;margin-bottom:1rem;letter-spacing:-0.02em}
+.cta-text p{font-size:0.97rem;color:rgba(250,247,242,0.6);font-weight:300;max-width:500px;line-height:1.75}
+.btn-white{background:transparent;color:var(--white);border:1px solid rgba(250,247,242,0.35);padding:1.1rem 2.8rem;font-family:'DM Sans',sans-serif;font-size:0.76rem;letter-spacing:0.16em;text-transform:uppercase;font-weight:400;cursor:pointer;transition:all .3s var(--ease);white-space:nowrap;text-decoration:none;display:inline-block}
+.btn-white:hover{background:var(--amber);border-color:var(--amber);color:var(--white);box-shadow:var(--shadow-amber)}
+
+footer{background:var(--ink);padding:5rem 5rem 3rem;color:rgba(250,247,242,0.4)}
+.footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3.5rem;padding-bottom:3.5rem;border-bottom:1px solid rgba(250,247,242,0.06)}
+.footer-brand .footer-logo-img{height:30px;width:auto;margin-bottom:1.25rem;filter:brightness(0) invert(1);opacity:0.75}
+.footer-brand p{font-size:0.83rem;line-height:1.85;max-width:240px;font-weight:300;color:rgba(250,247,242,0.35)}
+.footer-col h4{font-size:0.62rem;letter-spacing:0.28em;text-transform:uppercase;color:rgba(250,247,242,0.55);font-weight:500;margin-bottom:1.25rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:0.7rem}
+.footer-col ul a{text-decoration:none;color:rgba(250,247,242,0.35);font-size:0.83rem;font-weight:300;transition:color .25s}
+.footer-col ul a:hover{color:var(--amber-light)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-bottom p{font-size:0.74rem;letter-spacing:0.05em;color:rgba(250,247,242,0.25)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.hero-left>*{animation:fadeUp 0.85s var(--ease-out) both}
+.eyebrow{animation-delay:0.05s}
+h1{animation-delay:0.18s}
+.hero-sub{animation-delay:0.3s}
+.hero-btns{animation-delay:0.42s}
+.hero-badges{animation-delay:0.54s}
+
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out)}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal.delay-1{transition-delay:.08s}
+.reveal.delay-2{transition-delay:.16s}
+.reveal.delay-3{transition-delay:.24s}
+.reveal.delay-4{transition-delay:.32s}
+.reveal.delay-5{transition-delay:.40s}
+.reveal.delay-6{transition-delay:.48s}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+
+/* Contact section */
+#contact-form-section{padding:8rem 5rem;background:var(--surface)}
+.contact-wrap{display:grid;grid-template-columns:1fr 1.15fr;gap:6rem;max-width:1200px;margin:0 auto;align-items:start}
+.contact-info h2{margin-bottom:1.5rem}
+.contact-info p{font-size:.96rem;color:var(--ink-muted);line-height:1.9;font-weight:300;margin-bottom:2.75rem;max-width:420px}
+.contact-detail{display:flex;gap:1.1rem;align-items:flex-start;padding:1.2rem 0;border-top:1px solid var(--border)}
+.contact-detail:last-child{border-bottom:1px solid var(--border)}
+.contact-detail-icon{width:42px;height:42px;background:var(--amber-pale);display:flex;align-items:center;justify-content:center;color:var(--amber);flex-shrink:0}
+.contact-detail-icon svg{width:17px;height:17px;stroke-width:1.6}
+.contact-detail-label{font-size:.63rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-muted);font-weight:500;margin-bottom:.3rem}
+.contact-detail-value{font-size:.92rem;color:var(--ink);font-weight:400}
+.contact-detail-value a{color:inherit;text-decoration:none;transition:color .25s}
+.contact-detail-value a:hover{color:var(--amber)}
+form.contact-form{background:var(--white);padding:2.75rem;box-shadow:var(--shadow-md)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem}
+.form-group{display:flex;flex-direction:column;margin-bottom:1.25rem}
+.form-group label{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;margin-bottom:.55rem}
+.form-group input,.form-group select,.form-group textarea{font-family:'DM Sans',sans-serif;font-size:.92rem;color:var(--ink);background:var(--bg);border:1px solid var(--border);border-bottom:2px solid var(--border);padding:.9rem 1.1rem;font-weight:300;transition:border-color .25s,background .25s,box-shadow .25s;width:100%;appearance:none;-webkit-appearance:none}
+.select-wrap{position:relative}
+.select-wrap select{padding-right:2.75rem;cursor:pointer}
+.select-wrap::after{content:'';position:absolute;right:1.1rem;top:50%;transform:translateY(-50%);width:10px;height:6px;background:var(--ink-muted);clip-path:polygon(0 0,100% 0,50% 100%);pointer-events:none;transition:background .25s}
+.select-wrap:focus-within::after{background:var(--amber)}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--border-med);border-bottom-color:var(--amber);background:var(--white);box-shadow:0 4px 16px rgba(168,114,42,0.06)}
+.form-group textarea{resize:vertical;min-height:130px;font-family:'DM Sans',sans-serif}
+.form-consent{display:flex;gap:.7rem;align-items:flex-start;font-size:.79rem;color:var(--ink-muted);line-height:1.65;margin-bottom:1.6rem}
+.form-consent input{margin-top:.25rem;accent-color:var(--amber);flex-shrink:0}
+.form-status{font-size:.85rem;margin-top:1rem;padding:.8rem 1.1rem;display:none}
+.form-status.show{display:block}
+.form-status.success{background:var(--amber-pale);color:var(--amber-dim);border-left:3px solid var(--amber)}
+
+/* Star ratings in testimonials */
+.stars{display:flex;gap:.25rem;margin-bottom:1.1rem;color:var(--amber-light)}
+.stars svg{width:13px;height:13px;fill:currentColor}
+
+/* Footer extras */
+.footer-social{display:flex;gap:.6rem;margin-top:1.5rem}
+.footer-social a{width:36px;height:36px;border:1px solid rgba(250,247,242,0.1);display:flex;align-items:center;justify-content:center;color:rgba(250,247,242,0.4);transition:all .25s var(--ease)}
+.footer-social a:hover{background:var(--amber);border-color:var(--amber);color:var(--white);transform:translateY(-2px)}
+.footer-social svg{width:14px;height:14px}
+
+/* Back-to-top */
+.to-top{position:fixed;bottom:1.75rem;right:1.75rem;width:44px;height:44px;background:var(--ink);color:var(--white);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:150;opacity:0;pointer-events:none;transition:opacity .3s var(--ease),transform .3s var(--ease),background .25s}
+.to-top.show{opacity:1;pointer-events:auto}
+.to-top:hover{background:var(--amber);transform:translateY(-3px)}
+.to-top svg{width:17px;height:17px;stroke-width:2}
+
+@media(max-width:1024px){
+  nav,nav.scrolled{padding:1rem 2.5rem}
+  .hero-left{padding:5rem 2rem 4.5rem 2.5rem}
+  .hero-right{padding:4rem 2.5rem}
+  #services,#process,#about,#testimonials,#contact-form-section{padding:5.5rem 2.5rem}
+  .cta-banner{padding:5.5rem 2.5rem}
+  footer{padding:4rem 2.5rem 2.5rem}
+  .contact-wrap{gap:3.5rem}
+}
+@media(max-width:860px){
+  .nav-toggle{display:flex}
+  .nav-links{position:fixed;inset:0;background:var(--bg);flex-direction:column;justify-content:center;gap:1.75rem;transform:translateX(100%);transition:transform .4s var(--ease);padding:2rem}
+  .nav-links.open{transform:translateX(0)}
+  .nav-links a{font-size:1.05rem;letter-spacing:.05em}
+  .nav-links .nav-cta{margin-top:1rem;padding:.9rem 2rem!important}
+  body.menu-open{overflow:hidden}
+  .hero{grid-template-columns:1fr}
+  .hero-right{display:none}
+  #services,#process,#about,#testimonials,#contact-form-section{padding:5rem 1.75rem}
+  .cta-banner{padding:5rem 1.75rem}
+  footer{padding:3.5rem 1.75rem 2rem}
+  .clients-bar{padding:1.5rem 1.75rem;flex-wrap:wrap;gap:1.5rem}
+  .clients-divider{display:none}
+  .services-grid{grid-template-columns:1fr;background:none;gap:2px}
+  .service-card{border:1px solid var(--border)}
+  .testimonials-grid{grid-template-columns:1fr;background:none;gap:1.5px}
+  .process-steps{grid-template-columns:1fr 1fr;gap:2.5rem 1rem}
+  .process-steps::before{display:none}
+  #about{grid-template-columns:1fr;gap:4rem}
+  .about-accent-card{right:1rem;bottom:1rem;padding:1.2rem 1.5rem}
+  .footer-top{grid-template-columns:1fr 1fr;gap:2.5rem}
+  .cta-banner{flex-direction:column;text-align:center;align-items:center}
+  .footer-bottom{justify-content:center;text-align:center}
+  .hero-badges{flex-wrap:wrap;gap:2rem}
+  .contact-wrap{grid-template-columns:1fr;gap:3.5rem}
+  form.contact-form{padding:2rem}
+  .form-row{grid-template-columns:1fr;gap:0}
+  .section-header{align-items:flex-start}
+}
+@media(max-width:480px){
+  .hero-left{padding-top:6.5rem}
+  .hero-badges>div{flex:1 0 45%}
+  .badge-num{font-size:1.85rem}
+  .process-steps{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+  .to-top{bottom:1rem;right:1rem;width:40px;height:40px}
+  #services,#process,#about,#testimonials,#contact-form-section{padding:4.5rem 1.25rem}
+  .cta-banner{padding:4.5rem 1.25rem}
+  footer{padding:3rem 1.25rem 1.75rem}
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<nav id="site-nav" aria-label="Primary">
+  <a href="#" class="nav-logo" aria-label="Verada Consulting home"><img src="Main_Logo.png" alt="Verada Consulting"></a>
+  <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#testimonials">Clients</a></li>
+    <li><a href="#contact-form-section" class="nav-cta">Get Started</a></li>
+  </ul>
+</nav>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-left">
+    <span class="eyebrow"><span class="eyebrow-line"></span>Strategic Business Consulting</span>
+    <h1 id="hero-title">Unlock your<br>business's <em>full<br>potential</em></h1>
+    <p class="hero-sub">We partner with ambitious leaders to drive clarity, accelerate growth, and build lasting competitive advantages, delivering measurable results at every stage.</p>
+    <div class="hero-btns">
+      <a href="#services" class="btn-fill">Explore Services</a>
+      <a href="#about" class="btn-ghost">Our Story</a>
+    </div>
+    <div class="hero-badges">
+      <div><span class="badge-num" data-count="14">0<span>+</span></span><span class="badge-label">Years of Excellence</span></div>
+      <div><span class="badge-num" data-count="320">0<span>+</span></span><span class="badge-label">Projects Delivered</span></div>
+      <div><span class="badge-num" data-count="98">0<span>%</span></span><span class="badge-label">Client Satisfaction</span></div>
+    </div>
+  </div>
+  <div class="hero-right" aria-hidden="true">
+    <div class="hero-card-stack">
+      <div class="hero-card-back"></div>
+      <div class="hero-card-main">
+        <div class="hero-card-img">
+          <img src="Hero_Section.png" alt="Verada consulting team in strategy session">
+        </div>
+        <div class="hero-card-body">
+          <p class="hero-card-tag">Featured Engagement</p>
+          <p class="hero-card-title">Market Expansion Strategy</p>
+          <p class="hero-card-sub">+42% revenue growth in 18 months</p>
+        </div>
+      </div>
+      <div class="hero-float-badge">
+        <span class="hero-float-num">4.9</span>
+        <span class="hero-float-txt">Client Rating</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS BAR -->
+<div class="clients-bar" aria-label="Trusted by these companies">
+  <div class="clients-track" aria-hidden="true">
+    <span class="client-logo"><img src="ArcadiaGroup.png" alt="Arcadia Group"></span>
+    <span class="client-logo"><img src="MeridianCapital.png" alt="Meridian Capital"></span>
+    <span class="client-logo"><img src="SolvexInc.png" alt="Solvex Inc."></span>
+    <span class="client-logo"><img src="LanterraHoldings.png" alt="Lanterra Holdings"></span>
+    <span class="client-logo"><img src="OrionPartners.png" alt="Orion Partners"></span>
+    <span class="client-logo"><img src="ArcadiaGroup.png" alt=""></span>
+    <span class="client-logo"><img src="MeridianCapital.png" alt=""></span>
+    <span class="client-logo"><img src="SolvexInc.png" alt=""></span>
+    <span class="client-logo"><img src="LanterraHoldings.png" alt=""></span>
+    <span class="client-logo"><img src="OrionPartners.png" alt=""></span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services" aria-labelledby="services-title">
+  <div class="section-header reveal">
+    <div>
+      <p class="section-eyebrow">What We Do</p>
+      <h2 id="services-title">Services built for<br><em>lasting impact</em></h2>
+    </div>
+    <a href="#contact-form-section" class="btn-ghost">All Services</a>
+  </div>
+  <div class="services-grid" style="border:1px solid var(--border);overflow:hidden">
+    <article class="service-card reveal delay-1">
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+      </div>
+      <p class="service-num">01</p>
+      <h3 class="service-title">Strategic Planning</h3>
+      <p class="service-desc">Comprehensive roadmaps that align your vision with actionable steps, from market analysis to long-term competitive positioning.</p>
+      <a href="#contact-form-section" class="service-link">Learn More <span aria-hidden="true">→</span></a>
+    </article>
+    <article class="service-card reveal delay-2">
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09A1.65 1.65 0 0 0 15 4.6a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9c.13.31.2.65.2 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </div>
+      <p class="service-num">02</p>
+      <h3 class="service-title">Operations & Efficiency</h3>
+      <p class="service-desc">We identify friction, eliminate waste, and streamline core operations to unlock performance at every level of your organization.</p>
+      <a href="#contact-form-section" class="service-link">Learn More <span aria-hidden="true">→</span></a>
+    </article>
+    <article class="service-card reveal delay-3">
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/><path d="M14 7h5v5"/></svg>
+      </div>
+      <p class="service-num">03</p>
+      <h3 class="service-title">Financial Advisory</h3>
+      <p class="service-desc">Robust financial models, investment structuring, and capital allocation strategies that maximize value while minimizing risk.</p>
+      <a href="#contact-form-section" class="service-link">Learn More <span aria-hidden="true">→</span></a>
+    </article>
+    <article class="service-card reveal delay-4">
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 9l3 3 7-6"/></svg>
+      </div>
+      <p class="service-num">04</p>
+      <h3 class="service-title">Digital Transformation</h3>
+      <p class="service-desc">Guiding businesses through technology adoption, process automation, and digital culture shifts that future-proof growth.</p>
+      <a href="#contact-form-section" class="service-link">Learn More <span aria-hidden="true">→</span></a>
+    </article>
+    <article class="service-card reveal delay-5">
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <p class="service-num">05</p>
+      <h3 class="service-title">Leadership Development</h3>
+      <p class="service-desc">Executive coaching, team development, and organizational design programs that build resilient, high-performance leadership.</p>
+      <a href="#contact-form-section" class="service-link">Learn More <span aria-hidden="true">→</span></a>
+    </article>
+    <article class="service-card reveal delay-6">
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <p class="service-num">06</p>
+      <h3 class="service-title">Market Entry</h3>
+      <p class="service-desc">Intelligence-driven strategies for entering new markets with confidence, from feasibility research to launch execution.</p>
+      <a href="#contact-form-section" class="service-link">Learn More <span aria-hidden="true">→</span></a>
+    </article>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" aria-labelledby="process-title">
+  <div class="reveal" style="text-align:center;max-width:560px;margin:0 auto">
+    <p class="section-eyebrow" style="justify-content:center">How We Work</p>
+    <h2 id="process-title">A proven process,<br><em>every time</em></h2>
+  </div>
+  <div class="process-steps">
+    <div class="step reveal delay-1">
+      <div class="step-dot">1</div>
+      <h4 class="step-title">Discover</h4>
+      <p class="step-desc">Deep-dive sessions to understand your business, challenges, and goals from every angle.</p>
+    </div>
+    <div class="step reveal delay-2">
+      <div class="step-dot">2</div>
+      <h4 class="step-title">Diagnose</h4>
+      <p class="step-desc">Rigorous analysis of your data, market position, and operational structure to surface key insights.</p>
+    </div>
+    <div class="step reveal delay-3">
+      <div class="step-dot">3</div>
+      <h4 class="step-title">Design</h4>
+      <p class="step-desc">Tailored strategies and frameworks crafted specifically for your context and objectives.</p>
+    </div>
+    <div class="step reveal delay-4">
+      <div class="step-dot">4</div>
+      <h4 class="step-title">Deliver</h4>
+      <p class="step-desc">Hands-on implementation support and ongoing guidance to ensure results are sustained.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" aria-labelledby="about-title">
+  <div class="about-visual reveal">
+    <div class="about-img-main">
+      <img src="About_Section.png" alt="Verada team in collaboration" loading="lazy">
+    </div>
+    <div class="about-accent-card">
+      <span class="about-accent-num">14</span>
+      <span class="about-accent-txt">Years of Trust</span>
+    </div>
+  </div>
+  <div class="reveal delay-2">
+    <p class="section-eyebrow">About Verada</p>
+    <h2 id="about-title">More than advisors,<br><em>your partners</em></h2>
+    <p class="about-body" style="margin-top:1.5rem">Founded in 2010, <strong>Verada Consulting</strong> was built on a simple belief: that great consulting isn't just about delivering reports. It's about standing beside clients as they transform.</p>
+    <p class="about-body">Our team brings together former executives, industry specialists, and analytical minds who have lived the challenges our clients face. We don't prescribe from a distance. <strong>We roll up our sleeves and do the work together.</strong></p>
+    <ul class="about-list">
+      <li>Sector-specialized consulting teams</li>
+      <li>Data-led decision making at every stage</li>
+      <li>Transparent, fixed-scope engagements</li>
+      <li>Post-engagement support included</li>
+    </ul>
+    <a href="#contact-form-section" class="btn-fill">Meet the Team</a>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" aria-labelledby="testimonials-title">
+  <div class="reveal">
+    <p class="section-eyebrow">Client Stories</p>
+    <h2 id="testimonials-title">What our clients<br><em>say about us</em></h2>
+  </div>
+  <div class="testimonials-grid" style="border:1px solid rgba(168,114,42,0.12);overflow:hidden">
+    <figure class="testimonial-card reveal delay-1">
+      <div class="testimonial-quote" aria-hidden="true">"</div>
+      <div class="stars" aria-label="5 out of 5 stars">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <blockquote class="testimonial-text">Verada didn't just give us a strategy deck. They embedded with our leadership team and made sure every recommendation was actually implemented. The results speak for themselves.</blockquote>
+      <figcaption class="testimonial-author">
+        <div class="testimonial-avatar"><img src="Sarah_Mitchel.png" alt="" loading="lazy"></div>
+        <div>
+          <p class="testimonial-name">Sarah Mitchell</p>
+          <p class="testimonial-role">CEO, Arcadia Group</p>
+        </div>
+      </figcaption>
+    </figure>
+    <figure class="testimonial-card reveal delay-2">
+      <div class="testimonial-quote" aria-hidden="true">"</div>
+      <div class="stars" aria-label="5 out of 5 stars">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <blockquote class="testimonial-text">Their financial advisory work helped us restructure at a critical moment. Calm, rigorous, and deeply experienced. Exactly what we needed when the stakes were highest.</blockquote>
+      <figcaption class="testimonial-author">
+        <div class="testimonial-avatar"><img src="James_Okonkwo.png" alt="" loading="lazy"></div>
+        <div>
+          <p class="testimonial-name">James Okonkwo</p>
+          <p class="testimonial-role">CFO, Meridian Capital</p>
+        </div>
+      </figcaption>
+    </figure>
+    <figure class="testimonial-card reveal delay-3">
+      <div class="testimonial-quote" aria-hidden="true">"</div>
+      <div class="stars" aria-label="5 out of 5 stars">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <blockquote class="testimonial-text">We brought Verada in for a market entry project and ended up partnering with them for three years. Their team is exceptional: insightful, responsive, and genuinely invested in our success.</blockquote>
+      <figcaption class="testimonial-author">
+        <div class="testimonial-avatar"><img src="Priya_Nair.png" alt="" loading="lazy"></div>
+        <div>
+          <p class="testimonial-name">Priya Nair</p>
+          <p class="testimonial-role">Managing Director, Solvex Inc.</p>
+        </div>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="cta-text">
+    <h2>Ready to transform<br>your business?</h2>
+    <p>Schedule a complimentary 30-minute strategy call with one of our senior consultants. No obligations, just clarity.</p>
+  </div>
+  <a href="#contact-form-section" class="btn-white">Book a Free Consultation</a>
+</div>
+
+<!-- CONTACT -->
+<section id="contact-form-section" aria-labelledby="contact-title">
+  <div class="contact-wrap">
+    <div class="contact-info reveal">
+      <p class="section-eyebrow">Get In Touch</p>
+      <h2 id="contact-title">Let's start a<br><em>conversation</em></h2>
+      <p>Tell us about your business and the outcomes you are looking for. A senior consultant will respond within one business day.</p>
+      <div class="contact-detail">
+        <div class="contact-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div>
+          <p class="contact-detail-label">Email</p>
+          <p class="contact-detail-value"><a href="mailto:hello@verada.co">hello@verada.co</a></p>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <div>
+          <p class="contact-detail-label">Phone</p>
+          <p class="contact-detail-value"><a href="tel:+14158002200">+1 (415) 800 2200</a></p>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div>
+          <p class="contact-detail-label">Office</p>
+          <p class="contact-detail-value">100 Pine St, Suite 1250<br>San Francisco, CA 94111</p>
+        </div>
+      </div>
+    </div>
+    <form class="contact-form reveal delay-2" id="veradaContact" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="cf-name">Full Name</label>
+          <input id="cf-name" name="name" type="text" required autocomplete="name" placeholder="Jane Doe">
+        </div>
+        <div class="form-group">
+          <label for="cf-email">Email</label>
+          <input id="cf-email" name="email" type="email" required autocomplete="email" placeholder="jane@company.com">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="cf-company">Company</label>
+          <input id="cf-company" name="company" type="text" autocomplete="organization" placeholder="Company name">
+        </div>
+        <div class="form-group">
+          <label for="cf-service">Service of Interest</label>
+          <div class="select-wrap">
+          <select id="cf-service" name="service" required>
+            <option value="">Select a service</option>
+            <option>Strategic Planning</option>
+            <option>Operations & Efficiency</option>
+            <option>Financial Advisory</option>
+            <option>Digital Transformation</option>
+            <option>Leadership Development</option>
+            <option>Market Entry</option>
+          </select>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="cf-message">How can we help?</label>
+        <textarea id="cf-message" name="message" required placeholder="Tell us about your goals, current challenges, and timeline."></textarea>
+      </div>
+      <label class="form-consent">
+        <input type="checkbox" required>
+        <span>I agree to be contacted by Verada Consulting about my inquiry. We never share your information.</span>
+      </label>
+      <button type="submit" class="btn-fill" style="width:100%">Send Message</button>
+      <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="Main_Logo.png" alt="Verada Consulting" class="footer-logo-img">
+      <p>Strategic consulting for ambitious businesses. Clarity, growth, and lasting impact.</p>
+      <div class="footer-social" aria-label="Social media">
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+        <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Strategic Planning</a></li>
+        <li><a href="#services">Operations</a></li>
+        <li><a href="#services">Financial Advisory</a></li>
+        <li><a href="#services">Digital Transformation</a></li>
+        <li><a href="#services">Market Entry</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#about">Our Team</a></li>
+        <li><a href="#testimonials">Case Studies</a></li>
+        <li><a href="#">Insights</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:hello@verada.co">hello@verada.co</a></li>
+        <li><a href="tel:+14158002200">+1 (415) 800 2200</a></li>
+        <li><a href="#contact-form-section">San Francisco, CA</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Verada Consulting. All rights reserved.</p>
+    <p>Crafted with care for ambitious businesses.</p>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script>
+(function(){
+  'use strict';
+  const nav=document.getElementById('site-nav');
+  const toggle=document.querySelector('.nav-toggle');
+  const links=document.getElementById('nav-links');
+  const toTop=document.getElementById('toTop');
+  const navAnchors=document.querySelectorAll('.nav-links a[href^="#"]');
+  const sections=document.querySelectorAll('main section[id]');
+  const closeMenu=()=>{toggle.setAttribute('aria-expanded','false');links.classList.remove('open');document.body.classList.remove('menu-open')};
+
+  toggle?.addEventListener('click',()=>{
+    const open=toggle.getAttribute('aria-expanded')==='true';
+    toggle.setAttribute('aria-expanded',String(!open));
+    links.classList.toggle('open',!open);
+    document.body.classList.toggle('menu-open',!open);
+  });
+  links?.addEventListener('click',e=>{if(e.target.tagName==='A')closeMenu()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu()});
+
+  const onScroll=()=>{
+    const y=window.scrollY;
+    nav.classList.toggle('scrolled',y>20);
+    toTop.classList.toggle('show',y>600);
+  };
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+
+  toTop?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+  // Active nav highlight
+  const navMap=new Map();
+  navAnchors.forEach(a=>{const id=a.getAttribute('href').slice(1);if(id)navMap.set(id,a)});
+  const navObs=new IntersectionObserver(entries=>{
+    entries.forEach(en=>{
+      const link=navMap.get(en.target.id);
+      if(!link)return;
+      if(en.isIntersecting){navAnchors.forEach(a=>a.classList.remove('active'));link.classList.add('active')}
+    });
+  },{rootMargin:'-45% 0px -50% 0px',threshold:0});
+  sections.forEach(s=>navObs.observe(s));
+
+  // Reveal on scroll
+  const revealObs=new IntersectionObserver(entries=>{
+    entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');revealObs.unobserve(en.target)}});
+  },{threshold:0.12,rootMargin:'0px 0px -50px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+
+  // Count-up stats
+  const animateCount=el=>{
+    const target=parseInt(el.dataset.count,10);
+    const suffix=el.querySelector('span')?.outerHTML||'';
+    const duration=1400;const start=performance.now();
+    const tick=now=>{
+      const p=Math.min(1,(now-start)/duration);
+      const eased=1-Math.pow(1-p,3);
+      const val=Math.round(target*eased);
+      el.innerHTML=val+suffix;
+      if(p<1)requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+  const countObs=new IntersectionObserver(entries=>{
+    entries.forEach(en=>{if(en.isIntersecting){animateCount(en.target);countObs.unobserve(en.target)}});
+  },{threshold:0.5});
+  document.querySelectorAll('.badge-num[data-count]').forEach(el=>countObs.observe(el));
+
+  // Contact form
+  const form=document.getElementById('veradaContact');
+  const status=document.getElementById('formStatus');
+  form?.addEventListener('submit',e=>{
+    e.preventDefault();
+    if(!form.checkValidity()){form.reportValidity();return}
+    const btn=form.querySelector('button[type="submit"]');
+    btn.disabled=true;btn.textContent='Sending...';
+    setTimeout(()=>{
+      status.className='form-status show success';
+      status.textContent='Thank you. A senior consultant will respond within one business day.';
+      form.reset();btn.disabled=false;btn.textContent='Send Message';
+    },700);
+  });
+})();
+</script>
+
+</body>
+</html>
