@@ -53,12 +53,14 @@ import realtorHQ from '../assets/RealtorHQ.webp';
 import parkCabins from '../assets/ParkCabins.webp';
 import saasProjectManagement from '../assets/SaasProjectManagement.webp';
 import zonify from '../assets/Zonify.webp';
+import veradaPreview from '../assets/Verada_preview.webp';
 
 const projects = [
   {
     id: 6,
     title: "Verada Consulting",
     category: "websites",
+    thumbnail: veradaPreview,
     demo: "https://websites.norielfulgencio.com/verada",
     description:
       "A production-ready consulting firm website I designed and developed. Features include a hero section with animated statistics, service cards with hover effects, a 4-step process visualization, client testimonials, and a functional contact form. Built with semantic HTML5, responsive CSS3 Grid/Flexbox, and vanilla JavaScript. Fully accessible and optimized for conversion.",

@@ -63,16 +63,22 @@ const ProjectCategory = ({ category }) => {
         path={`/projects/${category}`}
         jsonLd={[breadcrumbLd, itemListLd]}
       />
-      <div style={{ backgroundColor: "#f6f8f5" }} className="pt-24 pb-16 px-4 min-h-[40vh] flex items-center">
-        <div className="max-w-6xl mx-auto w-full">
+      <div
+        style={{ background: "radial-gradient(ellipse at 30% 60%, #ddebd3 0%, #f6f8f5 50%, #f0f4ec 100%)" }}
+        className="pt-32 pb-16 px-4"
+      >
+        <div className="max-w-6xl mx-auto w-full text-center">
           <button
             onClick={() => navigate("/projects")}
-            className="flex items-center gap-2 text-brand hover:opacity-70 transition mb-4"
+            className="flex items-center justify-center gap-2 text-brand/60 hover:text-brand transition mb-6 mx-auto text-sm font-semibold tracking-[0.15em] uppercase"
           >
-            <FiArrowLeft size={20} />
-            Back to Projects
+            <FiArrowLeft size={15} />
+            All Projects
           </button>
-          <h1 style={{ fontFamily: "DM Sans, sans-serif", fontSize: "clamp(40px, 12vw, 76px)", letterSpacing: "clamp(-1.5px, -0.4vw, -3px)" }} className="text-brand font-extrabold text-center">
+          <h1
+            style={{ fontFamily: "DM Sans, sans-serif", letterSpacing: "clamp(-1.5px, -0.4vw, -3px)" }}
+            className="text-brand-800 font-extrabold text-5xl md:text-7xl"
+          >
             {categoryTitle}
           </h1>
         </div>

@@ -191,7 +191,7 @@ export default function Projects({ category = null }) {
         </>
       )}
       {category && (
-        <section id="projects" className="pt-24 pb-16 px-4 max-w-6xl mx-auto">
+        <section id="projects" className="pt-24 pb-16 px-4 max-w-7xl mx-auto">
           {filteredProjects.map((project, index) => {
             return (
               <motion.div
@@ -217,7 +217,7 @@ export default function Projects({ category = null }) {
                           loading="lazy"
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         />
-                        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all" />
+                        <div className="absolute inset-0 transition-all" />
                         {project.images.length > 0 && (
                           <div className="absolute top-3 left-3 bg-white/90 text-brand text-xs font-bold px-3 py-1 rounded-full shadow cursor-pointer">
                             {project.images.length} photo{project.images.length > 1 ? "s" : ""}
@@ -272,10 +272,10 @@ export default function Projects({ category = null }) {
                 </div>
 
                 {/* DESKTOP layout — untouched */}
-                <div className="hidden md:flex flex-row gap-8 items-start">
+                <div className="hidden md:flex flex-row gap-16 items-start">
                   <div className="md:w-1/2 flex-shrink-0 flex justify-center">
                     <div
-                      className="relative w-2/3 h-80 sm:h-96 md:h-[450px] overflow-hidden shadow-lg"
+                      className="relative w-full h-64 sm:h-72 md:h-80 overflow-hidden shadow-lg"
                       onClick={() => project.images.length > 0 && openModal(project.id, 0)}
                     >
                       {(project.thumbnail || project.images[0]) ? (
@@ -286,7 +286,7 @@ export default function Projects({ category = null }) {
                             loading="lazy"
                             className="w-full h-full object-cover transition-transform group-hover:scale-105 cursor-pointer"
                           />
-                          <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-50 transition-opacity" />
+                          <div className="absolute inset-0 transition-opacity" />
                           {project.images.length > 0 && (
                             <div className="absolute top-3 left-3 bg-white text-black text-sm font-semibold px-3 py-1 rounded shadow cursor-pointer">
                               {project.images.length} image{project.images.length > 1 ? "s" : ""}
