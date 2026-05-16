@@ -54,6 +54,7 @@ import parkCabins from '../assets/ParkCabins.webp';
 import saasProjectManagement from '../assets/SaasProjectManagement.webp';
 import zonify from '../assets/Zonify.webp';
 import veradaPreview from '../assets/Verada_preview.webp';
+import lumierePreview from '../assets/lumiere_preview.webp';
 
 const projects = [
   {
@@ -75,6 +76,7 @@ const projects = [
     description:
       "A luxury clean beauty brand website I designed and developed. Features a shoppable product grid, editorial journal with category filtering, brand philosophy page, and a functional cart with localStorage persistence. Built with semantic HTML5, CSS3, and vanilla JavaScript, including scroll-triggered animations, parallax effects, and IntersectionObserver-powered reveals.",
     stack: ["HTML", "CSS", "JavaScript"],
+    thumbnail: lumierePreview,
     images: [],
   },
   {
@@ -82,7 +84,7 @@ const projects = [
     title: "ZentraCRM",
     category: "web-application",
     badge: "Featured Project",
-    thumbnail: zentraCRM,
+    thumbnail: project6g,
     github: "https://github.com/Norielqt/Zentra-crm",
     demo: "https://zentra-crm-dun.vercel.app/",
     description:
@@ -104,7 +106,7 @@ const projects = [
     title: "RealtorHQ",
     category: "web-application",
     badge: "Featured Project",
-    thumbnail: realtorHQ,
+    thumbnail: project5a,
     github: "https://github.com/Norielqt/real-estate-property-system",
     demo: "https://realtor-hq.vercel.app/",
     description:
@@ -126,7 +128,7 @@ const projects = [
     title: "Park Cabins",
     category: "web-application",
     badge: "Built & Deployed for a Real Company",
-    thumbnail: parkCabins,
+    thumbnail: project3a,
     description:
       "A production CRM deployed and actively used by a cabin manufacturing company. Covers 6 end-to-end workflows: enquiry, quoting, production tracking, project delivery, invoicing, and payment, replacing manual spreadsheet processes. Features a staff dashboard for managing customers, jobs, financials, and documents, plus a dedicated customer portal for real-time project progress visibility. Built with a fully relational MySQL schema to handle complex job and financial data.",
     stack: ["React", "Vite", "Laravel", "PHP", "MySQL", "Tailwind CSS"],
@@ -144,7 +146,7 @@ const projects = [
     id: 4,
     title: "SaaS Project Management System",
     category: "web-application",
-    thumbnail: saasProjectManagement,
+    thumbnail: project4a,
     github: "https://github.com/Norielqt/saas-project-management",
     description:
       "A multi-tenant SaaS project management platform with role-based access control for admins, project managers, and members. Supports full project and task lifecycle management including creation, assignment, prioritization, status tracking, and progress monitoring across multiple teams and organizations from a single platform. Built with a RESTful Laravel API, real-time UI updates, and a responsive React dashboard covering 8+ core modules.",
@@ -163,7 +165,7 @@ const projects = [
     title: "Zonify",
     category: "web-application",
     badge: "Best Thesis",
-    thumbnail: zonify,
+    thumbnail: project1b,
     github: "https://github.com/Norielqt/Zonify",
     description:
       "A web-based zone classification system powered by a TensorFlow deep learning model. Allows users to upload images and receive predicted zone classifications in real time through a Flask REST API. Trained on a custom dataset and deployed as a fully responsive single-page application, covering end-to-end ML integration from model inference to a clean browser UI. No external ML service required.",
