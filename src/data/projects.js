@@ -68,6 +68,16 @@ const projects = [
     images: [],
   },
   {
+    id: 7,
+    title: "Lumiere",
+    category: "websites",
+    demo: "https://websites.norielfulgencio.com/lumiere",
+    description:
+      "A luxury clean beauty brand website I designed and developed. Features a shoppable product grid, editorial journal with category filtering, brand philosophy page, and a functional cart with localStorage persistence. Built with semantic HTML5, CSS3, and vanilla JavaScript, including scroll-triggered animations, parallax effects, and IntersectionObserver-powered reveals.",
+    stack: ["HTML", "CSS", "JavaScript"],
+    images: [],
+  },
+  {
     id: 1,
     title: "ZentraCRM",
     category: "web-application",
