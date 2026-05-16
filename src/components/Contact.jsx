@@ -33,7 +33,7 @@ export default function Contact() {
   return (
     <>
       <div
-        style={{ background: "radial-gradient(ellipse at 30% 60%, #ddebd3 0%, #f6f8f5 50%, #f0f4ec 100%)" }}
+        style={{ background: "#FFFFFF" }}
         className="pt-20 md:pt-32 pb-10 md:pb-16 px-4"
       >
         <motion.div
@@ -46,7 +46,7 @@ export default function Contact() {
             Get in touch
           </p>
           <h1
-            style={{ fontFamily: "DM Sans, sans-serif", letterSpacing: "clamp(-1.5px, -0.4vw, -3px)", fontSize: "clamp(28px, 7vw, 72px)" }}
+            style={{ fontFamily: "DM Sans, sans-serif", letterSpacing: "clamp(-1px, -0.2vw, -2px)", fontSize: "clamp(24px, 4vw, 42px)" }}
             className="text-brand-800 font-extrabold"
           >
             Contact Me
@@ -56,60 +56,52 @@ export default function Contact() {
           </p>
         </motion.div>
       </div>
-      <section id="contact" className="pt-16 pb-16 px-4 max-w-5xl mx-auto text-brand dark:text-white">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-        viewport={{ once: true, margin: "0px 0px 80px 0px" }}
-        className="max-w-2xl mx-auto"
-      >
-        {/* MOBILE list */}
-        <div className="flex flex-col md:hidden divide-y divide-brand/10">
-          {contacts.map(({ label, value, href, icon }) => (
-            <a
+      <section id="contact" className="pb-24 px-4 max-w-2xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="divide-y"
+          style={{ borderTop: "1px solid #E5E5E5", borderBottom: "1px solid #E5E5E5" }}
+        >
+          {contacts.map(({ label, value, href, icon }, i) => (
+            <motion.a
               key={label}
               href={href}
               target={label !== "Email" ? "_blank" : undefined}
               rel="noreferrer"
-              className="flex items-center gap-4 py-5 group"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.15 + i * 0.07 }}
+              className="flex items-center justify-between py-5 group"
+              style={{ borderColor: "#E5E5E5" }}
             >
-              <span className="text-brand text-xl shrink-0">{icon}</span>
-              <div className="min-w-0">
-                <p className="text-xs font-semibold uppercase tracking-widest text-brand/40 mb-0.5">{label}</p>
-                <p className="text-sm font-medium text-brand truncate">{value}</p>
-              </div>
-              <svg className="ml-auto shrink-0 text-brand/20 group-hover:text-brand/60 transition-colors" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-            </a>
-          ))}
-        </div>
-
-        {/* DESKTOP grid — untouched */}
-        <div className="hidden md:block text-center">
-          <h2 className="text-4xl font-normal mb-4">Get In Touch</h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mt-6 mb-10">
-            I'm open to new opportunities, collaborations, or just a friendly chat. Feel free to reach out through any of the channels below.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {contacts.map(({ label, value, href, icon }) => (
-              <a
-                key={label}
-                href={href}
-                target={label !== "Email" ? "_blank" : undefined}
-                rel="noreferrer"
-                className="flex items-center gap-4 p-4 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition group"
-              >
-                <div className="flex-shrink-0 text-brand text-2xl">{icon}</div>
-                <div className="text-left">
-                  <p className="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wide">{label}</p>
-                  <p className="text-sm font-semibold text-brand dark:text-gray-100 group-hover:text-brand-600 transition">{value}</p>
+              <div className="flex items-center gap-4">
+                <span style={{ color: "#11111140", fontSize: "18px" }}>{icon}</span>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.15em]" style={{ color: "#11111166" }}>{label}</p>
+                  <p className="font-medium mt-0.5" style={{ fontSize: "15px", color: "#111111" }}>{value}</p>
                 </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </motion.div>
-    </section>
+              </div>
+              <svg className="shrink-0 transition-transform duration-200 group-hover:translate-x-1" style={{ color: "#11111133" }} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 18l6-6-6-6"/>
+              </svg>
+            </motion.a>
+          ))}
+        </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="text-center mt-10 text-sm"
+          style={{ color: "#11111155" }}
+        >
+          Based in the Philippines · Open to remote &amp; freelance work
+        </motion.p>
+      </section>
     </>
   );
 }
+
+

@@ -37,14 +37,14 @@ export default function Preloader({ onComplete }) {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        style={{ fontFamily: "Forum, serif", fontSize: "28px", color: "#536942", letterSpacing: "-0.5px" }}
+        style={{ fontFamily: "Forum, serif", fontSize: "28px", color: "#111111", letterSpacing: "-0.5px" }}
       >
         Noriel Fulgencio
       </motion.p>
 
       <motion.div
         className="mt-5 h-[2px]"
-        style={{ background: "linear-gradient(90deg, #7aad5e, #536942)" }}
+        style={{ background: "#111111" }}
         initial={{ width: 0 }}
         animate={{ width: 192 }}
         transition={{ duration: 0.9, ease: "easeOut" }}
@@ -52,4 +52,5 @@ export default function Preloader({ onComplete }) {
     </motion.div>
   );
 }
+
 

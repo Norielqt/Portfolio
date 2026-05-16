@@ -93,7 +93,7 @@ function MessageContent({ text }) {
       if (match.index > last) parts.push(str.slice(last, match.index));
       const raw = match[0];
       if (raw.startsWith("`")) {
-        const codeStyle = { color: "#536942", background: "#f6f8f5" };
+        const codeStyle = { color: "#111111", background: "#FFFFFF" };
         parts.push(<code key={match.index} className="px-1 py-0.5 rounded text-xs font-mono" style={codeStyle}>{raw.slice(1, -1)}</code>);
       } else if (raw.startsWith("**"))
         parts.push(<strong key={match.index} className="font-semibold">{raw.slice(2, -2)}</strong>);
@@ -115,7 +115,7 @@ function MessageContent({ text }) {
     // Heading: ### or ## or #
     const headingMatch = trimmed.match(/^(#{1,3})\s+(.+)/);
     if (headingMatch) {
-      const headingColor = "#536942";
+      const headingColor = "#111111";
       elements.push(
         <p key={i} className={`font-semibold mt-2 mb-0.5 ${headingMatch[1].length === 1 ? "text-base" : "text-sm"}`} style={{ color: headingColor }}>
           {renderInline(headingMatch[2])}
@@ -135,7 +135,7 @@ function MessageContent({ text }) {
         <ul key={`ul-${i}`} className="mt-1 mb-1 space-y-0.5 pl-1">
           {items.map((item, idx) => (
             <li key={idx} className="flex items-start gap-2">
-              <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: "#536942" }} />
+              <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: "#111111" }} />
               <span>{renderInline(item)}</span>
             </li>
           ))}
@@ -155,7 +155,7 @@ function MessageContent({ text }) {
         <ol key={`ol-${i}`} className="mt-1 mb-1 space-y-0.5 pl-1">
           {items.map((item, idx) => (
             <li key={idx} className="flex items-start gap-2">
-              <span className="flex-shrink-0 text-xs font-bold mt-0.5" style={{ color: "#536942" }}>{idx + 1}.</span>
+              <span className="flex-shrink-0 text-xs font-bold mt-0.5" style={{ color: "#111111" }}>{idx + 1}.</span>
               <span>{renderInline(item)}</span>
             </li>
           ))}
@@ -264,11 +264,11 @@ export default function ChatBot() {
       {/* Floating button with pulse ring */}
       <div className="fixed bottom-6 right-6 z-50">
         {!open && (
-          <span className="absolute inset-0 rounded-full bg-brand opacity-30 animate-ping" />
+          <span className="absolute inset-0 rounded-full bg-[#111111] opacity-20 animate-ping" />
         )}
         <button
           onClick={() => setOpen((prev) => !prev)}
-          className="relative w-14 h-14 rounded-full bg-gradient-to-br from-brand to-brand-700 hover:from-brand-600 hover:to-brand-800 text-white shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-4 focus:ring-brand/50"
+          className="relative w-14 h-14 rounded-full bg-[#111111] hover:bg-[#333333] text-white shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110 focus:outline-none"
           aria-label="Toggle chat"
         >
           <AnimatePresence mode="wait">
@@ -308,12 +308,11 @@ export default function ChatBot() {
             exit={{ opacity: 0, y: 24, scale: 0.93 }}
             transition={{ type: "spring", stiffness: 340, damping: 28 }}
             className="fixed z-50 flex flex-col shadow-2xl overflow-hidden border
-              inset-x-0 bottom-0 rounded-t-3xl
+              inset-x-0 bottom-0 rounded-t-3xl h-[calc(100dvh-64px)]
               md:inset-auto md:bottom-24 md:right-6 md:w-[92vw] md:max-w-sm md:rounded-2xl md:h-[520px]"
             style={{
-              height: "calc(100dvh - 64px)",
-              borderColor: "rgba(83,105,66,0.2)",
-              background: "linear-gradient(145deg, #f6f8f5 0%, #f0f2ed 100%)",
+              borderColor: "#E5E5E5",
+              background: "#FFFFFF",
             }}
           >
 
@@ -321,21 +320,20 @@ export default function ChatBot() {
             <div
               className="px-4 py-3 flex items-center justify-between flex-shrink-0"
               style={{
-                background: "linear-gradient(135deg, #536942 0%, #44572d 100%)",
-                boxShadow: "0 4px 20px rgba(83,105,66,0.4)",
+                background: "#111111",
               }}
             >
               <div className="flex items-center space-x-3">
                 {/* Avatar */}
                 <div className="relative">
-                  <div className="w-9 h-9 rounded-full flex items-center justify-center ring-2 ring-white/30" style={{ background: "linear-gradient(135deg, #7aad5e 0%, #536942 50%, #3a4d2e 100%)", boxShadow: "0 0 14px rgba(83,105,66,0.7)" }}>
+                  <div className="w-9 h-9 rounded-full flex items-center justify-center ring-2 ring-white/30" style={{ background: "#111111" }}>
                     <HiSparkles className="w-4 h-4 text-white" />
                   </div>
-                  <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-400 rounded-full ring-2" style={{ ringColor: "#536942", boxShadow: "0 0 0 2px #536942" }} />
+                  <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-400 rounded-full" style={{ boxShadow: "0 0 0 2px #111111" }} />
                 </div>
                 <div>
                   <p className="text-white font-semibold text-sm tracking-wide">Noriel's Assistant</p>
-                  <p className="text-xs flex items-center gap-1" style={{ color: "#a8c5a0" }}>
+                  <p className="text-xs flex items-center gap-1" style={{ color: "#AAAAAA" }}>
                     <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-400" />
                     Online · Powered by Groq AI
                   </p>
@@ -364,7 +362,7 @@ export default function ChatBot() {
                   >
                     {/* Assistant avatar */}
                     {msg.role === "assistant" && (
-                      <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mb-0.5 self-end" style={{ background: "linear-gradient(135deg, #7aad5e 0%, #536942 100%)", boxShadow: "0 0 8px rgba(83,105,66,0.5)" }}>
+                      <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mb-0.5 self-end" style={{ background: "#111111", boxShadow: "0 0 8px rgba(17,17,17,0.3)" }}>
                         <HiSparkles className="w-3 h-3 text-white" />
                       </div>
                     )}
@@ -376,8 +374,8 @@ export default function ChatBot() {
                       }`}
                       style={
                         msg.role === "user"
-                          ? { background: "linear-gradient(135deg, #536942 0%, #44572d 100%)" }
-                          : { background: "rgba(83,105,66,0.08)", backdropFilter: "blur(8px)", border: "1px solid rgba(83,105,66,0.18)" }
+                          ? { background: "#111111" }
+                          : { background: "#F5F5F5", border: "1px solid #E5E5E5" }
                       }
                     >
                       {msg.role === "user"
@@ -395,12 +393,12 @@ export default function ChatBot() {
                   animate={{ opacity: 1, y: 0 }}
                   className="flex items-end gap-2 justify-start"
                 >
-                  <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "linear-gradient(135deg, #7aad5e 0%, #536942 100%)", boxShadow: "0 0 8px rgba(83,105,66,0.5)" }}>
+                  <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "#111111", boxShadow: "0 0 8px rgba(17,17,17,0.3)" }}>
                     <HiSparkles className="w-3 h-3 text-white" />
                   </div>
-                  <div className="px-4 py-3 flex space-x-1.5 items-center" style={{ background: "rgba(83,105,66,0.08)", border: "1px solid rgba(83,105,66,0.18)" }}>
+                  <div className="px-4 py-3 flex space-x-1.5 items-center" style={{ background: "#F5F5F5", border: "1px solid #E5E5E5" }}>
                     {[0, 150, 300].map((delay) => (
-                      <span key={delay} className="w-2 h-2 rounded-full animate-bounce bg-brand" style={{ animationDelay: `${delay}ms` }} />
+                      <span key={delay} className="w-2 h-2 rounded-full animate-bounce bg-[#111111]" style={{ animationDelay: `${delay}ms` }} />
                     ))}
                   </div>
                 </motion.div>
@@ -420,22 +418,13 @@ export default function ChatBot() {
                       <button
                         key={text}
                         onClick={() => sendMessage(text)}
-                        className={`group flex flex-col items-start gap-1 px-3 py-2.5 text-left transition-all duration-200 hover:scale-[1.03] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-brand/40`}
+                        className={`group flex flex-col items-start gap-1 px-3 py-2.5 text-left transition-all duration-200 hover:bg-[#EBEBEB] active:scale-[0.98] focus:outline-none`}
                         style={{
-                          background: "rgba(83,105,66,0.07)",
-                          border: "1px solid rgba(83,105,66,0.2)",
-                          boxShadow: "0 2px 8px rgba(83,105,66,0.06)",
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.background = "rgba(83,105,66,0.15)";
-                          e.currentTarget.style.boxShadow = "0 4px 16px rgba(83,105,66,0.15)";
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.background = "rgba(83,105,66,0.07)";
-                          e.currentTarget.style.boxShadow = "0 2px 8px rgba(83,105,66,0.06)";
+                          background: "#F5F5F5",
+                          border: "1px solid #E5E5E5",
                         }}
                       >
-                        <span className="text-xs font-semibold text-brand">{label}</span>
+                        <span className="text-xs font-semibold" style={{ color: "#111111" }}>{label}</span>
                         <span className="text-[10px] leading-tight text-gray-500">{text}</span>
                       </button>
                     ))}
@@ -449,7 +438,7 @@ export default function ChatBot() {
             {/* Input */}
             <div
               className="px-3 py-3 flex items-center gap-2 flex-shrink-0"
-              style={{ borderTop: "1px solid rgba(83,105,66,0.15)", background: "rgba(255,255,255,0.85)" }}
+              style={{ borderTop: "1px solid #E5E5E5", background: "#FFFFFF" }}
             >
               <input
                 ref={inputRef}
@@ -459,15 +448,15 @@ export default function ChatBot() {
                 onKeyDown={handleKeyDown}
                 placeholder="Ask me anything..."
                 disabled={loading}
-                className="flex-1 text-sm px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand/60 transition text-gray-900 placeholder-gray-400"
-                style={{ background: "rgba(0,0,0,0.04)", border: "1px solid rgba(83,105,66,0.2)" }}
+                className="flex-1 text-sm px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-black/20 transition text-gray-900 placeholder-gray-400"
+                style={{ background: "#F5F5F5", border: "1px solid #E5E5E5" }}
               />
               <button
                 onClick={() => sendMessage()}
                 disabled={loading || !input.trim()}
                 aria-label="Send"
                 className="w-10 h-10 flex-shrink-0 flex items-center justify-center text-white transition-all duration-200 hover:scale-105 disabled:opacity-30 disabled:cursor-not-allowed focus:outline-none"
-                style={{ background: "linear-gradient(135deg, #536942 0%, #44572d 100%)" }}
+                style={{ background: "#111111" }}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
@@ -480,3 +469,5 @@ export default function ChatBot() {
     </>
   );
 }
+
+

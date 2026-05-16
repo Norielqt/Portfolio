@@ -1,14 +1,12 @@
 import React, { useState, Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { HelmetProvider } from "react-helmet-async";
 import { Analytics } from "@vercel/analytics/react";
 import { FiCheckCircle, FiUsers, FiMail, FiAward } from "react-icons/fi";
 import Layout from "./components/Layout";
-import Hero from "./components/Hero";
+import Home from "./components/Home";
 import Services from "./components/Services";
-import QuoteBanner from "./components/QuoteBanner";
-import About from "./components/About";
 import Preloader from "./components/Preloader";
 import Seo from "./components/Seo";
 
@@ -18,31 +16,6 @@ const Projects = lazy(() => import("./components/Projects"));
 const Contact = lazy(() => import("./components/Contact"));
 const ProjectCategory = lazy(() => import("./components/ProjectCategory"));
 
-const Home = () => (
-  <div>
-    <Seo
-      title="Noriel Fulgencio - Software Engineer & Automation Dev"
-      description="Software Engineer from the Philippines building React & Laravel web apps and automations. Available for freelance and remote work worldwide."
-      path="/"
-    />
-    <Hero />
-    <About />
-    <QuoteBanner />
-    <div className="max-w-6xl mx-auto px-6 pt-20 pb-4 text-center">
-      <h2
-        style={{ fontFamily: "DM Sans, sans-serif", letterSpacing: "-2px" }}
-        className="text-4xl md:text-5xl font-extrabold text-brand-800"
-      >
-        What I Offer
-      </h2>
-      <p className="mt-4 text-brand-700/70 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
-        Practical solutions tailored to your business, from clean websites to systems that just work.
-      </p>
-    </div>
-    <Services />
-  </div>
-);
-
 const ServicesPage = () => (
   <div>
     <Seo
@@ -51,15 +24,20 @@ const ServicesPage = () => (
       path="/services"
     />
     <div
-      style={{ background: "radial-gradient(ellipse at 30% 60%, #ddebd3 0%, #f6f8f5 50%, #f0f4ec 100%)" }}
+      style={{ background: "#FFFFFF" }}
       className="pt-20 md:pt-32 pb-10 md:pb-16 px-4"
     >
-      <div className="max-w-6xl mx-auto w-full text-center">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="max-w-6xl mx-auto w-full text-center"
+      >
         <p className="text-xs md:text-sm font-semibold tracking-[0.2em] uppercase text-brand/60 mb-3">
           What I do
         </p>
         <h1
-          style={{ fontFamily: "DM Sans, sans-serif", letterSpacing: "clamp(-1.5px, -0.4vw, -3px)", fontSize: "clamp(28px, 7vw, 72px)" }}
+          style={{ fontFamily: "DM Sans, sans-serif", letterSpacing: "clamp(-1px, -0.2vw, -2px)", fontSize: "clamp(24px, 4vw, 42px)" }}
           className="text-brand-800 font-extrabold"
         >
           My Services
@@ -67,10 +45,10 @@ const ServicesPage = () => (
         <p className="mt-4 text-brand-700/70 text-sm md:text-lg max-w-2xl mx-auto leading-relaxed">
           From web development to automations and custom software, here's how I help businesses build, scale, and streamline.
         </p>
-      </div>
+      </motion.div>
     </div>
     <Services layout="list" />
-    <div style={{ backgroundColor: "#f6f8f5" }} className="py-12 md:py-16 px-4 min-h-[40vh] flex items-start pt-14 md:pt-20">
+    <div style={{ backgroundColor: "#FAFAFA" }} className="py-12 md:py-16 px-4 min-h-[40vh] flex items-start pt-14 md:pt-20">
       <div className="max-w-6xl mx-auto w-full">
         <h4 style={{ fontFamily: "Forum, serif", fontSize: "clamp(22px, 5vw, 40px)" }} className="text-brand text-left">
           Why Choose Me
@@ -180,3 +158,4 @@ export default function App() {
     </>
   );
 }
+

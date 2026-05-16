@@ -5,6 +5,12 @@ import { FaBriefcase, FaGraduationCap, FaCode } from "react-icons/fa";
 
 const timeline = [
   {
+    title: "Freelancer",
+    company: "Self-employed",
+    date: "March 2026 – Present",
+    type: "work",
+  },
+  {
     title: "Software Engineer",
     company: "Park Cabins",
     date: "June 2025 – March 2026",
@@ -40,15 +46,20 @@ const Experience = () => {
   return (
     <>
       <div
-        style={{ background: "radial-gradient(ellipse at 30% 60%, #ddebd3 0%, #f6f8f5 50%, #f0f4ec 100%)" }}
+        style={{ background: "#FFFFFF" }}
         className="pt-20 md:pt-32 pb-10 md:pb-16 px-4"
       >
-        <div className="max-w-6xl mx-auto w-full text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="max-w-6xl mx-auto w-full text-center"
+        >
           <p className="text-xs md:text-sm font-semibold tracking-[0.2em] uppercase text-brand/60 mb-3">
             Timeline
           </p>
           <h1
-            style={{ fontFamily: "DM Sans, sans-serif", letterSpacing: "clamp(-1.5px, -0.4vw, -3px)", fontSize: "clamp(28px, 7vw, 72px)" }}
+            style={{ fontFamily: "DM Sans, sans-serif", letterSpacing: "clamp(-1px, -0.2vw, -2px)", fontSize: "clamp(24px, 4vw, 42px)" }}
             className="text-brand-800 font-extrabold"
           >
             My Journey
@@ -56,105 +67,51 @@ const Experience = () => {
           <p className="mt-4 text-brand-700/70 text-sm md:text-lg max-w-2xl mx-auto leading-relaxed">
             A look back at the experiences, education, and milestones that shaped me into the engineer I am today.
           </p>
-        </div>
+        </motion.div>
       </div>
-      <section className="pt-24 pb-16 px-4 max-w-5xl mx-auto text-brand dark:text-white" id="experience">
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-
-        <div className="relative max-w-4xl mx-auto">
-          {/* Center vertical line — more prominent */}
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-brand/0 via-brand/80 to-brand/0 hidden md:block" />
+      <section className="pt-8 pb-16 px-4 max-w-3xl mx-auto" id="experience">
+        <div className="relative">
+          {/* Vertical rail - slightly left of center */}
+          <div className="absolute top-0 bottom-0 w-px" style={{ left: "38%", background: "linear-gradient(to bottom, #111111 80%, transparent)", opacity: 0.12 }} />
 
           {timeline.map((item, index) => {
-            const isLeft = index % 2 === 0;
             const getIcon = () => {
-              if (item.type === "work") return <FaBriefcase />;
-              if (item.type === "education") return <FaGraduationCap />;
-              return <FaCode />;
+              if (item.type === "work") return <FaBriefcase size={14} />;
+              if (item.type === "education") return <FaGraduationCap size={14} />;
+              return <FaCode size={14} />;
             };
-            const getColors = () => {
-              if (item.type === "work") return { bg: "bg-brand/5 dark:bg-brand/10", border: "border-brand/20 dark:border-brand/30", dot: "bg-brand", icon: "text-brand" };
-              if (item.type === "education") return { bg: "bg-brand/8 dark:bg-brand/12", border: "border-brand/25 dark:border-brand/35", dot: "bg-brand-700", icon: "text-brand-700" };
-              return { bg: "bg-brand/6 dark:bg-brand/11", border: "border-brand/22 dark:border-brand/32", dot: "bg-brand-600", icon: "text-brand-600" };
-            };
-            const colors = getColors();
-            const card = (
-              <motion.div 
-                className={`border ${colors.border} rounded-2xl p-6 w-full ${isLeft ? "text-right" : "text-left"} ${colors.bg} backdrop-blur-sm shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1`}
-              >
-                <div className={`flex items-start gap-3 mb-3 ${isLeft ? "justify-end" : "justify-start"}`}>
-                  <div className={`text-lg ${colors.icon} ${isLeft ? "order-last" : ""}`}>
-                    {getIcon()}
-                  </div>
-                  <h4 style={{ fontSize: "18px", letterSpacing: "0.01em" }} className="font-bold text-brand-800 leading-tight">{item.title}</h4>
-                </div>
-                <p style={{ fontSize: "14px" }} className="text-brand-700/80 font-semibold mb-1">{item.company}</p>
-                <p style={{ fontSize: "13px" }} className="text-brand-600/60">{item.date}</p>
-                {item.description && <p className="text-brand-700/70 text-xs mt-2">{item.description}</p>}
-              </motion.div>
-            );
 
             return (
               <motion.div
                 key={index}
-                className="relative flex items-start mb-12"
-                initial={{ opacity: 0, y: 40 }}
+                className="relative flex pb-10"
+                initial={{ opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: 0.45, delay: index * 0.08 }}
                 viewport={{ once: true }}
               >
-                {/* Left slot */}
-                <div className="hidden md:flex w-1/2 justify-end pr-10">
-                  {isLeft && card}
+                {/* Icon dot */}
+                <div
+                  className="absolute w-10 h-10 rounded-full bg-[#111111] flex items-center justify-center text-white z-10 shadow-sm"
+                  style={{ left: "calc(38% - 20px)", marginTop: "2px" }}
+                >
+                  {getIcon()}
                 </div>
 
-                {/* Center dot — absolutely positioned on the line */}
-                <motion.div 
-                  className={`hidden md:block absolute left-1/2 -translate-x-1/2 top-6 z-10 w-5 h-5 rounded-full ${colors.dot} shrink-0 shadow-lg ring-4 ring-white dark:ring-gray-900`}
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 + 0.2 }}
-                  viewport={{ once: true }}
-                />
-
-                {/* Right slot */}
-                <div className="hidden md:flex w-1/2 pl-10">
-                  {!isLeft && card}
-                </div>
-
-                {/* Mobile: left-rail timeline */}
-                <div className="flex md:hidden w-full gap-4">
-                  {/* Left rail: line + dot */}
-                  <div className="flex flex-col items-center">
-                    <div className={`w-8 h-8 rounded-full ${colors.dot} flex items-center justify-center text-white text-sm shrink-0 shadow-md z-10`}>
-                      {getIcon()}
-                    </div>
-                    {index < timeline.length - 1 && (
-                      <div className="w-px flex-1 mt-1" style={{ background: "linear-gradient(to bottom, #536942 60%, transparent)", opacity: 0.25, minHeight: "32px" }} />
-                    )}
-                  </div>
-
-                  {/* Card */}
-                  <div className="flex-1 pb-8">
-                    <p className="text-xs font-medium text-brand/50 mb-1 tracking-wide">{item.date}</p>
-                    <h4 className="font-bold text-brand leading-snug mb-0.5" style={{ fontSize: "16px" }}>{item.title}</h4>
-                    <p className="text-sm text-brand/60">{item.company}</p>
-                    {item.description && <p className="text-xs text-brand/50 mt-1">{item.description}</p>}
-                  </div>
+                {/* Content — right of dot */}
+                <div className="flex-1 pt-1.5" style={{ marginLeft: "calc(38% + 56px)" }}>
+                  <p style={{ fontSize: "12px", color: "#11111166", letterSpacing: "0.06em", textTransform: "uppercase" }} className="font-medium mb-1">{item.date}</p>
+                  <h4 style={{ fontFamily: "DM Sans, sans-serif", fontSize: "18px", fontWeight: 700, color: "#111111", letterSpacing: "-0.3px" }} className="leading-snug mb-0.5">{item.title}</h4>
+                  <p style={{ fontSize: "14px", color: "#555555" }} className="font-medium">{item.company}</p>
+                  {item.description && <p style={{ fontSize: "13px", color: "#888888" }} className="mt-1 leading-relaxed">{item.description}</p>}
                 </div>
               </motion.div>
             );
           })}
         </div>
-      </motion.div>
-    </section>
+      </section>
 
-    <section style={{ backgroundColor: "#f6f8f5" }} className="w-full py-20 px-4">
+    <section style={{ backgroundColor: "#FAFAFA" }} className="w-full py-20 px-4">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -163,18 +120,18 @@ const Experience = () => {
         className="flex flex-col items-center text-center"
       >
         {/* Quote mark */}
-        <span className="text-8xl leading-none select-none" style={{ fontFamily: "Forum, serif", color: "#536942" }}>&ldquo;</span>
+        <span className="text-8xl leading-none select-none" style={{ fontFamily: "Forum, serif", color: "#D4D4D4" }}>&ldquo;</span>
 
         {/* Quote text */}
         <h4
           className="text-2xl md:text-3xl mt-2 mb-10 max-w-2xl"
-          style={{ fontFamily: "Forum, serif", color: "#536942" }}
+          style={{ fontFamily: "Forum, serif", color: "#111111" }}
         >
           The only way to do great work is to love what you do
         </h4>
 
         {/* Avatar circle */}
-        <div className="w-16 h-16 rounded-full overflow-hidden border-2 mb-3" style={{ borderColor: "#536942" }}>
+        <div className="w-16 h-16 rounded-full overflow-hidden border-2 mb-3" style={{ borderColor: "#D4D4D4" }}>
           <img
             src={steveImage}
             alt="Steve Jobs"
@@ -184,7 +141,7 @@ const Experience = () => {
         </div>
 
         {/* Name */}
-        <p style={{ fontSize: 14, color: "#536942" }}>Steve Jobs</p>
+        <p style={{ fontSize: 14, color: "#737373" }}>Steve Jobs</p>
       </motion.div>
     </section>
     </>

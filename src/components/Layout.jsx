@@ -3,6 +3,7 @@ import { Link, useLocation, Outlet } from "react-router-dom";
 import { FiGithub, FiLinkedin, FiMenu, FiX } from "react-icons/fi";
 import Footer from "./Footer";
 import ChatBot from "./ChatBot";
+import grainTexture from "../assets/subtle-grain-noise.png";
 
 const NAV_LINKS = [
   { label: "Home", path: "/" },
@@ -51,26 +52,37 @@ export default function Layout() {
   }, [menuOpen]);
 
   return (
-    <div className="bg-white text-brand min-h-screen">
+    <div className="text-brand min-h-screen" style={{ background: '#FFFFFF' }}>
+      {/* Grain overlay */}
+      <div
+        className="pointer-events-none fixed inset-0 z-[9998]"
+        style={{
+          backgroundImage: `url(${grainTexture})`,
+          backgroundRepeat: "repeat",
+          backgroundSize: "256px 256px",
+          opacity: 0.04,
+        }}
+        aria-hidden="true"
+      />
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-white/75 backdrop-blur-xl border-b border-gray-200/60 shadow-sm"
+            ? "bg-white/95 backdrop-blur-xl border-b border-black/8 shadow-sm"
             : "bg-transparent"
         }`}
       >
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-center relative">
 
           {/* Desktop nav — pill container - centered */}
-          <nav className="hidden md:flex items-center gap-1 border border-gray-200/80 rounded-full px-2 py-1.5 backdrop-blur-sm">
+          <nav className="hidden md:flex items-center gap-1 border border-brand-800/15 rounded-full px-2 py-1.5">
             {NAV_LINKS.map(({ label, path }) => (
               <Link
                 key={path}
                 to={path}
                 className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
                   (path === "/" ? location.pathname === "/" : location.pathname === path)
-                    ? "bg-white text-brand shadow-sm"
-                    : "text-brand/70 hover:text-brand"
+                    ? "bg-brand text-white shadow-sm"
+                    : "text-brand-800/60 hover:text-brand-800"
                 }`}
               >
                 {label}
@@ -84,7 +96,7 @@ export default function Layout() {
               href="https://github.com/Norielqt"
               target="_blank"
               rel="noreferrer"
-              className="hidden md:flex w-9 h-9 items-center justify-center rounded-full text-brand/70 hover:text-brand hover:bg-gray-100 transition"
+              className="hidden md:flex w-9 h-9 items-center justify-center rounded-full text-brand-800/50 hover:text-brand-800 hover:bg-brand-800/8 transition"
               aria-label="GitHub"
             >
               <FiGithub size={18} />
@@ -93,7 +105,7 @@ export default function Layout() {
               href="https://www.linkedin.com/in/noriel-fulgencio-23887a259/"
               target="_blank"
               rel="noreferrer"
-              className="hidden md:flex w-9 h-9 items-center justify-center rounded-full text-brand/70 hover:text-brand hover:bg-gray-100 transition"
+              className="hidden md:flex w-9 h-9 items-center justify-center rounded-full text-brand-800/50 hover:text-brand-800 hover:bg-brand-800/8 transition"
               aria-label="LinkedIn"
             >
               <FiLinkedin size={18} />
@@ -103,7 +115,7 @@ export default function Layout() {
             <button
               id="hamburger-btn"
               onClick={() => setMenuOpen(!menuOpen)}
-              className="md:hidden w-9 h-9 flex items-center justify-center rounded-full text-brand/70 hover:text-brand hover:bg-gray-100 transition"
+              className="md:hidden w-9 h-9 flex items-center justify-center rounded-full text-brand-800/60 hover:text-brand-800 hover:bg-brand-800/8 transition"
               aria-label="Toggle Menu"
             >
               {menuOpen ? <FiX size={20} /> : <FiMenu size={20} />}
@@ -118,13 +130,13 @@ export default function Layout() {
         <div
           id="mobile-menu"
           className="md:hidden fixed inset-0 z-50 flex flex-col"
-          style={{ background: "radial-gradient(ellipse at 30% 60%, #ddebd3 0%, #f6f8f5 50%, #f0f4ec 100%)" }}
+          style={{ background: "#FFFFFF" }}
         >
           {/* Close button */}
           <div className="flex justify-end px-6 pt-5">
             <button
               onClick={() => setMenuOpen(false)}
-              className="w-10 h-10 flex items-center justify-center rounded-full text-brand/70 hover:text-brand hover:bg-brand/10 transition"
+              className="w-10 h-10 flex items-center justify-center rounded-full text-black/50 hover:text-black hover:bg-black/8 transition"
               aria-label="Close menu"
             >
               <FiX size={22} />
@@ -139,8 +151,8 @@ export default function Layout() {
                 to={path}
                 className={`text-3xl font-bold tracking-tight transition py-2 ${
                   (path === "/" ? location.pathname === "/" : location.pathname === path)
-                    ? "text-brand"
-                    : "text-brand-800/60 hover:text-brand"
+                    ? "text-black font-bold"
+                    : "text-black/50 hover:text-black"
                 }`}
               >
                 {label}
@@ -150,10 +162,10 @@ export default function Layout() {
 
           {/* Social links at bottom */}
           <div className="flex items-center justify-center gap-6 pb-12">
-            <a href="https://github.com/Norielqt" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm font-medium text-brand/60 hover:text-brand transition">
+            <a href="https://github.com/Norielqt" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm font-medium text-black/50 hover:text-black transition">
               <FiGithub size={18} /> GitHub
             </a>
-            <a href="https://www.linkedin.com/in/noriel-fulgencio-23887a259/" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm font-medium text-brand/60 hover:text-brand transition">
+            <a href="https://www.linkedin.com/in/noriel-fulgencio-23887a259/" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm font-medium text-black/50 hover:text-black transition">
               <FiLinkedin size={18} /> LinkedIn
             </a>
           </div>

@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect, useCallback, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { FiGithub, FiGlobe, FiArrowRight, FiCode, FiZap, FiLayers, FiLayout, FiMonitor } from "react-icons/fi";
 import robertImage from '../assets/RobertHerjavec.webp';
@@ -51,6 +51,23 @@ const iconMap = {
 };
 import projects from "../data/projects";
 
+function ParallaxCatImg({ src, alt }) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const y = useTransform(scrollYProgress, [0, 1], ["6%", "-6%"]);
+  return (
+    <div ref={ref} className="w-full h-full overflow-hidden">
+      <motion.img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        className="w-full h-full object-cover"
+        style={{ y, scale: 1.0 }}
+      />
+    </div>
+  );
+}
+
 export default function Projects({ category = null }) {
   const navigate = useNavigate();
   const [modalProjectId, setModalProjectId] = useState(null);
@@ -99,7 +116,7 @@ export default function Projects({ category = null }) {
         <>
           {/* Header */}
           <div
-            style={{ background: "radial-gradient(ellipse at 30% 60%, #ddebd3 0%, #f6f8f5 50%, #f0f4ec 100%)" }}
+            style={{ background: "#FFFFFF" }}
             className="pt-20 md:pt-32 pb-12 md:pb-16 px-4"
           >
             <motion.div
@@ -112,7 +129,7 @@ export default function Projects({ category = null }) {
                 Portfolio
               </p>
               <h1
-                style={{ fontFamily: "DM Sans, sans-serif", letterSpacing: "clamp(-1.5px, -0.4vw, -3px)", fontSize: "clamp(26px, 7vw, 72px)" }}
+                style={{ fontFamily: "DM Sans, sans-serif", letterSpacing: "clamp(-1px, -0.2vw, -2px)", fontSize: "clamp(24px, 4vw, 42px)" }}
                 className="text-brand-800 font-extrabold"
               >
                 My Projects
@@ -124,7 +141,7 @@ export default function Projects({ category = null }) {
           </div>
 
           {/* Category Navigation */}
-          <section className="pt-10 pb-16 px-4 max-w-7xl mx-auto">
+          <section className="pt-10 pb-16 px-4 max-w-3xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -135,15 +152,9 @@ export default function Projects({ category = null }) {
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand/50 mb-3">
                 Browse by Category
               </p>
-              <h2
-                style={{ fontFamily: "Forum, serif", color: "#243011" }}
-                className="text-2xl md:text-4xl"
-              >
-                Pick where you'd like to start
-              </h2>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
               {categoryCards.map((cat, i) => {
                 const Icon = cat.icon;
                 const count = projects.filter((p) => p.category === cat.slug).length;
@@ -151,37 +162,22 @@ export default function Projects({ category = null }) {
                   <motion.button
                     key={cat.slug}
                     onClick={() => navigate(`/projects/${cat.slug}`)}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: i * 0.1 }}
-                    viewport={{ once: true }}
-                    whileHover={{ y: -6 }}
-                    className="group relative rounded-3xl overflow-hidden text-left shadow-md hover:shadow-2xl transition-all duration-500 focus:outline-none focus:ring-2 focus:ring-brand/40"
-                    style={{ background: "linear-gradient(160deg, #f6f8f5 0%, #eaf1e2 100%)" }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.3 + i * 0.08, ease: "easeOut" }}
+                    whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                    className="group relative rounded-2xl overflow-hidden text-left shadow-sm hover:shadow-xl transition-all duration-500 focus:outline-none focus:ring-2 focus:ring-brand/40"
+                    style={{ background: "#F5F5F5" }}
                   >
-                    <div className="relative h-44 md:h-96 overflow-hidden">
-                      <img
-                        src={cat.image}
-                        alt={cat.title}
-                        loading="lazy"
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
+                    <div className="relative overflow-hidden" style={{ height: "220px" }}>
+                      <ParallaxCatImg src={cat.image} alt={cat.title} />
                       <div
                         className="absolute inset-0"
-                        style={{ background: "linear-gradient(180deg, rgba(36,48,17,0.15) 0%, rgba(36,48,17,0.55) 100%)" }}
+                        style={{ background: "linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.75) 100%)" }}
                       />
-                      <div className="absolute top-4 left-4 flex items-center gap-1.5 bg-white/95 backdrop-blur-sm text-brand text-xs font-bold px-3 py-1.5 rounded-full shadow-sm">
-                        <span className="w-1.5 h-1.5 rounded-full bg-brand inline-block"></span>
-                        {count} {count === 1 ? "Project" : "Projects"}
-                      </div>
-                      <div className="absolute top-4 right-4 w-11 h-11 rounded-full bg-white/95 backdrop-blur-sm flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
-                        <Icon className="text-brand" size={20} />
-                      </div>
-                      <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
-                        <h3
-                          style={{ fontFamily: "Forum, serif", fontSize: "clamp(20px, 5vw, 30px)" }}
-                          className="text-white leading-tight"
-                        >
+
+                      <div className="absolute bottom-0 left-0 right-0 p-4">
+                        <h3 className="text-xs font-semibold tracking-[0.2em] uppercase text-white leading-tight">
                           {cat.title}
                         </h3>
                       </div>
@@ -206,7 +202,7 @@ export default function Projects({ category = null }) {
                 className="mb-10 md:mb-20"
               >
                 {/* MOBILE card */}
-                <div className="md:hidden rounded-3xl overflow-hidden shadow-md" style={{ background: "linear-gradient(160deg, #f6f8f5 60%, #ddebd3 100%)" }}>
+                <div className="md:hidden rounded-3xl overflow-hidden shadow-md" style={{ background: "#F5F5F5" }}>
                   <div
                     className="relative w-full overflow-hidden group"
                     style={{ height: "180px" }}
@@ -235,7 +231,7 @@ export default function Projects({ category = null }) {
                   </div>
                   <div className="px-5 py-5">
                     <div className="flex items-center gap-2 mb-1">
-                      <h4 style={{ fontFamily: "Forum, serif", fontSize: "18px", color: "#243011", lineHeight: "1.2" }}>{project.title}</h4>
+                      <h4 style={{ fontFamily: "Forum, serif", fontSize: "18px", color: "#1C1C1E", lineHeight: "1.2" }}>{project.title}</h4>
                     </div>
                     {project.badge && (
                       <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand/70 mb-3">
@@ -243,7 +239,7 @@ export default function Projects({ category = null }) {
                         {project.badge}
                       </span>
                     )}
-                    <p style={{ fontSize: "13px", color: "#536941CC", lineHeight: "1.7" }} className="mb-4">{project.description}</p>
+                    <p style={{ fontSize: "13px", color: "#1C1C1ECC", lineHeight: "1.7" }} className="mb-4">{project.description}</p>
                     <div className="flex flex-wrap gap-1.5 mb-4">
                       {project.stack.map((tech) => {
                         const t = iconMap[tech];
@@ -307,13 +303,13 @@ export default function Projects({ category = null }) {
                     <div className="flex items-center gap-3 mb-4">
                       <h4 style={{ fontFamily: "Forum, serif", fontSize: "28px" }} className="font-normal text-brand">{project.title}</h4>
                       {project.badge && (
-                        <span style={{ fontSize: "15px", color: "#536942" }} className="font-normal flex items-center gap-1.5">
+                        <span style={{ fontSize: "15px", color: "#111111" }} className="font-normal flex items-center gap-1.5">
                           <span className="w-1.5 h-1.5 rounded-full bg-brand inline-block"></span>
                           {project.badge}
                         </span>
                       )}
                     </div>
-                    <p style={{ fontSize: "15px", color: "#536941E3", letterSpacing: "0.03em" }} className="mb-4">{project.description}</p>
+                    <p style={{ fontSize: "15px", color: "#1C1C1EE3", letterSpacing: "0.03em" }} className="mb-4">{project.description}</p>
                     <div className="flex flex-wrap gap-2 mb-6">
                       {project.stack.map((tech) => {
                         const t = iconMap[tech];
@@ -430,7 +426,7 @@ export default function Projects({ category = null }) {
         );
       })()}
 
-      <section style={{ backgroundColor: "#f6f8f5" }} className="w-full py-20 px-4">
+      <section style={{ backgroundColor: "#FAFAFA" }} className="w-full py-20 px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -439,18 +435,18 @@ export default function Projects({ category = null }) {
           className="flex flex-col items-center text-center"
         >
           {/* Quote mark */}
-          <span className="text-8xl leading-none select-none" style={{ fontFamily: "Forum, serif", color: "#536942" }}>&ldquo;</span>
+          <span className="text-8xl leading-none select-none" style={{ fontFamily: "Forum, serif", color: "#D4D4D4" }}>&ldquo;</span>
 
           {/* Quote text */}
           <h4
             className="text-2xl md:text-3xl mt-2 mb-10 max-w-2xl"
-            style={{ fontFamily: "Forum, serif", color: "#536942" }}
+            style={{ fontFamily: "Forum, serif", color: "#111111" }}
           >
             A goal without a timeline is just a dream
           </h4>
 
           {/* Avatar circle */}
-          <div className="w-16 h-16 rounded-full overflow-hidden border-2 mb-3" style={{ borderColor: "#536942" }}>
+          <div className="w-16 h-16 rounded-full overflow-hidden border-2 mb-3" style={{ borderColor: "#D4D4D4" }}>
             <img
               src={robertImage}
               alt="Robert Herjavec"
@@ -460,9 +456,10 @@ export default function Projects({ category = null }) {
           </div>
 
           {/* Name */}
-          <p style={{ fontSize: 14, color: "#536942" }}>Robert Herjavec</p>
+          <p style={{ fontSize: 14, color: "#737373" }}>Robert Herjavec</p>
         </motion.div>
       </section>
     </>
   );
 }
+

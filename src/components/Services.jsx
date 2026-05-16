@@ -1,5 +1,5 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import service1Image from '../assets/Verada_preview.webp';
 import service1Image1x from '../assets/Verada_preview.webp';
@@ -17,6 +17,25 @@ import {
   SiN8N, SiZapier, SiMake, SiElementor, SiWebflow, SiWix, SiSquarespace,
 } from "react-icons/si";
 import { FaServer, FaRobot } from "react-icons/fa";
+
+function ParallaxImg({ src, srcSet, sizes, alt, imgStyle, className }) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const y = useTransform(scrollYProgress, [0, 1], ["6%", "-6%"]);
+  return (
+    <div ref={ref} className="overflow-hidden w-full h-full">
+      <motion.img
+        src={src}
+        srcSet={srcSet}
+        sizes={sizes}
+        alt={alt}
+        loading="lazy"
+        className={className}
+        style={{ ...imgStyle, y, scale: 1.12 }}
+      />
+    </div>
+  );
+}
 
 const services = [
   {
@@ -100,45 +119,50 @@ const Services = ({ layout = "grid", showDescription = true }) => {
   };
 
   return (
-    <section className="py-16 px-4 max-w-[1440px] mx-auto text-brand dark:text-white" id="services">
+    <section
+      className={layout === "grid" ? "py-16 overflow-hidden text-brand dark:text-white" : "py-16 px-4 max-w-5xl mx-auto text-brand dark:text-white"}
+      id="services"
+    >
       <div>
         {layout === "grid" ? (
-          // Grid layout for home page
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service, index) => (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
+          // Marquee layout for home page
+          <motion.div
+            className="flex gap-6"
+            style={{ width: "max-content" }}
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ duration: 20, ease: "linear", repeat: Infinity }}
+          >
+            {[...services, ...services].map((service, index) => (
+              <div
+                key={index}
                 onClick={() => handleServiceClick(service.title)}
-                className="group cursor-pointer bg-white rounded-2xl overflow-hidden border border-brand/10 hover:border-brand/30 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col"
+                className="group cursor-pointer rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex-shrink-0 relative"
+                style={{ width: "480px", height: "220px" }}
               >
-                <div className="overflow-hidden bg-brand-50 h-56">
-                  <img
-                    src={service.image2x}
-                    srcSet={`${service.image1x} 313w, ${service.image2x} 626w`}
-                    sizes="313px"
-                    alt={service.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    style={service.imageZoom ? { transform: `scale(${service.imageZoom})` } : undefined}
-                  />
-                </div>
-                <div className="p-6 flex flex-col flex-1">
-                  <h4 className="text-xl font-bold text-brand-800 mb-2">{service.title}</h4>
+                <img
+                  src={service.image2x}
+                  srcSet={`${service.image1x} 313w, ${service.image2x} 626w`}
+                  sizes="480px"
+                  alt={service.title}
+                  loading="lazy"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  style={service.imageZoom ? { transform: `scale(${service.imageZoom})` } : undefined}
+                />
+                {/* Dark gradient overlay */}
+                <div
+                  className="absolute inset-0"
+                  style={{ background: "linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 50%, transparent 100%)" }}
+                />
+                {/* Title at bottom */}
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <h4 className="text-xl font-light text-white">{service.title}</h4>
                   {showDescription && (
-                    <p className="text-sm text-brand-700/70 leading-relaxed flex-1">
-                      {service.description}
-                    </p>
+                    <p className="text-sm text-white/75 leading-relaxed mt-1">{service.description}</p>
                   )}
-                  <div className="flex items-center gap-2 text-brand font-semibold text-sm mt-4 group-hover:gap-3 transition-all">
-                  </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </div>
+          </motion.div>
         ) : (
           // List layout for services page
           <div className="space-y-16">
@@ -151,7 +175,7 @@ const Services = ({ layout = "grid", showDescription = true }) => {
                 viewport={{ once: true }}
               >
                 {/* MOBILE card */}
-                <div className="md:hidden rounded-3xl overflow-hidden shadow-md" style={{ background: "linear-gradient(160deg, #f6f8f5 60%, #ddebd3 100%)" }}>
+                <div className="md:hidden rounded-3xl overflow-hidden shadow-md" style={{ background: "#F5F5F5" }}>
                   {/* Image banner — compact height */}
                   <div className="w-full overflow-hidden" style={{ height: "130px" }}>
                     <img
@@ -169,7 +193,7 @@ const Services = ({ layout = "grid", showDescription = true }) => {
                     {/* Price badge */}
                     <span
                       className="inline-block text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3"
-                      style={{ background: "#536942", color: "#fff", opacity: 0.8 }}
+                      style={{ background: "#111111", color: "#fff", opacity: 0.85 }}
                     >
                       Starting at {service.price}/hr
                     </span>
@@ -177,24 +201,24 @@ const Services = ({ layout = "grid", showDescription = true }) => {
                     {/* Title */}
                     <h4
                       className="mb-3"
-                      style={{ fontFamily: "Forum, serif", fontSize: "20px", color: "#243011", lineHeight: "1.2" }}
+                      style={{ fontFamily: "Forum, serif", fontSize: "20px", color: "#1C1C1E", lineHeight: "1.2" }}
                     >
                       {service.title}
                     </h4>
 
                     {/* Divider */}
-                    <div className="w-10 h-0.5 mb-4 rounded-full" style={{ background: "#536942", opacity: 0.3 }} />
+                    <div className="w-10 h-0.5 mb-4 rounded-full" style={{ background: "#D4D4D4" }} />
 
                     {/* Description */}
                     <div className="space-y-3">
                       {Array.isArray(service.descriptionPage) ? (
                         service.descriptionPage.map((para, i) => (
-                          <p key={i} style={{ fontFamily: "DM Sans, sans-serif", fontSize: "14px", color: "#536941CC", lineHeight: "1.7" }}>
+                          <p key={i} style={{ fontFamily: "DM Sans, sans-serif", fontSize: "14px", color: "rgb(64 64 64 / 0.7)", lineHeight: "1.7" }}>
                             {para}
                           </p>
                         ))
                       ) : (
-                        <p style={{ fontFamily: "DM Sans, sans-serif", fontSize: "14px", color: "#536941CC", lineHeight: "1.7" }}>
+                        <p style={{ fontFamily: "DM Sans, sans-serif", fontSize: "14px", color: "rgb(64 64 64 / 0.7)", lineHeight: "1.7" }}>
                           {service.descriptionPage || service.description}
                         </p>
                       )}
@@ -204,15 +228,14 @@ const Services = ({ layout = "grid", showDescription = true }) => {
 
                 {/* DESKTOP layout — untouched */}
                 <div className="hidden md:flex flex-row gap-8 items-center">
-                  <div className="md:w-[50%] flex-shrink-0 md:ml-auto w-full overflow-hidden">
-                    <img
+                  <div className="md:w-[50%] flex-shrink-0 md:ml-auto w-full" style={{ height: "clamp(220px, 32vw, 340px)" }}>
+                    <ParallaxImg
                       src={service.image2x}
                       srcSet={`${service.image1x} 313w, ${service.image2x} 626w`}
                       sizes="(min-width: 768px) 33vw, 100vw"
                       alt={service.title}
-                      loading="lazy"
-                      className="shadow-lg w-full object-cover block md:max-w-none"
-                      style={{ height: "clamp(220px, 32vw, 340px)", transform: service.imageZoom ? `scale(${service.imageZoom})` : undefined }}
+                      className="shadow-lg w-full h-full object-cover block md:max-w-none"
+                      imgStyle={service.imageZoom ? { transform: `scale(${service.imageZoom})` } : {}}
                     />
                   </div>
                   <div className="md:w-1/2 md:ml-auto">
@@ -220,12 +243,12 @@ const Services = ({ layout = "grid", showDescription = true }) => {
                     <div className="space-y-4">
                       {Array.isArray(service.descriptionPage) ? (
                         service.descriptionPage.map((para, i) => (
-                          <p key={i} style={{ fontFamily: "DM Sans, sans-serif", fontSize: "15px", color: "#536941E3", letterSpacing: "1px" }}>
+                          <p key={i} style={{ fontFamily: "DM Sans, sans-serif", fontSize: "15px", color: "rgb(64 64 64 / 0.7)", letterSpacing: "1px" }}>
                             {para}
                           </p>
                         ))
                       ) : (
-                        <p style={{ fontFamily: "DM Sans, sans-serif", fontSize: "15px", color: "#536941E3", letterSpacing: "1px" }}>
+                        <p style={{ fontFamily: "DM Sans, sans-serif", fontSize: "15px", color: "rgb(64 64 64 / 0.7)", letterSpacing: "1px" }}>
                           {service.descriptionPage || service.description}
                         </p>
                       )}

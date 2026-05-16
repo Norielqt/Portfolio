@@ -65,7 +65,7 @@ const ProjectCategory = ({ category }) => {
         jsonLd={[breadcrumbLd, itemListLd]}
       />
       <div
-        style={{ background: "radial-gradient(ellipse at 30% 60%, #ddebd3 0%, #f6f8f5 50%, #f0f4ec 100%)" }}
+        style={{ background: "#FFFFFF" }}
         className="pt-32 pb-16 px-4"
       >
         <motion.div
@@ -82,8 +82,8 @@ const ProjectCategory = ({ category }) => {
             All Projects
           </button>
           <h1
-            style={{ fontFamily: "DM Sans, sans-serif", letterSpacing: "clamp(-1.5px, -0.4vw, -3px)" }}
-            className="text-brand-800 font-extrabold text-5xl md:text-7xl"
+            style={{ fontFamily: "DM Sans, sans-serif", letterSpacing: "clamp(-1px, -0.2vw, -2px)", fontSize: "42px" }}
+            className="text-brand-800 font-extrabold"
           >
             {categoryTitle}
           </h1>
@@ -95,3 +95,4 @@ const ProjectCategory = ({ category }) => {
 };
 
 export default ProjectCategory;
+
