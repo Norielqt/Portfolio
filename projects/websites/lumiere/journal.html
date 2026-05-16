@@ -1,0 +1,345 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Journal — LUMIÈRE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root{--cream:#F9F6F1;--warm-white:#FDFBF8;--stone:#E8E2D9;--sand:#D4C9B8;--muted:#A89E8E;--text:#1C1814;--text-soft:#6B6259;--accent:#C4A882;--accent-dark:#8C6D4F;--green:#4A5E4A;--serif:'Cormorant Garamond',serif;--sans:'DM Sans',sans-serif;}
+
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--warm-white);color:var(--text);font-family:var(--sans);font-weight:300;line-height:1.6;overflow-x:hidden;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,251,248,0.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--stone);display:flex;align-items:center;justify-content:space-between;padding:0 60px;height:72px;}
+  .nav-logo{font-family:var(--serif);font-size:22px;font-weight:400;letter-spacing:0.15em;text-transform:uppercase;color:var(--text);text-decoration:none;}
+  .nav-logo span{font-style:italic;color:var(--accent-dark);}
+  .nav-links{display:flex;gap:40px;list-style:none;}
+  .nav-links a{font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-soft);text-decoration:none;transition:color 0.2s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--text);}
+  .nav-actions{display:flex;align-items:center;gap:20px;}
+  .nav-icon{background:none;border:none;cursor:pointer;color:var(--text);font-size:18px;padding:4px;transition:opacity 0.2s;font-family:var(--sans);}
+  .nav-icon:hover{opacity:0.6;}
+  .cart-btn{position:relative;}
+  .cart-count{position:absolute;top:-4px;right:-6px;background:var(--accent-dark);color:white;font-size:9px;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:500;}
+  .btn-primary{background:var(--text);color:var(--warm-white);border:none;padding:16px 40px;font-family:var(--sans);font-size:12px;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-block;transition:background 0.25s,transform 0.2s;}
+  .btn-primary:hover{background:var(--accent-dark);transform:translateY(-1px);}
+  .btn-ghost{background:none;color:var(--text);border:none;padding:14px 0;font-family:var(--sans);font-size:12px;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border-bottom:1px solid var(--text);transition:opacity 0.2s;}
+  .btn-ghost:hover{opacity:0.55;}
+  .section-label{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:12px;}
+  .section-title{font-family:var(--serif);font-size:clamp(36px,3.5vw,52px);font-weight:300;line-height:1.15;color:var(--text);}
+  .section-title em{font-style:italic;color:var(--accent-dark);}
+  .fade-up{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
+  .fade-up.visible{opacity:1;transform:translateY(0);}
+  .s1{transition-delay:0.1s;}.s2{transition-delay:0.2s;}.s3{transition-delay:0.3s;}.s4{transition-delay:0.4s;}
+  footer{background:var(--cream);border-top:1px solid var(--stone);padding:72px 60px 40px;}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;margin-bottom:60px;}
+  .footer-brand-name{font-family:var(--serif);font-size:24px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;}
+  .footer-brand-name span{font-style:italic;color:var(--accent-dark);}
+  .footer-desc{font-size:13px;color:var(--text-soft);line-height:1.75;max-width:260px;margin-bottom:28px;}
+  .footer-social{display:flex;gap:14px;}
+  .footer-social a{width:36px;height:36px;border:1px solid var(--sand);display:flex;align-items:center;justify-content:center;text-decoration:none;color:var(--text-soft);font-size:14px;transition:border-color 0.2s,color 0.2s;}
+  .footer-social a:hover{border-color:var(--accent);color:var(--accent-dark);}
+  .footer-col-title{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text);font-weight:500;margin-bottom:20px;}
+  .footer-links{list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .footer-links a{font-size:13px;color:var(--text-soft);text-decoration:none;transition:color 0.2s;}
+  .footer-links a:hover{color:var(--text);}
+  .footer-bottom{border-top:1px solid var(--stone);padding-top:28px;display:flex;justify-content:space-between;align-items:center;}
+  .footer-copy{font-size:12px;color:var(--muted);}
+  .footer-legal{display:flex;gap:24px;}
+  .footer-legal a{font-size:12px;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+  .footer-legal a:hover{color:var(--text);}
+  @media(max-width:900px){nav{padding:0 24px;}.nav-links{display:none;}footer{padding:60px 24px 32px;}.footer-grid{grid-template-columns:1fr 1fr;gap:32px;}}
+
+.journal-hero{padding:160px 60px 80px;background:var(--cream);}
+.journal-hero-inner{max-width:680px;}
+.journal-featured{display:grid;grid-template-columns:1.4fr 1fr;gap:2px;margin-top:0;}
+.featured-article{position:relative;overflow:hidden;cursor:pointer;}
+.featured-article:hover .article-img img{transform:scale(1.04);}
+.article-img{overflow:hidden;}
+.article-img img{width:100%;display:block;transition:transform 0.5s;}
+.featured-article .article-img{height:520px;}
+.article-sidebar{display:flex;flex-direction:column;gap:2px;}
+.article-small{cursor:pointer;overflow:hidden;}
+.article-small:hover .article-img img{transform:scale(1.04);}
+.article-small .article-img{height:259px;}
+.article-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(28,24,20,0.72) 0%,transparent 50%);display:flex;flex-direction:column;justify-content:flex-end;padding:36px;}
+.article-tag{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+.article-title{font-family:var(--serif);font-size:26px;font-weight:300;color:var(--warm-white);line-height:1.3;margin-bottom:10px;}
+.article-title em{font-style:italic;}
+.article-meta{font-size:11px;color:rgba(253,251,248,0.55);letter-spacing:0.05em;}
+.article-small .article-overlay{padding:24px;}
+.article-small .article-title{font-size:18px;}
+.articles-grid-section{padding:80px 60px;background:var(--warm-white);}
+.articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:48px;}
+.article-card{cursor:pointer;}
+.article-card:hover .article-card-img img{transform:scale(1.04);}
+.article-card-img{overflow:hidden;aspect-ratio:4/3;background:var(--stone);margin-bottom:20px;}
+.article-card-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s;}
+.article-card-img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:13px;color:var(--muted);}
+.article-card-tag{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:8px;}
+.article-card-title{font-family:var(--serif);font-size:20px;font-weight:400;line-height:1.35;margin-bottom:10px;}
+.article-card-title em{font-style:italic;}
+.article-card-excerpt{font-size:13px;color:var(--text-soft);line-height:1.75;margin-bottom:16px;}
+.article-card-meta{font-size:11px;color:var(--muted);letter-spacing:0.05em;display:flex;align-items:center;gap:16px;}
+.article-card-meta::before{content:'';width:24px;height:1px;background:var(--sand);}
+.categories-bar{padding:0 60px;background:var(--warm-white);border-bottom:1px solid var(--stone);display:flex;gap:0;}
+.cat-btn{background:none;border:none;font-family:var(--sans);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-soft);padding:20px 28px;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;}
+.cat-btn:hover{color:var(--text);}
+.cat-btn.active{color:var(--text);border-bottom-color:var(--text);}
+.newsletter-strip{background:var(--cream);padding:72px 60px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.newsletter-strip h2{font-family:var(--serif);font-size:clamp(28px,3vw,40px);font-weight:300;}
+.newsletter-strip h2 em{font-style:italic;color:var(--accent-dark);}
+.newsletter-strip p{font-size:14px;color:var(--text-soft);margin-top:12px;line-height:1.7;}
+.nl-form{display:flex;gap:0;}
+.nl-input{flex:1;background:var(--warm-white);border:1px solid var(--sand);border-right:none;color:var(--text);padding:14px 20px;font-family:var(--sans);font-size:13px;outline:none;}
+.nl-input:focus{border-color:var(--accent-dark);}
+.nl-btn{background:var(--text);border:1px solid var(--text);color:var(--warm-white);padding:14px 28px;font-family:var(--sans);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:background 0.2s;}
+.nl-btn:hover{background:var(--accent-dark);border-color:var(--accent-dark);}
+@media(max-width:900px){.journal-hero{padding:120px 24px 60px;}.journal-featured{grid-template-columns:1fr;}.featured-article .article-img{height:360px;}.article-small .article-img{height:220px;}.articles-grid{grid-template-columns:1fr;}.articles-grid-section{padding:60px 24px;}.categories-bar{padding:0 24px;overflow-x:auto;}.newsletter-strip{grid-template-columns:1fr;padding:60px 24px;gap:32px;}}
+/* ── ANIMATIONS ── */
+.scroll-progress{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:200;width:0;pointer-events:none;}
+@keyframes navIn{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
+nav{animation:navIn 0.6s 0.05s cubic-bezier(0.22,1,0.36,1) both;}
+.btn-primary:active{transform:translateY(1px);}
+</style>
+</head>
+<body>
+<div class="scroll-progress" id="scroll-progress"></div>
+<nav>
+  <a href="index.html" class="nav-logo">Lumi<span>ère</span></a>
+  <ul class="nav-links"><li><a href="index.html" class="">Shop</a></li><li><a href="philosophy.html" class="">Philosophy</a></li><li><a href="journal.html" class="active">Journal</a></li></ul>
+  <div class="nav-actions">
+    <button class="nav-icon" aria-label="Search" onclick="window.location.href='index.html#products'">&#9906;</button>
+    <button class="nav-icon cart-btn" aria-label="Cart" onclick="window.location.href='cart.html'">&#9674;<span class="cart-count" id="cart-count">0</span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="journal-hero">
+  <div class="journal-hero-inner fade-up visible">
+    <p class="section-label">The Journal</p>
+    <h1 style="font-family:var(--serif);font-size:clamp(40px,5vw,64px);font-weight:300;line-height:1.1;">Stories, rituals,<br/>&amp; the <em>science of skin.</em></h1>
+    <p style="font-size:15px;color:var(--text-soft);margin-top:20px;line-height:1.75;max-width:520px;">Expert guidance, ingredient deep dives, and honest conversations about what clean beauty really means.</p>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<div class="categories-bar">
+  <button class="cat-btn active" onclick="filterCat(this,'all')">All</button>
+  <button class="cat-btn" onclick="filterCat(this,'skincare')">Skincare</button>
+  <button class="cat-btn" onclick="filterCat(this,'ingredients')">Ingredients</button>
+  <button class="cat-btn" onclick="filterCat(this,'ritual')">Ritual</button>
+  <button class="cat-btn" onclick="filterCat(this,'sustainability')">Sustainability</button>
+</div>
+
+<!-- FEATURED -->
+<div class="journal-featured">
+  <div class="featured-article fade-up">
+    <div class="article-img">
+      <img src="images/the-truth-about-retinol.jpg" alt="The truth about retinol">
+    </div>
+    <div class="article-overlay">
+      <p class="article-tag">Ingredients</p>
+      <h2 class="article-title">The truth about <em>retinol</em> — and why we chose something better</h2>
+      <p class="article-meta">By Sophie Marchand · 8 min read · May 2026</p>
+    </div>
+  </div>
+  <div class="article-sidebar">
+    <div class="article-small fade-up s1">
+      <div class="article-img">
+        <img src="images/morning-ritual.jpg" alt="Morning ritual">
+      </div>
+      <div class="article-overlay">
+        <p class="article-tag">Ritual</p>
+        <h2 class="article-title" style="font-size:18px;">Build a morning ritual that <em>actually</em> works</h2>
+        <p class="article-meta">6 min read · April 2026</p>
+      </div>
+    </div>
+    <div class="article-small fade-up s2">
+      <div class="article-img">
+        <img src="images/sensitive-skin.jpg" alt="Sensitive skin">
+      </div>
+      <div class="article-overlay">
+        <p class="article-tag">Skincare</p>
+        <h2 class="article-title" style="font-size:18px;">Sensitive skin: the <em>ingredients</em> to seek &amp; avoid</h2>
+        <p class="article-meta">5 min read · March 2026</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLES GRID -->
+<section class="articles-grid-section">
+  <div class="section-header">
+    <div><p class="section-label">Latest Stories</p><h2 class="section-title">From the <em>archive</em></h2></div>
+  </div>
+  <div class="articles-grid">
+    <div class="article-card fade-up" data-cat="ingredients">
+      <div class="article-card-img">
+        <img src="images/face-oils.jpg" alt="Face oils">
+      </div>
+      <p class="article-card-tag">Ingredients</p>
+      <h3 class="article-card-title">Why <em>face oils</em> belong in every routine, even oily skin</h3>
+      <p class="article-card-excerpt">The counterintuitive truth about facial oils — and why skipping them might be what's keeping your skin dehydrated.</p>
+      <p class="article-card-meta">Sophie Marchand · April 2026</p>
+    </div>
+    <div class="article-card fade-up s1" data-cat="sustainability">
+      <div class="article-card-img">
+        <img src="images/sustainability.jpg" alt="Sustainability">
+      </div>
+      <p class="article-card-tag">Sustainability</p>
+      <h3 class="article-card-title">Greenwashing: how to <em>spot</em> it and what to look for instead</h3>
+      <p class="article-card-excerpt">Not all "clean" labels mean the same thing. Here's what to actually read on an ingredient deck before you buy.</p>
+      <p class="article-card-meta">Editorial Team · March 2026</p>
+    </div>
+    <div class="article-card fade-up s2" data-cat="ritual">
+      <div class="article-card-img">
+        <img src="images/evening-ritual.jpg" alt="Evening ritual">
+      </div>
+      <p class="article-card-tag">Ritual</p>
+      <h3 class="article-card-title">The <em>evening ritual</em> — why your skin repairs best at night</h3>
+      <p class="article-card-excerpt">During sleep, cell turnover accelerates and your skin barrier is most receptive. Here's how to make those hours count.</p>
+      <p class="article-card-meta">Dr. Claire Fontaine · February 2026</p>
+    </div>
+    <div class="article-card fade-up" data-cat="skincare">
+      <div class="article-card-img">
+        <img src="images/eye-care.jpg" alt="Eye care">
+      </div>
+      <p class="article-card-tag">Skincare</p>
+      <h3 class="article-card-title">Do you <em>actually</em> need an eye cream? We asked a dermatologist.</h3>
+      <p class="article-card-excerpt">The skin around the eye is 40% thinner than the rest of your face. The answer might surprise you.</p>
+      <p class="article-card-meta">Dr. Claire Fontaine · January 2026</p>
+    </div>
+    <div class="article-card fade-up s1" data-cat="ingredients">
+      <div class="article-card-img">
+        <img src="images/niacinamide-powerhouse.png" alt="Niacinamide skincare ingredient">
+      </div>
+      <p class="article-card-tag">Ingredients</p>
+      <h3 class="article-card-title">Niacinamide: the <em>underrated</em> powerhouse your skin needs</h3>
+      <p class="article-card-excerpt">It minimises pores, brightens uneven tone, and calms inflammation — so why isn't everyone talking about it?</p>
+      <p class="article-card-meta">Sophie Marchand · December 2025</p>
+    </div>
+    <div class="article-card fade-up s2" data-cat="ritual">
+      <div class="article-card-img">
+        <img src="images/skincare-layering.png" alt="Skincare layering order">
+      </div>
+      <p class="article-card-tag">Ritual</p>
+      <h3 class="article-card-title">Layering your skincare: the <em>correct</em> order explained</h3>
+      <p class="article-card-excerpt">Serum before or after moisturiser? Oil last or first? The logic behind product layering — and why it matters.</p>
+      <p class="article-card-meta">Editorial Team · November 2025</p>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<div class="newsletter-strip">
+  <div class="fade-up">
+    <h2>Stay close to the <em>conversation</em></h2>
+    <p>New stories every week. No spam, no selling. Just honest, thoughtful beauty writing delivered to your inbox.</p>
+  </div>
+  <div class="fade-up s1">
+    <div class="nl-form">
+      <input type="email" class="nl-input" placeholder="your@email.com"/>
+      <button class="nl-btn">Subscribe</button>
+    </div>
+    <p style="font-size:11px;color:var(--muted);margin-top:12px;">By subscribing you agree to our Privacy Policy. Unsubscribe anytime.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <p class="footer-brand-name">Lumi<span>ère</span></p>
+      <p class="footer-desc">Clean beauty rooted in botanical science. We believe your skin deserves transparency, inside and out.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">&#9674;</a>
+        <a href="#" aria-label="Pinterest">&#9670;</a>
+        <a href="#" aria-label="TikTok">&#9658;</a>
+      </div>
+    </div>
+    <div>
+      <p class="footer-col-title">Shop</p>
+      <ul class="footer-links">
+        <li><a href="index.html#products">New Arrivals</a></li>
+        <li><a href="index.html#products">Serums</a></li>
+        <li><a href="index.html#products">Moisturisers</a></li>
+        <li><a href="index.html#products">Face Oils</a></li>
+        <li><a href="index.html#products">Bundles</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Learn</p>
+      <ul class="footer-links">
+        <li><a href="philosophy.html">Our Philosophy</a></li>
+        <li><a href="philosophy.html#ingredients">Ingredients A–Z</a></li>
+        <li><a href="journal.html">The Journal</a></li>
+        <li><a href="philosophy.html#sustainability">Sustainability</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Support</p>
+      <ul class="footer-links">
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Shipping &amp; Returns</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Track My Order</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Lumière Beauty. All rights reserved.</p>
+    <div class="footer-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Cookie Preferences</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+
+const PRODUCTS = {
+  serum:   {name:'Radiance Serum No. 3', price:84, size:'30ml', img:'ProductSerum'},
+  cream:   {name:'Velvet Cloud Cream',   price:62, size:'50ml', img:'ProductCream'},
+  oil:     {name:'Golden Elixir Oil',    price:72, size:'20ml', img:'ProductOil'},
+  eyecream:{name:'Luminous Eye Cream',   price:58, size:'15ml', img:'ProductEyeCream'},
+};
+function getCart(){return JSON.parse(localStorage.getItem('lumiere_cart')||'{}');}
+function saveCart(c){localStorage.setItem('lumiere_cart',JSON.stringify(c));}
+function updateCartCount(){
+  const c=getCart();
+  const total=Object.values(c).reduce((s,i)=>s+i.qty,0);
+  document.querySelectorAll('#cart-count').forEach(el=>el.textContent=total);
+}
+function addToCart(id,size){
+  const c=getCart();
+  const key=id+'_'+size;
+  if(c[key]){c[key].qty++;}else{c[key]={...PRODUCTS[id],size,qty:1,key};}
+  saveCart(c);updateCartCount();
+  return c[key];
+}
+window.addEventListener('DOMContentLoaded',updateCartCount);
+
+function filterCat(btn, cat){
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.article-card').forEach(card=>{
+    if(cat==='all'||card.dataset.cat===cat){
+      card.style.display='block';
+    }else{
+      card.style.display='none';
+    }
+  });
+}
+const obs = new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}}),{threshold:0.1});
+document.querySelectorAll('.fade-up:not(.visible)').forEach(el=>obs.observe(el));
+// Scroll progress
+const _prog=document.getElementById('scroll-progress');
+window.addEventListener('scroll',()=>{
+  const sy=window.scrollY;
+  document.querySelector('nav').style.boxShadow=sy>20?'0 1px 24px rgba(28,24,20,0.07)':'';
+  if(_prog)_prog.style.width=(sy/(document.documentElement.scrollHeight-window.innerHeight)*100)+'%';
+},{passive:true});
+</script>
+</body></html>

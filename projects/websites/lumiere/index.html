@@ -1,0 +1,524 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>LUMIÈRE — Clean Beauty</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root{--cream:#F9F6F1;--warm-white:#FDFBF8;--stone:#E8E2D9;--sand:#D4C9B8;--muted:#A89E8E;--text:#1C1814;--text-soft:#6B6259;--accent:#C4A882;--accent-dark:#8C6D4F;--green:#4A5E4A;--serif:'Cormorant Garamond',serif;--sans:'DM Sans',sans-serif;}
+
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--warm-white);color:var(--text);font-family:var(--sans);font-weight:300;line-height:1.6;overflow-x:hidden;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,251,248,0.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--stone);display:flex;align-items:center;justify-content:space-between;padding:0 60px;height:72px;}
+  .nav-logo{font-family:var(--serif);font-size:22px;font-weight:400;letter-spacing:0.15em;text-transform:uppercase;color:var(--text);text-decoration:none;}
+  .nav-logo span{font-style:italic;color:var(--accent-dark);}
+  .nav-links{display:flex;gap:40px;list-style:none;}
+  .nav-links a{font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-soft);text-decoration:none;transition:color 0.2s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--text);}
+  .nav-actions{display:flex;align-items:center;gap:20px;}
+  .nav-icon{background:none;border:none;cursor:pointer;color:var(--text);font-size:18px;padding:4px;transition:opacity 0.2s;font-family:var(--sans);}
+  .nav-icon:hover{opacity:0.6;}
+  .cart-btn{position:relative;}
+  .cart-count{position:absolute;top:-4px;right:-6px;background:var(--accent-dark);color:white;font-size:9px;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:500;}
+  .btn-primary{background:var(--text);color:var(--warm-white);border:none;padding:16px 40px;font-family:var(--sans);font-size:12px;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-block;transition:background 0.25s,transform 0.2s;}
+  .btn-primary:hover{background:var(--accent-dark);transform:translateY(-1px);}
+  .btn-ghost{background:none;color:var(--text);border:none;padding:14px 0;font-family:var(--sans);font-size:12px;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border-bottom:1px solid var(--text);transition:opacity 0.2s;}
+  .btn-ghost:hover{opacity:0.55;}
+  .section-label{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:12px;}
+  .section-title{font-family:var(--serif);font-size:clamp(36px,3.5vw,52px);font-weight:300;line-height:1.15;color:var(--text);}
+  .section-title em{font-style:italic;color:var(--accent-dark);}
+  .fade-up{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
+  .fade-up.visible{opacity:1;transform:translateY(0);}
+  .s1{transition-delay:0.1s;}.s2{transition-delay:0.2s;}.s3{transition-delay:0.3s;}.s4{transition-delay:0.4s;}
+  footer{background:var(--cream);border-top:1px solid var(--stone);padding:72px 60px 40px;}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;margin-bottom:60px;}
+  .footer-brand-name{font-family:var(--serif);font-size:24px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;}
+  .footer-brand-name span{font-style:italic;color:var(--accent-dark);}
+  .footer-desc{font-size:13px;color:var(--text-soft);line-height:1.75;max-width:260px;margin-bottom:28px;}
+  .footer-social{display:flex;gap:14px;}
+  .footer-social a{width:36px;height:36px;border:1px solid var(--sand);display:flex;align-items:center;justify-content:center;text-decoration:none;color:var(--text-soft);font-size:14px;transition:border-color 0.2s,color 0.2s;}
+  .footer-social a:hover{border-color:var(--accent);color:var(--accent-dark);}
+  .footer-col-title{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text);font-weight:500;margin-bottom:20px;}
+  .footer-links{list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .footer-links a{font-size:13px;color:var(--text-soft);text-decoration:none;transition:color 0.2s;}
+  .footer-links a:hover{color:var(--text);}
+  .footer-bottom{border-top:1px solid var(--stone);padding-top:28px;display:flex;justify-content:space-between;align-items:center;}
+  .footer-copy{font-size:12px;color:var(--muted);}
+  .footer-legal{display:flex;gap:24px;}
+  .footer-legal a{font-size:12px;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+  .footer-legal a:hover{color:var(--text);}
+  @media(max-width:900px){nav{padding:0 24px;}.nav-links{display:none;}footer{padding:60px 24px 32px;}.footer-grid{grid-template-columns:1fr 1fr;gap:32px;}}
+
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:72px;}
+.hero-text{display:flex;flex-direction:column;justify-content:center;padding:80px 60px;}
+.hero-eyebrow{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:28px;display:flex;align-items:center;gap:12px;}
+.hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--accent-dark);}
+.hero-heading{font-family:var(--serif);font-size:clamp(52px,5.5vw,80px);font-weight:300;line-height:1.08;margin-bottom:28px;}
+.hero-heading em{font-style:italic;color:var(--accent-dark);}
+.hero-sub{font-size:15px;color:var(--text-soft);max-width:420px;line-height:1.75;margin-bottom:48px;}
+.hero-cta{display:flex;gap:16px;align-items:center;}
+.hero-image{position:relative;overflow:hidden;}
+.hero-image img{width:100%;height:100%;object-fit:cover;}
+.hero-tag{position:absolute;bottom:48px;left:48px;background:var(--warm-white);padding:20px 24px;border-left:3px solid var(--accent);}
+.hero-tag-label{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.hero-tag-name{font-family:var(--serif);font-size:18px;font-weight:400;}
+.hero-tag-price{font-size:13px;color:var(--text-soft);margin-top:2px;}
+.marquee-bar{background:var(--text);color:var(--warm-white);padding:14px 0;overflow:hidden;}
+.marquee-track{display:flex;animation:marquee 28s linear infinite;white-space:nowrap;}
+.marquee-track span{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;padding:0 40px;opacity:0.85;}
+.marquee-track .dot{color:var(--accent);opacity:1;padding:0;}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+section{padding:100px 60px;}
+.section-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:56px;}
+.products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+.product-card{background:var(--cream);cursor:pointer;overflow:hidden;transition:transform 0.3s;}
+.product-card:hover{transform:translateY(-4px);}
+.product-card:hover .product-overlay{opacity:1;}
+.product-card:hover .product-img-wrap img{transform:scale(1.04);}
+.product-img-wrap{aspect-ratio:3/4;background:var(--stone);overflow:hidden;position:relative;}
+.product-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s;}
+.product-badge{position:absolute;top:16px;left:16px;color:var(--warm-white);font-size:9px;letter-spacing:0.15em;text-transform:uppercase;padding:5px 10px;}
+.product-badge.new{background:var(--green);}
+.product-badge.sale{background:var(--accent-dark);}
+.product-overlay{position:absolute;bottom:0;left:0;right:0;background:var(--text);color:var(--warm-white);padding:14px 20px;opacity:0;transition:opacity 0.3s;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;text-align:center;cursor:pointer;}
+.product-info{padding:20px 20px 24px;}
+.product-category{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.product-name{font-family:var(--serif);font-size:17px;font-weight:400;margin-bottom:8px;line-height:1.3;}
+.product-price-row{display:flex;align-items:center;gap:10px;}
+.product-price{font-size:14px;font-weight:400;}
+.product-price-old{font-size:13px;color:var(--muted);text-decoration:line-through;}
+.product-stars{margin-top:6px;color:var(--accent);font-size:11px;letter-spacing:2px;}
+.product-sizes{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap;}
+.size-btn{background:none;border:1px solid var(--sand);color:var(--text-soft);font-family:var(--sans);font-size:10px;letter-spacing:0.08em;padding:5px 10px;cursor:pointer;transition:all 0.18s;}
+.size-btn:hover{border-color:var(--accent-dark);color:var(--text);}
+.size-btn.active{background:var(--text);border-color:var(--text);color:var(--warm-white);}
+.split-section{display:grid;grid-template-columns:1fr 1fr;min-height:600px;}
+.split-visual{position:relative;overflow:hidden;min-height:560px;}
+.split-visual img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+.split-content{display:flex;flex-direction:column;justify-content:center;padding:80px 72px;background:var(--warm-white);}
+.ingredient-list{margin:32px 0;display:flex;flex-direction:column;}
+.ingredient-item{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--stone);cursor:pointer;transition:padding-left 0.2s;}
+.ingredient-item:hover{padding-left:6px;}
+.ingredient-num{font-family:var(--serif);font-size:13px;color:var(--accent);min-width:28px;font-style:italic;}
+.ingredient-name{font-size:14px;font-weight:400;letter-spacing:0.05em;}
+.ingredient-desc{font-size:12px;color:var(--text-soft);margin-left:auto;text-align:right;max-width:160px;line-height:1.5;}
+.ritual-section{background:var(--cream);}
+.ritual-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:60px;}
+.ritual-step{position:relative;}
+.ritual-step-img{aspect-ratio:3/4;overflow:hidden;margin-bottom:28px;background:var(--stone);}
+.ritual-step-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s;}
+.ritual-step:hover .ritual-step-img img{transform:scale(1.04);}
+.ritual-step-body{padding:0 32px 48px;}
+.ritual-num{font-family:var(--serif);font-size:40px;font-weight:300;color:var(--stone);line-height:1;margin-bottom:16px;}
+.ritual-title{font-family:var(--serif);font-size:22px;font-weight:400;margin-bottom:10px;}
+.ritual-desc{font-size:13px;color:var(--text-soft);line-height:1.75;}
+.ritual-divider{position:absolute;top:0;right:0;width:1px;height:100%;background:var(--stone);}
+.ritual-step:last-child .ritual-divider{display:none;}
+.testimonials-section{background:var(--warm-white);padding:100px 60px;}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:56px;}
+.testimonial-card{background:var(--cream);padding:40px 36px;}
+.testimonial-buyer{display:flex;align-items:center;gap:14px;margin-bottom:24px;}
+.buyer-avatar{width:52px;height:52px;border-radius:50%;overflow:hidden;background:var(--stone);flex-shrink:0;}
+.buyer-avatar img{width:100%;height:100%;object-fit:cover;}
+.buyer-avatar-placeholder{width:52px;height:52px;border-radius:50%;background:var(--stone);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:18px;color:var(--muted);flex-shrink:0;}
+.buyer-name{font-size:14px;font-weight:400;}
+.buyer-meta{font-size:11px;color:var(--muted);letter-spacing:0.05em;margin-top:2px;}
+.testimonial-stars{color:var(--accent);font-size:13px;letter-spacing:3px;margin-bottom:16px;}
+.testimonial-quote{font-family:var(--serif);font-size:17px;font-weight:300;line-height:1.65;font-style:italic;}
+.newsletter{background:var(--text);color:var(--warm-white);text-align:center;padding:100px 60px;}
+.newsletter-sub{font-size:14px;color:rgba(253,251,248,0.6);margin:16px 0 48px;}
+.newsletter-form{display:flex;max-width:460px;margin:0 auto;}
+.newsletter-input{flex:1;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-right:none;color:var(--warm-white);padding:14px 20px;font-family:var(--sans);font-size:13px;outline:none;}
+.newsletter-input::placeholder{color:rgba(255,255,255,0.35);}
+.newsletter-input:focus{border-color:var(--accent);}
+.newsletter-btn{background:var(--accent-dark);border:1px solid var(--accent-dark);color:var(--warm-white);padding:14px 28px;font-family:var(--sans);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:background 0.2s;}
+.newsletter-btn:hover{background:var(--accent);}
+.toast{position:fixed;bottom:32px;right:32px;background:var(--text);color:var(--warm-white);padding:14px 24px;font-size:13px;letter-spacing:0.05em;opacity:0;transform:translateY(8px);transition:all 0.3s;pointer-events:none;z-index:999;border-left:3px solid var(--accent);}
+.toast.show{opacity:1;transform:translateY(0);}
+@media(max-width:900px){.hero{grid-template-columns:1fr;}.hero-image{min-height:400px;}.hero-text{padding:60px 24px;}.products-grid{grid-template-columns:repeat(2,1fr);}.split-section{grid-template-columns:1fr;}.split-content{padding:60px 24px;}.ritual-steps{grid-template-columns:1fr 1fr;}.testimonials-grid{grid-template-columns:1fr;}section{padding:72px 24px;}}
+/* ── ANIMATIONS ── */
+.scroll-progress{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:200;width:0;pointer-events:none;}
+@keyframes navIn{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
+nav{animation:navIn 0.6s 0.05s cubic-bezier(0.22,1,0.36,1) both;}
+@keyframes imgZoom{from{transform:scale(1.08);}to{transform:scale(1);}}
+.hero-image img{animation:imgZoom 2.2s cubic-bezier(0.25,0.46,0.45,0.94) both;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.hero-tag{animation:float 6s ease-in-out infinite;}
+.marquee-bar:hover .marquee-track{animation-play-state:paused;}
+.split-visual img{transform:scale(1.15);transition:transform 0.06s linear;}
+.ingredient-item{opacity:0;transform:translateX(-22px);transition:opacity 0.55s ease,transform 0.55s ease,padding-left 0.2s;}
+.ingredient-item.visible{opacity:1;transform:translateX(0);}
+.btn-primary:active{transform:translateY(1px);}
+</style>
+</head>
+<body>
+<div class="scroll-progress" id="scroll-progress"></div>
+<nav>
+  <a href="index.html" class="nav-logo">Lumi<span>ère</span></a>
+  <ul class="nav-links"><li><a href="index.html" class="active">Shop</a></li><li><a href="philosophy.html" class="">Philosophy</a></li><li><a href="journal.html" class="">Journal</a></li></ul>
+  <div class="nav-actions">
+    <button class="nav-icon" aria-label="Search" onclick="window.location.href='index.html#products'">&#9906;</button>
+    <button class="nav-icon cart-btn" aria-label="Cart" onclick="window.location.href='cart.html'">&#9674;<span class="cart-count" id="cart-count">0</span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding:0">
+  <div class="hero-text">
+    <p class="hero-eyebrow fade-up visible">New Collection — SS 2026</p>
+    <h1 class="hero-heading fade-up visible s1">Skin that <em>breathes</em><br/>in its purest<br/>form.</h1>
+    <p class="hero-sub fade-up visible s2">Formulated with clinical-grade botanicals and zero compromise. Every product is clean, vegan, and crafted to transform your skin with the patience of nature.</p>
+    <div class="hero-cta fade-up visible s3">
+      <a href="#products" class="btn-primary">Shop the Collection</a>
+      <a href="philosophy.html" class="btn-ghost">Our Philosophy →</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="images/radiance-serum-on-linen.jpg" alt="Radiance Serum on linen">
+    <div class="hero-tag">
+      <p class="hero-tag-label">Bestseller</p>
+      <p class="hero-tag-name">Radiance Serum No. 3</p>
+      <p class="hero-tag-price">$84 · 30ml</p>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <span>Clean Beauty</span><span class="dot">·</span><span>100% Vegan</span><span class="dot">·</span><span>Dermatologist Tested</span><span class="dot">·</span><span>Zero Harsh Chemicals</span><span class="dot">·</span><span>Sustainable Packaging</span><span class="dot">·</span><span>Cruelty Free</span><span class="dot">·</span><span>Clinically Proven</span><span class="dot">·</span><span>Plant-Based Formulas</span><span class="dot">·</span>
+    <span>Clean Beauty</span><span class="dot">·</span><span>100% Vegan</span><span class="dot">·</span><span>Dermatologist Tested</span><span class="dot">·</span><span>Zero Harsh Chemicals</span><span class="dot">·</span><span>Sustainable Packaging</span><span class="dot">·</span><span>Cruelty Free</span><span class="dot">·</span><span>Clinically Proven</span><span class="dot">·</span><span>Plant-Based Formulas</span><span class="dot">·</span>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section id="products" style="background:var(--warm-white)">
+  <div class="section-header">
+    <div><p class="section-label">Curated for You</p><h2 class="section-title">Best<em>sellers</em></h2></div>
+    <a href="#" class="btn-ghost" style="margin-bottom:8px">View All →</a>
+  </div>
+  <div class="products-grid">
+
+    <div class="product-card fade-up">
+      <div class="product-img-wrap">
+        <img src="images/radiance-serum-no-3.jpg" alt="Radiance Serum No.3">
+        <span class="product-badge new">New</span>
+        <div class="product-overlay" onclick="handleAddToCart('serum',this)">Add to Cart</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category">Serum</p>
+        <p class="product-name">Radiance Serum No. 3</p>
+        <div class="product-price-row"><span class="product-price">$84</span></div>
+        <div class="product-stars">★★★★★</div>
+        <div class="product-sizes">
+          <button class="size-btn active" onclick="selectSize(this)">15ml</button>
+          <button class="size-btn" onclick="selectSize(this)">30ml</button>
+          <button class="size-btn" onclick="selectSize(this)">50ml</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card fade-up s1">
+      <div class="product-img-wrap" style="background:#E0D8CE">
+        <img src="images/velvet-cloud-cream.jpg" alt="Velvet Cloud Cream">
+        <div class="product-overlay" onclick="handleAddToCart('cream',this)">Add to Cart</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category">Moisturiser</p>
+        <p class="product-name">Velvet Cloud Cream</p>
+        <div class="product-price-row"><span class="product-price">$62</span></div>
+        <div class="product-stars">★★★★★</div>
+        <div class="product-sizes">
+          <button class="size-btn active" onclick="selectSize(this)">30ml</button>
+          <button class="size-btn" onclick="selectSize(this)">50ml</button>
+          <button class="size-btn" onclick="selectSize(this)">100ml</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card fade-up s2">
+      <div class="product-img-wrap" style="background:#DDD5C8">
+        <img src="images/golden-elixir-oil.jpg" alt="Golden Elixir Oil">
+        <span class="product-badge sale">−20%</span>
+        <div class="product-overlay" onclick="handleAddToCart('oil',this)">Add to Cart</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category">Face Oil</p>
+        <p class="product-name">Golden Elixir Oil</p>
+        <div class="product-price-row"><span class="product-price">$72</span><span class="product-price-old">$90</span></div>
+        <div class="product-stars">★★★★☆</div>
+        <div class="product-sizes">
+          <button class="size-btn active" onclick="selectSize(this)">20ml</button>
+          <button class="size-btn" onclick="selectSize(this)">30ml</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card fade-up s3">
+      <div class="product-img-wrap" style="background:#D9D1C4">
+        <img src="images/luminous-eye-cream.jpg" alt="Luminous Eye Cream">
+        <div class="product-overlay" onclick="handleAddToCart('eyecream',this)">Add to Cart</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category">Eye Care</p>
+        <p class="product-name">Luminous Eye Cream</p>
+        <div class="product-price-row"><span class="product-price">$58</span></div>
+        <div class="product-stars">★★★★★</div>
+        <div class="product-sizes">
+          <button class="size-btn active" onclick="selectSize(this)">15ml</button>
+          <button class="size-btn" onclick="selectSize(this)">30ml</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- INGREDIENTS SPLIT -->
+<div class="split-section">
+  <div class="split-visual">
+    <img src="images/botanical-ingredients-flatlay.jpg" alt="Botanical ingredients flatlay">
+  </div>
+  <div class="split-content">
+    <p class="section-label">What's Inside</p>
+    <h2 class="section-title" style="font-size:clamp(32px,3vw,44px)">Nature's most <em>potent</em> ingredients</h2>
+    <p style="font-size:14px;color:var(--text-soft);line-height:1.75;margin-top:16px;">Every formula begins with the finest plant-derived actives, cold-pressed and ethically sourced to preserve their full biological potency.</p>
+    <div class="ingredient-list">
+      <div class="ingredient-item"><span class="ingredient-num">01.</span><span class="ingredient-name">Bakuchiol</span><span class="ingredient-desc">Plant-based retinol alternative</span></div>
+      <div class="ingredient-item"><span class="ingredient-num">02.</span><span class="ingredient-name">Niacinamide</span><span class="ingredient-desc">Pore-minimizing, even tone</span></div>
+      <div class="ingredient-item"><span class="ingredient-num">03.</span><span class="ingredient-name">Sea Kelp</span><span class="ingredient-desc">Deep hydration &amp; minerals</span></div>
+      <div class="ingredient-item"><span class="ingredient-num">04.</span><span class="ingredient-name">Rosehip Oil</span><span class="ingredient-desc">Brightening &amp; repair</span></div>
+    </div>
+    <a href="philosophy.html" class="btn-primary" style="align-self:flex-start;margin-top:8px">Explore All Ingredients</a>
+  </div>
+</div>
+
+<!-- THE RITUAL -->
+<section class="ritual-section" id="ritual">
+  <div class="section-header">
+    <div><p class="section-label">Your Daily Practice</p><h2 class="section-title">The <em>Lumière</em> Ritual</h2></div>
+  </div>
+  <div class="ritual-steps">
+    <div class="ritual-step fade-up">
+      <div class="ritual-step-img">
+        <img src="images/ritual-step-1.jpg" alt="Ritual step 1" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="ritual-step-body">
+        <p class="ritual-num">01</p>
+        <h3 class="ritual-title">Cleanse</h3>
+        <p class="ritual-desc">Begin with our gentle micellar cleanser. Melt away impurities while maintaining your skin's natural barrier.</p>
+      </div>
+      <div class="ritual-divider"></div>
+    </div>
+    <div class="ritual-step fade-up s1">
+      <div class="ritual-step-img">
+        <img src="images/ritual-step-2.jpg" alt="Ritual step 2" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="ritual-step-body">
+        <p class="ritual-num">02</p>
+        <h3 class="ritual-title">Treat</h3>
+        <p class="ritual-desc">Apply your chosen serum to freshly cleansed skin. Targeted actives penetrate deeper on clean pores.</p>
+      </div>
+      <div class="ritual-divider"></div>
+    </div>
+    <div class="ritual-step fade-up s2">
+      <div class="ritual-step-img">
+        <img src="images/ritual-step-3.jpg" alt="Ritual step 3" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="ritual-step-body">
+        <p class="ritual-num">03</p>
+        <h3 class="ritual-title">Hydrate</h3>
+        <p class="ritual-desc">Lock in the treatment with our cloud cream. Hyaluronic acid and ceramides restore the skin's moisture veil.</p>
+      </div>
+      <div class="ritual-divider"></div>
+    </div>
+    <div class="ritual-step fade-up s3">
+      <div class="ritual-step-img">
+        <img src="images/ritual-step-4.jpg" alt="Ritual step 4" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="ritual-step-body">
+        <p class="ritual-num">04</p>
+        <h3 class="ritual-title">Protect</h3>
+        <p class="ritual-desc">Finish with SPF 50 mineral sunscreen. The most effective anti-ageing step you can take each morning.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="section-header">
+    <div><p class="section-label">Real Results</p><h2 class="section-title">What they're <em>saying</em></h2></div>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-buyer">
+        <div class="buyer-avatar"><img src="images/buyer-portrait.jpg" alt="Buyer portrait"></div>
+        <div><p class="buyer-name">Camille Dubois</p><p class="buyer-meta">Verified Buyer · Paris</p></div>
+      </div>
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-quote">"Three weeks in and I can genuinely see a difference in my skin texture. The Radiance Serum has become non-negotiable in my routine."</p>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-buyer">
+        <div class="buyer-avatar"><img src="images/buyer-portrait-2.jpg" alt="Buyer portrait"></div>
+        <div><p class="buyer-name">Priya Mehta</p><p class="buyer-meta">Verified Buyer · London</p></div>
+      </div>
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-quote">"As someone with sensitive skin, finding a brand that doesn't cause reactions feels like a miracle. Lumière is the real thing."</p>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-buyer">
+        <div class="buyer-avatar"><img src="images/buyer-portrait-3.jpg" alt="Buyer portrait"></div>
+        <div><p class="buyer-name">Sofia Reyes</p><p class="buyer-meta">Verified Buyer · Madrid</p></div>
+      </div>
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-quote">"The packaging is beautiful, the formulas even more so. You can feel the quality from the first application. Worth every penny."</p>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<div class="newsletter">
+  <p class="section-label" style="color:var(--accent)">The Inner Circle</p>
+  <h2 class="section-title" style="color:var(--warm-white);font-size:clamp(32px,3.5vw,50px)">Join the <em>ritual</em></h2>
+  <p class="newsletter-sub">Early access, formulation stories, and 15% off your first order.</p>
+  <div class="newsletter-form">
+    <input type="email" class="newsletter-input" placeholder="your@email.com"/>
+    <button class="newsletter-btn" onclick="subscribeNewsletter()">Subscribe</button>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <p class="footer-brand-name">Lumi<span>ère</span></p>
+      <p class="footer-desc">Clean beauty rooted in botanical science. We believe your skin deserves transparency, inside and out.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">&#9674;</a>
+        <a href="#" aria-label="Pinterest">&#9670;</a>
+        <a href="#" aria-label="TikTok">&#9658;</a>
+      </div>
+    </div>
+    <div>
+      <p class="footer-col-title">Shop</p>
+      <ul class="footer-links">
+        <li><a href="index.html#products">New Arrivals</a></li>
+        <li><a href="index.html#products">Serums</a></li>
+        <li><a href="index.html#products">Moisturisers</a></li>
+        <li><a href="index.html#products">Face Oils</a></li>
+        <li><a href="index.html#products">Bundles</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Learn</p>
+      <ul class="footer-links">
+        <li><a href="philosophy.html">Our Philosophy</a></li>
+        <li><a href="philosophy.html#ingredients">Ingredients A–Z</a></li>
+        <li><a href="journal.html">The Journal</a></li>
+        <li><a href="philosophy.html#sustainability">Sustainability</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Support</p>
+      <ul class="footer-links">
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Shipping &amp; Returns</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Track My Order</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Lumière Beauty. All rights reserved.</p>
+    <div class="footer-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Cookie Preferences</a>
+    </div>
+  </div>
+</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+
+const PRODUCTS = {
+  serum:   {name:'Radiance Serum No. 3', price:84, size:'30ml', img:'ProductSerum'},
+  cream:   {name:'Velvet Cloud Cream',   price:62, size:'50ml', img:'ProductCream'},
+  oil:     {name:'Golden Elixir Oil',    price:72, size:'20ml', img:'ProductOil'},
+  eyecream:{name:'Luminous Eye Cream',   price:58, size:'15ml', img:'ProductEyeCream'},
+};
+function getCart(){return JSON.parse(localStorage.getItem('lumiere_cart')||'{}');}
+function saveCart(c){localStorage.setItem('lumiere_cart',JSON.stringify(c));}
+function updateCartCount(){
+  const c=getCart();
+  const total=Object.values(c).reduce((s,i)=>s+i.qty,0);
+  document.querySelectorAll('#cart-count').forEach(el=>el.textContent=total);
+}
+function addToCart(id,size){
+  const c=getCart();
+  const key=id+'_'+size;
+  if(c[key]){c[key].qty++;}else{c[key]={...PRODUCTS[id],size,qty:1,key};}
+  saveCart(c);updateCartCount();
+  return c[key];
+}
+window.addEventListener('DOMContentLoaded',updateCartCount);
+
+function selectSize(btn){
+  btn.closest('.product-sizes').querySelectorAll('.size-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function handleAddToCart(id, overlayEl){
+  const card = overlayEl.closest('.product-card');
+  const activeSize = card.querySelector('.size-btn.active');
+  const size = activeSize ? activeSize.textContent : '30ml';
+  addToCart(id, size);
+  showToast('Added to cart — ' + size);
+  overlayEl.textContent = 'Added ✓';
+  overlayEl.style.background = 'var(--green)';
+  setTimeout(()=>{ overlayEl.textContent='Add to Cart'; overlayEl.style.background=''; }, 1600);
+}
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2500);
+}
+function subscribeNewsletter(){
+  showToast('Welcome to the inner circle ✦');
+}
+const obs = new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}}),{threshold:0.1});
+document.querySelectorAll('.fade-up:not(.visible)').forEach(el=>obs.observe(el));
+// Scroll progress + split parallax
+const _prog=document.getElementById('scroll-progress');
+const _splitImg=document.querySelector('.split-visual img');
+const _splitSec=document.querySelector('.split-section');
+window.addEventListener('scroll',()=>{
+  const sy=window.scrollY;
+  document.querySelector('nav').style.boxShadow=sy>20?'0 1px 24px rgba(28,24,20,0.07)':'';
+  if(_prog)_prog.style.width=(sy/(document.documentElement.scrollHeight-window.innerHeight)*100)+'%';
+  if(_splitImg&&_splitSec){
+    const r=_splitSec.getBoundingClientRect();
+    if(r.top<window.innerHeight&&r.bottom>0){
+      const o=(window.innerHeight/2-(r.top+r.height/2))*0.1;
+      _splitImg.style.transform=`scale(1.15) translateY(${o}px)`;
+    }
+  }
+},{passive:true});
+// Ingredient items stagger
+const _ingList=document.querySelector('.ingredient-list');
+if(_ingList){
+  const _iObs=new IntersectionObserver(entries=>{
+    if(entries[0].isIntersecting){
+      entries[0].target.querySelectorAll('.ingredient-item').forEach((el,i)=>
+        setTimeout(()=>el.classList.add('visible'),i*130)
+      );
+      _iObs.unobserve(entries[0].target);
+    }
+  },{threshold:0.15});
+  _iObs.observe(_ingList);
+}
+</script>
+</body></html>

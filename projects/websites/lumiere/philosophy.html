@@ -1,0 +1,336 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Our Philosophy — LUMIÈRE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root{--cream:#F9F6F1;--warm-white:#FDFBF8;--stone:#E8E2D9;--sand:#D4C9B8;--muted:#A89E8E;--text:#1C1814;--text-soft:#6B6259;--accent:#C4A882;--accent-dark:#8C6D4F;--green:#4A5E4A;--serif:'Cormorant Garamond',serif;--sans:'DM Sans',sans-serif;}
+
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--warm-white);color:var(--text);font-family:var(--sans);font-weight:300;line-height:1.6;overflow-x:hidden;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,251,248,0.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--stone);display:flex;align-items:center;justify-content:space-between;padding:0 60px;height:72px;}
+  .nav-logo{font-family:var(--serif);font-size:22px;font-weight:400;letter-spacing:0.15em;text-transform:uppercase;color:var(--text);text-decoration:none;}
+  .nav-logo span{font-style:italic;color:var(--accent-dark);}
+  .nav-links{display:flex;gap:40px;list-style:none;}
+  .nav-links a{font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-soft);text-decoration:none;transition:color 0.2s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--text);}
+  .nav-actions{display:flex;align-items:center;gap:20px;}
+  .nav-icon{background:none;border:none;cursor:pointer;color:var(--text);font-size:18px;padding:4px;transition:opacity 0.2s;font-family:var(--sans);}
+  .nav-icon:hover{opacity:0.6;}
+  .cart-btn{position:relative;}
+  .cart-count{position:absolute;top:-4px;right:-6px;background:var(--accent-dark);color:white;font-size:9px;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:500;}
+  .btn-primary{background:var(--text);color:var(--warm-white);border:none;padding:16px 40px;font-family:var(--sans);font-size:12px;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-block;transition:background 0.25s,transform 0.2s;}
+  .btn-primary:hover{background:var(--accent-dark);transform:translateY(-1px);}
+  .btn-ghost{background:none;color:var(--text);border:none;padding:14px 0;font-family:var(--sans);font-size:12px;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border-bottom:1px solid var(--text);transition:opacity 0.2s;}
+  .btn-ghost:hover{opacity:0.55;}
+  .section-label{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:12px;}
+  .section-title{font-family:var(--serif);font-size:clamp(36px,3.5vw,52px);font-weight:300;line-height:1.15;color:var(--text);}
+  .section-title em{font-style:italic;color:var(--accent-dark);}
+  .fade-up{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
+  .fade-up.visible{opacity:1;transform:translateY(0);}
+  .s1{transition-delay:0.1s;}.s2{transition-delay:0.2s;}.s3{transition-delay:0.3s;}.s4{transition-delay:0.4s;}
+  footer{background:var(--cream);border-top:1px solid var(--stone);padding:72px 60px 40px;}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;margin-bottom:60px;}
+  .footer-brand-name{font-family:var(--serif);font-size:24px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;}
+  .footer-brand-name span{font-style:italic;color:var(--accent-dark);}
+  .footer-desc{font-size:13px;color:var(--text-soft);line-height:1.75;max-width:260px;margin-bottom:28px;}
+  .footer-social{display:flex;gap:14px;}
+  .footer-social a{width:36px;height:36px;border:1px solid var(--sand);display:flex;align-items:center;justify-content:center;text-decoration:none;color:var(--text-soft);font-size:14px;transition:border-color 0.2s,color 0.2s;}
+  .footer-social a:hover{border-color:var(--accent);color:var(--accent-dark);}
+  .footer-col-title{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text);font-weight:500;margin-bottom:20px;}
+  .footer-links{list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .footer-links a{font-size:13px;color:var(--text-soft);text-decoration:none;transition:color 0.2s;}
+  .footer-links a:hover{color:var(--text);}
+  .footer-bottom{border-top:1px solid var(--stone);padding-top:28px;display:flex;justify-content:space-between;align-items:center;}
+  .footer-copy{font-size:12px;color:var(--muted);}
+  .footer-legal{display:flex;gap:24px;}
+  .footer-legal a{font-size:12px;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+  .footer-legal a:hover{color:var(--text);}
+  @media(max-width:900px){nav{padding:0 24px;}.nav-links{display:none;}footer{padding:60px 24px 32px;}.footer-grid{grid-template-columns:1fr 1fr;gap:32px;}}
+
+.page-hero{padding:160px 60px 100px;background:var(--cream);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.page-hero-text .section-label{margin-bottom:16px;}
+.page-hero-heading{font-family:var(--serif);font-size:clamp(48px,5vw,72px);font-weight:300;line-height:1.1;margin-bottom:28px;}
+.page-hero-heading em{font-style:italic;color:var(--accent-dark);}
+.page-hero-text p{font-size:15px;color:var(--text-soft);line-height:1.85;max-width:480px;}
+.page-hero-visual{height:520px;overflow:hidden;position:relative;}
+.page-hero-visual img{width:100%;height:100%;object-fit:cover;}
+.values-section{padding:100px 60px;background:var(--warm-white);}
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:56px;}
+.value-card{background:var(--cream);padding:48px 40px;}
+.value-icon{font-family:var(--serif);font-size:42px;color:var(--accent);margin-bottom:24px;}
+.value-title{font-family:var(--serif);font-size:22px;font-weight:400;margin-bottom:12px;}
+.value-desc{font-size:13px;color:var(--text-soft);line-height:1.8;}
+.story-section{padding:0;display:grid;grid-template-columns:1fr 1fr;min-height:600px;}
+.story-visual{position:relative;overflow:hidden;min-height:560px;background:var(--stone);display:flex;align-items:center;justify-content:center;}
+.story-visual img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+.story-visual-placeholder{text-align:center;padding:32px;border:1px dashed var(--sand);background:rgba(253,251,248,0.5);max-width:280px;position:relative;z-index:1;}
+.story-content{display:flex;flex-direction:column;justify-content:center;padding:80px 72px;background:var(--warm-white);}
+.story-content p{font-size:14px;color:var(--text-soft);line-height:1.9;margin-bottom:20px;}
+.story-content p:first-of-type{font-family:var(--serif);font-size:20px;color:var(--text);font-style:italic;font-weight:300;line-height:1.6;}
+.founder-sig{font-family:var(--serif);font-size:26px;font-style:italic;color:var(--accent-dark);margin-top:32px;}
+.founder-title{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:4px;}
+.ingredients-section{padding:100px 60px;background:var(--cream);}
+.ingredients-table{margin-top:56px;}
+.ingredients-row{display:grid;grid-template-columns:160px 1fr 200px;gap:32px;align-items:start;padding:28px 0;border-bottom:1px solid var(--sand);}
+.ingredients-row:first-child{border-top:1px solid var(--sand);}
+.ing-name{font-family:var(--serif);font-size:17px;font-weight:400;}
+.ing-origin{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-top:4px;}
+.ing-desc{font-size:13px;color:var(--text-soft);line-height:1.75;}
+.ing-benefit{background:var(--text);color:var(--warm-white);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:6px 14px;display:inline-block;}
+.sustainability-section{padding:100px 60px;background:var(--text);color:var(--warm-white);}
+.sustainability-section .section-label{color:var(--accent);}
+.sustainability-section .section-title{color:var(--warm-white);}
+.sustainability-section .section-title em{color:var(--accent);}
+.sustain-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;margin-top:60px;}
+.sustain-item{border-top:1px solid rgba(255,255,255,0.15);padding-top:28px;}
+.sustain-num{font-family:var(--serif);font-size:48px;font-weight:300;color:var(--accent);line-height:1;margin-bottom:16px;}
+.sustain-label{font-size:13px;color:rgba(253,251,248,0.7);line-height:1.6;}
+@media(max-width:900px){.page-hero{grid-template-columns:1fr;padding:120px 24px 72px;}.page-hero-visual{height:320px;}.values-grid{grid-template-columns:1fr;}.story-section{grid-template-columns:1fr;}.story-content{padding:60px 24px;}.ingredients-row{grid-template-columns:1fr;gap:12px;}.sustain-grid{grid-template-columns:1fr 1fr;}}
+/* ── ANIMATIONS ── */
+.scroll-progress{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:200;width:0;pointer-events:none;}
+@keyframes navIn{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
+nav{animation:navIn 0.6s 0.05s cubic-bezier(0.22,1,0.36,1) both;}
+@keyframes imgZoom{from{transform:scale(1.08);}to{transform:scale(1);}}
+.page-hero-visual img{animation:imgZoom 2.2s cubic-bezier(0.25,0.46,0.45,0.94) both;}
+.story-visual img{transform:scale(1.08);transition:transform 1.8s cubic-bezier(0.25,0.46,0.45,0.94);}
+.story-visual.in-view img{transform:scale(1);}
+.btn-primary:active{transform:translateY(1px);}
+</style>
+</head>
+<body>
+<div class="scroll-progress" id="scroll-progress"></div>
+<nav>
+  <a href="index.html" class="nav-logo">Lumi<span>ère</span></a>
+  <ul class="nav-links"><li><a href="index.html" class="">Shop</a></li><li><a href="philosophy.html" class="active">Philosophy</a></li><li><a href="journal.html" class="">Journal</a></li></ul>
+  <div class="nav-actions">
+    <button class="nav-icon" aria-label="Search" onclick="window.location.href='index.html#products'">&#9906;</button>
+    <button class="nav-icon cart-btn" aria-label="Cart" onclick="window.location.href='cart.html'">&#9674;<span class="cart-count" id="cart-count">0</span></button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-text fade-up visible">
+    <p class="section-label">Our Philosophy</p>
+    <h1 class="page-hero-heading">Beauty that <em>honours</em><br/>the earth &amp; your skin.</h1>
+    <p>We started Lumière with one belief: that what you put on your skin should be as clean, honest, and nourishing as what you put in your body. No compromises. No greenwashing. Just pure, effective botanical science.</p>
+  </div>
+  <div class="page-hero-visual fade-up visible s1">
+    <img src="images/botanical-ingredients.jpg" alt="Botanical ingredients">
+  </div>
+</div>
+
+<!-- VALUES -->
+<section class="values-section">
+  <div class="section-header">
+    <div><p class="section-label">What We Stand For</p><h2 class="section-title">Our core <em>values</em></h2></div>
+  </div>
+  <div class="values-grid">
+    <div class="value-card fade-up">
+      <div class="value-icon">✦</div>
+      <h3 class="value-title">Radical Transparency</h3>
+      <p class="value-desc">Every ingredient is listed, explained, and sourced with intention. We publish our full formula breakdowns because we believe you have the right to know exactly what touches your skin.</p>
+    </div>
+    <div class="value-card fade-up s1">
+      <div class="value-icon">◎</div>
+      <h3 class="value-title">Clinical Efficacy</h3>
+      <p class="value-desc">Clean beauty doesn't mean weak beauty. Every formula is clinically tested, dermatologist-reviewed, and proven to deliver measurable results — without a single harsh synthetic.</p>
+    </div>
+    <div class="value-card fade-up s2">
+      <div class="value-icon">⌾</div>
+      <h3 class="value-title">Planetary Respect</h3>
+      <p class="value-desc">From refillable glass packaging to carbon-offset shipping and zero-waste manufacturing, every decision we make considers the planet as a stakeholder in our business.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER STORY -->
+<div class="story-section" id="about">
+  <div class="story-visual">
+    <img src="images/sophie-marchand-founder.jpg" alt="Sophie Marchand, Founder">
+  </div>
+  <div class="story-content">
+    <p class="section-label">The Founder</p>
+    <p>"I spent ten years as a cosmetic chemist, watching formulas get compromised at every turn — by cost, by trends, by what looked good on a label. Lumière was my way of doing it right."</p>
+    <p>Sophie Marchand founded Lumière in 2019 after leaving a senior role at a global beauty conglomerate. Armed with a PhD in biochemistry and a deep frustration with industry shortcuts, she developed each formula herself from her laboratory in Lyon — spending an average of 18 months per product before release.</p>
+    <p>Today, Lumière remains independently owned, refusing outside investment that might compromise its values. Every product is still approved by Sophie before it reaches your hands.</p>
+    <p class="founder-sig">Sophie Marchand</p>
+    <p class="founder-title">Founder &amp; Head of Formulation</p>
+  </div>
+</div>
+
+<!-- INGREDIENTS A–Z -->
+<section class="ingredients-section" id="ingredients">
+  <div class="section-header">
+    <div><p class="section-label">Full Transparency</p><h2 class="section-title">Ingredients <em>A–Z</em></h2></div>
+  </div>
+  <div class="ingredients-table">
+    <div class="ingredients-row fade-up">
+      <div><p class="ing-name">Bakuchiol</p><p class="ing-origin">India · Babchi Plant</p></div>
+      <p class="ing-desc">A naturally derived retinol alternative that stimulates collagen production and reduces fine lines without irritation. Safe for sensitive skin and during pregnancy.</p>
+      <div><span class="ing-benefit">Anti-ageing</span></div>
+    </div>
+    <div class="ingredients-row fade-up s1">
+      <div><p class="ing-name">Niacinamide</p><p class="ing-origin">Fermentation-derived</p></div>
+      <p class="ing-desc">Vitamin B3 that visibly reduces pore size, evens skin tone, and strengthens the skin barrier. Our formulas use a pharmaceutical-grade 10% concentration.</p>
+      <div><span class="ing-benefit">Brightening</span></div>
+    </div>
+    <div class="ingredients-row fade-up s2">
+      <div><p class="ing-name">Sea Kelp</p><p class="ing-origin">Norway · Wild-harvested</p></div>
+      <p class="ing-desc">Rich in iodine, vitamins, and amino acids, sea kelp deeply hydrates and delivers trace minerals that support cellular renewal and skin elasticity.</p>
+      <div><span class="ing-benefit">Hydration</span></div>
+    </div>
+    <div class="ingredients-row fade-up s3">
+      <div><p class="ing-name">Rosehip Oil</p><p class="ing-origin">Chile · Cold-pressed</p></div>
+      <p class="ing-desc">Packed with Vitamin C, beta-carotene, and essential fatty acids, our cold-pressed rosehip oil visibly fades dark spots and restores radiance within 4 weeks.</p>
+      <div><span class="ing-benefit">Brightening</span></div>
+    </div>
+    <div class="ingredients-row fade-up">
+      <div><p class="ing-name">Hyaluronic Acid</p><p class="ing-origin">Bio-fermented</p></div>
+      <p class="ing-desc">A triple-weight hyaluronic acid complex that works at three different depths of the skin — surface, mid-layer, and deep — for 72-hour continuous hydration.</p>
+      <div><span class="ing-benefit">Moisture</span></div>
+    </div>
+    <div class="ingredients-row fade-up s1">
+      <div><p class="ing-name">Ceramide Complex</p><p class="ing-origin">Plant-derived</p></div>
+      <p class="ing-desc">Our proprietary blend of ceramides 1, 3, and 6-II mirrors the skin's natural lipid structure, repairing a compromised barrier and locking moisture in all day.</p>
+      <div><span class="ing-benefit">Barrier repair</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SUSTAINABILITY -->
+<section class="sustainability-section" id="sustainability">
+  <div class="section-header" style="border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:56px;margin-bottom:0;">
+    <div><p class="section-label">Our Commitment</p><h2 class="section-title">Beauty &amp; <em>planet</em></h2></div>
+  </div>
+  <div class="sustain-grid">
+    <div class="sustain-item fade-up">
+      <p class="sustain-num">100%</p>
+      <p class="sustain-label">Recycled or refillable glass packaging across the entire range</p>
+    </div>
+    <div class="sustain-item fade-up s1">
+      <p class="sustain-num">0</p>
+      <p class="sustain-label">Plastic in primary packaging — ever. Committed since founding.</p>
+    </div>
+    <div class="sustain-item fade-up s2">
+      <p class="sustain-num">50+</p>
+      <p class="sustain-label">Harmful ingredients permanently excluded from all formulas</p>
+    </div>
+    <div class="sustain-item fade-up s3">
+      <p class="sustain-num">1%</p>
+      <p class="sustain-label">Of every sale donated to reforestation through 1% for the Planet</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <p class="footer-brand-name">Lumi<span>ère</span></p>
+      <p class="footer-desc">Clean beauty rooted in botanical science. We believe your skin deserves transparency, inside and out.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">&#9674;</a>
+        <a href="#" aria-label="Pinterest">&#9670;</a>
+        <a href="#" aria-label="TikTok">&#9658;</a>
+      </div>
+    </div>
+    <div>
+      <p class="footer-col-title">Shop</p>
+      <ul class="footer-links">
+        <li><a href="index.html#products">New Arrivals</a></li>
+        <li><a href="index.html#products">Serums</a></li>
+        <li><a href="index.html#products">Moisturisers</a></li>
+        <li><a href="index.html#products">Face Oils</a></li>
+        <li><a href="index.html#products">Bundles</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Learn</p>
+      <ul class="footer-links">
+        <li><a href="philosophy.html">Our Philosophy</a></li>
+        <li><a href="philosophy.html#ingredients">Ingredients A–Z</a></li>
+        <li><a href="journal.html">The Journal</a></li>
+        <li><a href="philosophy.html#sustainability">Sustainability</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Support</p>
+      <ul class="footer-links">
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Shipping &amp; Returns</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Track My Order</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Lumière Beauty. All rights reserved.</p>
+    <div class="footer-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Cookie Preferences</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+
+const PRODUCTS = {
+  serum:   {name:'Radiance Serum No. 3', price:84, size:'30ml', img:'ProductSerum'},
+  cream:   {name:'Velvet Cloud Cream',   price:62, size:'50ml', img:'ProductCream'},
+  oil:     {name:'Golden Elixir Oil',    price:72, size:'20ml', img:'ProductOil'},
+  eyecream:{name:'Luminous Eye Cream',   price:58, size:'15ml', img:'ProductEyeCream'},
+};
+function getCart(){return JSON.parse(localStorage.getItem('lumiere_cart')||'{}');}
+function saveCart(c){localStorage.setItem('lumiere_cart',JSON.stringify(c));}
+function updateCartCount(){
+  const c=getCart();
+  const total=Object.values(c).reduce((s,i)=>s+i.qty,0);
+  document.querySelectorAll('#cart-count').forEach(el=>el.textContent=total);
+}
+function addToCart(id,size){
+  const c=getCart();
+  const key=id+'_'+size;
+  if(c[key]){c[key].qty++;}else{c[key]={...PRODUCTS[id],size,qty:1,key};}
+  saveCart(c);updateCartCount();
+  return c[key];
+}
+window.addEventListener('DOMContentLoaded',updateCartCount);
+
+const obs = new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}}),{threshold:0.1});
+document.querySelectorAll('.fade-up:not(.visible)').forEach(el=>obs.observe(el));
+// Scroll progress
+const _prog=document.getElementById('scroll-progress');
+window.addEventListener('scroll',()=>{
+  const sy=window.scrollY;
+  document.querySelector('nav').style.boxShadow=sy>20?'0 1px 24px rgba(28,24,20,0.07)':'';
+  if(_prog)_prog.style.width=(sy/(document.documentElement.scrollHeight-window.innerHeight)*100)+'%';
+},{passive:true});
+// Story visual zoom on scroll-into-view
+const _storyVis=document.querySelector('.story-visual');
+if(_storyVis){
+  new IntersectionObserver(([e])=>{
+    if(e.isIntersecting)e.target.classList.add('in-view');
+  },{threshold:0.2}).observe(_storyVis);
+}
+// Sustain number count-up
+function _animCount(el){
+  const m=el.textContent.match(/^([\d.]+)(.*)/);
+  if(!m)return;
+  const target=parseFloat(m[1]),suffix=m[2],dur=1400,t0=performance.now();
+  (function tick(now){
+    const p=Math.min((now-t0)/dur,1),ease=1-Math.pow(1-p,3);
+    el.textContent=Math.round(target*ease)+suffix;
+    if(p<1)requestAnimationFrame(tick);
+  })(t0);
+}
+const _cObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){_animCount(e.target);_cObs.unobserve(e.target);}});
+},{threshold:0.7});
+document.querySelectorAll('.sustain-num').forEach(el=>_cObs.observe(el));
+</script>
+</body></html>
