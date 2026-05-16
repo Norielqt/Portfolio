@@ -4,8 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { FiGithub, FiGlobe, FiArrowRight, FiCode, FiZap, FiLayers, FiLayout, FiMonitor } from "react-icons/fi";
 import robertImage from '../assets/RobertHerjavec.webp';
 import webdevImage from '../assets/webdev.webp';
+import veradaPreview from '../assets/Verada_preview.webp';
 import automationImage from '../assets/automation.webp';
 import softdevImage from '../assets/softdev.webp';
+import project3a from '../assets/Project3a.webp';
 import {
   SiReact, SiVite, SiLaravel, SiMysql, SiTailwindcss, SiPython,
   SiHtml5, SiCss3, SiJavascript, SiTensorflow, SiPhp, SiDocker, SiVercel,
@@ -16,7 +18,7 @@ const categoryCards = [
   {
     title: "Websites",
     slug: "websites",
-    image: webdevImage,
+    image: veradaPreview,
     icon: FiGlobe,
     description: "Clean, fast, and professional websites built for real businesses.",
     tags: ["HTML", "CSS", "JavaScript"],
@@ -24,7 +26,7 @@ const categoryCards = [
   {
     title: "Web Application",
     slug: "web-application",
-    image: softdevImage,
+    image: project3a,
     icon: FiMonitor,
     description: "Full-stack web applications with rich features and smooth UX.",
     tags: ["React", "Laravel", "MySQL"],
@@ -117,7 +119,7 @@ export default function Projects({ category = null }) {
           </div>
 
           {/* Category Navigation */}
-          <section className="pt-16 pb-20 px-4 max-w-6xl mx-auto">
+          <section className="pt-16 pb-20 px-4 max-w-7xl mx-auto">
             <div className="text-center mb-10">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand/50 mb-3">
                 Browse by Category
@@ -176,8 +178,8 @@ export default function Projects({ category = null }) {
                       {/* Title overlay */}
                       <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
                         <h3
-                          style={{ fontFamily: "Forum, serif" }}
-                          className="text-white text-3xl md:text-4xl leading-tight"
+                          style={{ fontFamily: "Forum, serif", fontSize: "30px" }}
+                          className="text-white leading-tight"
                         >
                           {cat.title}
                         </h3>

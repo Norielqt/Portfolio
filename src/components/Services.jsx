@@ -1,15 +1,15 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import service1Image from '../assets/webdev.webp';
-import service1Image1x from '../assets/webdev_1x.webp';
-import service1Image2x from '../assets/webdev_2x.webp';
-import service2Image from '../assets/softdev.webp';
-import service2Image1x from '../assets/softdev_1x.webp';
-import service2Image2x from '../assets/softdev_2x.webp';
-import service3Image from '../assets/automation.webp';
-import service3Image1x from '../assets/automation_1x.webp';
-import service3Image2x from '../assets/automation_2x.webp';
+import service1Image from '../assets/Verada_preview.webp';
+import service1Image1x from '../assets/Verada_preview.webp';
+import service1Image2x from '../assets/Verada_preview.webp';
+import service2Image from '../assets/Project3a.webp';
+import service2Image1x from '../assets/Project3a.webp';
+import service2Image2x from '../assets/Project3a.webp';
+import service3Image from '../assets/n8npreview.webp';
+import service3Image1x from '../assets/n8npreview.webp';
+import service3Image2x from '../assets/n8npreview.webp';
 import {
   SiReact, SiTailwindcss, SiJavascript, SiPhp, SiHtml5,
   SiLaravel, SiMysql, SiPython, SiPostgresql,
@@ -23,7 +23,7 @@ const services = [
     image: service1Image,
     image1x: service1Image1x,
     image2x: service1Image2x,
-    title: "Web Development",
+    title: "Website Development",
     price: "$10",
     description:
       "Responsive websites and web apps built with modern stacks or CMS platforms, clean, fast, and easy to manage.",
@@ -44,29 +44,10 @@ const services = [
     ],
   },
   {
-    image: service3Image,
-    image1x: service3Image1x,
-    image2x: service3Image2x,
-    title: "Automation",
-    price: "$12",
-    description:
-      "Workflows and integrations that handle repetitive tasks so you can focus on real work.",
-    tools: [
-      { icon: <SiN8N />, label: "n8n" },
-      { icon: <SiMake />, label: "Make" },
-      { icon: <SiZapier />, label: "Zapier" },
-      { icon: <FaRobot />, label: "GHL" },
-    ],
-    descriptionPage: [
-      "If you're doing the same tasks over and over, sending messages, updating data, moving stuff between tools, that's time you're wasting every day. That's usually where automation comes in.",
-      "I set things up so those tasks run on their own in the background, so you don't have to keep doing them manually. Less repetitive work, fewer mistakes, and you can focus on the stuff that actually matters."
-    ],
-  },
-  {
     image: service2Image,
     image1x: service2Image1x,
     image2x: service2Image2x,
-    title: "Software Development",
+    title: "Web Application",
     price: "$15",
     description:
       "Custom systems, CRMs, and SaaS tailored to how your business actually works.",
@@ -81,6 +62,26 @@ const services = [
     descriptionPage: [
       "If your current tools don't really fit how you work, or you're juggling spreadsheets and different apps just to get things done, that usually means you need something custom.",
       "I build systems based on how you actually work, so everything's in one place and makes sense. It saves time, reduces manual work, and you're not forcing your process to fit someone else's software."
+    ],
+  },
+  {
+    image: service3Image,
+    image1x: service3Image1x,
+    image2x: service3Image2x,
+    title: "Automation",
+    imageZoom: 1.02,
+    price: "$12",
+    description:
+      "Workflows and integrations that handle repetitive tasks so you can focus on real work.",
+    tools: [
+      { icon: <SiN8N />, label: "n8n" },
+      { icon: <SiMake />, label: "Make" },
+      { icon: <SiZapier />, label: "Zapier" },
+      { icon: <FaRobot />, label: "GHL" },
+    ],
+    descriptionPage: [
+      "If you're doing the same tasks over and over, sending messages, updating data, moving stuff between tools, that's time you're wasting every day. That's usually where automation comes in.",
+      "I set things up so those tasks run on their own in the background, so you don't have to keep doing them manually. Less repetitive work, fewer mistakes, and you can focus on the stuff that actually matters."
     ],
   },
 ];
@@ -99,7 +100,7 @@ const Services = ({ layout = "grid", showDescription = true }) => {
   };
 
   return (
-    <section className="py-16 px-4 max-w-5xl mx-auto text-brand dark:text-white" id="services">
+    <section className="py-16 px-4 max-w-[1440px] mx-auto text-brand dark:text-white" id="services">
       <div>
         {layout === "grid" ? (
           // Grid layout for home page
@@ -118,6 +119,7 @@ const Services = ({ layout = "grid", showDescription = true }) => {
                     alt={service.title}
                     loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    style={service.imageZoom ? { transform: `scale(${service.imageZoom})` } : undefined}
                   />
                 </div>
                 <div className="p-6 flex flex-col flex-1">
@@ -141,7 +143,7 @@ const Services = ({ layout = "grid", showDescription = true }) => {
                 {/* MOBILE card */}
                 <div className="md:hidden rounded-3xl overflow-hidden shadow-md" style={{ background: "linear-gradient(160deg, #f6f8f5 60%, #ddebd3 100%)" }}>
                   {/* Image banner — compact height */}
-                  <div className="w-full overflow-hidden" style={{ height: "200px" }}>
+                  <div className="w-full overflow-hidden" style={{ height: "160px" }}>
                     <img
                       src={service.image2x}
                       srcSet={`${service.image1x} 313w, ${service.image2x} 626w`}
@@ -192,7 +194,7 @@ const Services = ({ layout = "grid", showDescription = true }) => {
 
                 {/* DESKTOP layout — untouched */}
                 <div className="hidden md:flex flex-row gap-8 items-center">
-                  <div className="md:w-1/3 flex-shrink-0 md:ml-auto w-full">
+                  <div className="md:w-[50%] flex-shrink-0 md:ml-auto w-full overflow-hidden">
                     <img
                       src={service.image2x}
                       srcSet={`${service.image1x} 313w, ${service.image2x} 626w`}
@@ -200,7 +202,7 @@ const Services = ({ layout = "grid", showDescription = true }) => {
                       alt={service.title}
                       loading="lazy"
                       className="shadow-lg w-full object-cover block md:max-w-none"
-                      style={{ height: "clamp(260px, 55vw, 450px)" }}
+                      style={{ height: "clamp(220px, 32vw, 340px)", transform: service.imageZoom ? `scale(${service.imageZoom})` : undefined }}
                     />
                   </div>
                   <div className="md:w-1/2 md:ml-auto">
