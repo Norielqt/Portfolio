@@ -106,8 +106,12 @@ const Services = ({ layout = "grid", showDescription = true }) => {
           // Grid layout for home page
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => (
-              <div
+              <motion.div
                 key={service.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
                 onClick={() => handleServiceClick(service.title)}
                 className="group cursor-pointer bg-white rounded-2xl overflow-hidden border border-brand/10 hover:border-brand/30 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col"
               >
@@ -132,18 +136,24 @@ const Services = ({ layout = "grid", showDescription = true }) => {
                   <div className="flex items-center gap-2 text-brand font-semibold text-sm mt-4 group-hover:gap-3 transition-all">
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         ) : (
           // List layout for services page
           <div className="space-y-16">
             {services.map((service, index) => (
-              <div key={service.title}>
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.05 }}
+                viewport={{ once: true }}
+              >
                 {/* MOBILE card */}
                 <div className="md:hidden rounded-3xl overflow-hidden shadow-md" style={{ background: "linear-gradient(160deg, #f6f8f5 60%, #ddebd3 100%)" }}>
                   {/* Image banner — compact height */}
-                  <div className="w-full overflow-hidden" style={{ height: "160px" }}>
+                  <div className="w-full overflow-hidden" style={{ height: "130px" }}>
                     <img
                       src={service.image2x}
                       srcSet={`${service.image1x} 313w, ${service.image2x} 626w`}
@@ -155,10 +165,10 @@ const Services = ({ layout = "grid", showDescription = true }) => {
                   </div>
 
                   {/* Content */}
-                  <div className="px-6 py-6">
+                  <div className="px-4 py-4">
                     {/* Price badge */}
                     <span
-                      className="inline-block text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4"
+                      className="inline-block text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3"
                       style={{ background: "#536942", color: "#fff", opacity: 0.8 }}
                     >
                       Starting at {service.price}/hr
@@ -166,8 +176,8 @@ const Services = ({ layout = "grid", showDescription = true }) => {
 
                     {/* Title */}
                     <h4
-                      className="mb-4"
-                      style={{ fontFamily: "Forum, serif", fontSize: "28px", color: "#243011", lineHeight: "1.2" }}
+                      className="mb-3"
+                      style={{ fontFamily: "Forum, serif", fontSize: "20px", color: "#243011", lineHeight: "1.2" }}
                     >
                       {service.title}
                     </h4>
@@ -223,7 +233,7 @@ const Services = ({ layout = "grid", showDescription = true }) => {
                     <h3 style={{ fontFamily: "DM Sans, sans-serif", fontSize: "21px" }} className="mt-6">Starts at {service.price}/hr</h3>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         )}

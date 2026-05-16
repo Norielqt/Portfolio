@@ -100,37 +100,48 @@ export default function Projects({ category = null }) {
           {/* Header */}
           <div
             style={{ background: "radial-gradient(ellipse at 30% 60%, #ddebd3 0%, #f6f8f5 50%, #f0f4ec 100%)" }}
-            className="pt-32 pb-16 px-4"
+            className="pt-20 md:pt-32 pb-12 md:pb-16 px-4"
           >
-            <div className="max-w-6xl mx-auto w-full text-center">
-              <p className="text-sm font-semibold tracking-[0.2em] uppercase text-brand/60 mb-4">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="max-w-6xl mx-auto w-full text-center"
+            >
+              <p className="text-xs md:text-sm font-semibold tracking-[0.2em] uppercase text-brand/60 mb-3">
                 Portfolio
               </p>
               <h1
-                style={{ fontFamily: "DM Sans, sans-serif", letterSpacing: "clamp(-1.5px, -0.4vw, -3px)" }}
-                className="text-brand-800 font-extrabold text-5xl md:text-7xl"
+                style={{ fontFamily: "DM Sans, sans-serif", letterSpacing: "clamp(-1.5px, -0.4vw, -3px)", fontSize: "clamp(26px, 7vw, 72px)" }}
+                className="text-brand-800 font-extrabold"
               >
                 My Projects
               </h1>
-              <p className="mt-6 text-brand-700/70 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+              <p className="mt-4 text-brand-700/70 text-sm md:text-lg max-w-2xl mx-auto leading-relaxed">
                 A collection of work across web development, automations, and custom software.
               </p>
-            </div>
+            </motion.div>
           </div>
 
           {/* Category Navigation */}
-          <section className="pt-16 pb-20 px-4 max-w-7xl mx-auto">
-            <div className="text-center mb-10">
+          <section className="pt-10 pb-16 px-4 max-w-7xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="text-center mb-10"
+            >
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand/50 mb-3">
                 Browse by Category
               </p>
               <h2
                 style={{ fontFamily: "Forum, serif", color: "#243011" }}
-                className="text-3xl md:text-4xl"
+                className="text-2xl md:text-4xl"
               >
                 Pick where you'd like to start
               </h2>
-            </div>
+            </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               {categoryCards.map((cat, i) => {
@@ -148,8 +159,7 @@ export default function Projects({ category = null }) {
                     className="group relative rounded-3xl overflow-hidden text-left shadow-md hover:shadow-2xl transition-all duration-500 focus:outline-none focus:ring-2 focus:ring-brand/40"
                     style={{ background: "linear-gradient(160deg, #f6f8f5 0%, #eaf1e2 100%)" }}
                   >
-                    {/* Image header */}
-                    <div className="relative h-72 md:h-96 overflow-hidden">
+                    <div className="relative h-44 md:h-96 overflow-hidden">
                       <img
                         src={cat.image}
                         alt={cat.title}
@@ -158,27 +168,18 @@ export default function Projects({ category = null }) {
                       />
                       <div
                         className="absolute inset-0"
-                        style={{
-                          background:
-                            "linear-gradient(180deg, rgba(36,48,17,0.15) 0%, rgba(36,48,17,0.55) 100%)",
-                        }}
+                        style={{ background: "linear-gradient(180deg, rgba(36,48,17,0.15) 0%, rgba(36,48,17,0.55) 100%)" }}
                       />
-
-                      {/* Count badge */}
                       <div className="absolute top-4 left-4 flex items-center gap-1.5 bg-white/95 backdrop-blur-sm text-brand text-xs font-bold px-3 py-1.5 rounded-full shadow-sm">
                         <span className="w-1.5 h-1.5 rounded-full bg-brand inline-block"></span>
                         {count} {count === 1 ? "Project" : "Projects"}
                       </div>
-
-                      {/* Icon */}
                       <div className="absolute top-4 right-4 w-11 h-11 rounded-full bg-white/95 backdrop-blur-sm flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
                         <Icon className="text-brand" size={20} />
                       </div>
-
-                      {/* Title overlay */}
                       <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
                         <h3
-                          style={{ fontFamily: "Forum, serif", fontSize: "30px" }}
+                          style={{ fontFamily: "Forum, serif", fontSize: "clamp(20px, 5vw, 30px)" }}
                           className="text-white leading-tight"
                         >
                           {cat.title}
@@ -208,7 +209,7 @@ export default function Projects({ category = null }) {
                 <div className="md:hidden rounded-3xl overflow-hidden shadow-md" style={{ background: "linear-gradient(160deg, #f6f8f5 60%, #ddebd3 100%)" }}>
                   <div
                     className="relative w-full overflow-hidden group"
-                    style={{ height: "220px" }}
+                    style={{ height: "180px" }}
                     onClick={() => project.images.length > 0 && openModal(project.id, 0)}
                   >
                     {(project.thumbnail || project.images[0]) ? (
@@ -234,7 +235,7 @@ export default function Projects({ category = null }) {
                   </div>
                   <div className="px-5 py-5">
                     <div className="flex items-center gap-2 mb-1">
-                      <h4 style={{ fontFamily: "Forum, serif", fontSize: "24px", color: "#243011", lineHeight: "1.2" }}>{project.title}</h4>
+                      <h4 style={{ fontFamily: "Forum, serif", fontSize: "18px", color: "#243011", lineHeight: "1.2" }}>{project.title}</h4>
                     </div>
                     {project.badge && (
                       <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand/70 mb-3">

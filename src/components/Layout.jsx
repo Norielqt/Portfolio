@@ -34,7 +34,7 @@ export default function Layout() {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
-  // Close mobile menu on outside click
+  // Close mobile menu on outside click or touch
   useEffect(() => {
     if (!menuOpen) return;
     const handler = (e) => {
@@ -43,7 +43,11 @@ export default function Layout() {
       }
     };
     document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
+    document.addEventListener("touchstart", handler, { passive: true });
+    return () => {
+      document.removeEventListener("mousedown", handler);
+      document.removeEventListener("touchstart", handler);
+    };
   }, [menuOpen]);
 
   return (
@@ -161,7 +165,7 @@ export default function Layout() {
       </main>
 
       <Footer />
-      <ChatBot />
+      {!menuOpen && <ChatBot />}
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaFacebook, FaEnvelope } from "react-icons/fa";
 
 const links = [
@@ -11,7 +12,13 @@ const links = [
 export default function Footer() {
   return (
     <footer className="py-10 border-t border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400">
-      <div className="max-w-5xl mx-auto px-4 flex flex-col items-center gap-4">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+        className="max-w-5xl mx-auto px-4 flex flex-col items-center gap-4"
+      >
         <div className="flex items-center gap-5">
           {links.map(({ icon, href, label }) => (
             <a
@@ -27,7 +34,7 @@ export default function Footer() {
           ))}
         </div>
         <p className="text-sm">&copy; {new Date().getFullYear()} Noriel Fulgencio. All rights reserved.</p>
-      </div>
+      </motion.div>
     </footer>
   );
 }

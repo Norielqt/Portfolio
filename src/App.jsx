@@ -52,33 +52,33 @@ const ServicesPage = () => (
     />
     <div
       style={{ background: "radial-gradient(ellipse at 30% 60%, #ddebd3 0%, #f6f8f5 50%, #f0f4ec 100%)" }}
-      className="pt-32 pb-16 px-4"
+      className="pt-20 md:pt-32 pb-10 md:pb-16 px-4"
     >
       <div className="max-w-6xl mx-auto w-full text-center">
-        <p className="text-sm font-semibold tracking-[0.2em] uppercase text-brand/60 mb-4">
+        <p className="text-xs md:text-sm font-semibold tracking-[0.2em] uppercase text-brand/60 mb-3">
           What I do
         </p>
         <h1
-          style={{ fontFamily: "DM Sans, sans-serif", letterSpacing: "clamp(-1.5px, -0.4vw, -3px)" }}
-          className="text-brand-800 font-extrabold text-5xl md:text-7xl"
+          style={{ fontFamily: "DM Sans, sans-serif", letterSpacing: "clamp(-1.5px, -0.4vw, -3px)", fontSize: "clamp(28px, 7vw, 72px)" }}
+          className="text-brand-800 font-extrabold"
         >
           My Services
         </h1>
-        <p className="mt-6 text-brand-700/70 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+        <p className="mt-4 text-brand-700/70 text-sm md:text-lg max-w-2xl mx-auto leading-relaxed">
           From web development to automations and custom software, here's how I help businesses build, scale, and streamline.
         </p>
       </div>
     </div>
     <Services layout="list" />
-    <div style={{ backgroundColor: "#f6f8f5" }} className="py-16 px-4 min-h-[40vh] flex items-start pt-20">
+    <div style={{ backgroundColor: "#f6f8f5" }} className="py-12 md:py-16 px-4 min-h-[40vh] flex items-start pt-14 md:pt-20">
       <div className="max-w-6xl mx-auto w-full">
-        <h4 style={{ fontFamily: "Forum, serif", fontSize: "clamp(28px, 7vw, 40px)" }} className="text-brand text-left">
+        <h4 style={{ fontFamily: "Forum, serif", fontSize: "clamp(22px, 5vw, 40px)" }} className="text-brand text-left">
           Why Choose Me
         </h4>
         <div className="flex flex-col md:flex-row gap-12 mt-6">
           {/* Description on left */}
           <div className="md:w-1/2">
-            <p style={{ fontFamily: "DM Sans, sans-serif", fontSize: "18px" }} className="text-brand">
+            <p style={{ fontFamily: "DM Sans, sans-serif", fontSize: "clamp(14px, 3.5vw, 18px)" }} className="text-brand">
               I've been working as a developer for about 2+ years now, and I've handled real projects including building custom software from scratch tailored to client needs, building websites, and automations. I keep things simple and make sure everything runs the way it should.
               <br />
               <br />

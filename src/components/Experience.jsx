@@ -41,19 +41,19 @@ const Experience = () => {
     <>
       <div
         style={{ background: "radial-gradient(ellipse at 30% 60%, #ddebd3 0%, #f6f8f5 50%, #f0f4ec 100%)" }}
-        className="pt-32 pb-16 px-4"
+        className="pt-20 md:pt-32 pb-10 md:pb-16 px-4"
       >
         <div className="max-w-6xl mx-auto w-full text-center">
-          <p className="text-sm font-semibold tracking-[0.2em] uppercase text-brand/60 mb-4">
+          <p className="text-xs md:text-sm font-semibold tracking-[0.2em] uppercase text-brand/60 mb-3">
             Timeline
           </p>
           <h1
-            style={{ fontFamily: "DM Sans, sans-serif", letterSpacing: "clamp(-1.5px, -0.4vw, -3px)" }}
-            className="text-brand-800 font-extrabold text-5xl md:text-7xl"
+            style={{ fontFamily: "DM Sans, sans-serif", letterSpacing: "clamp(-1.5px, -0.4vw, -3px)", fontSize: "clamp(28px, 7vw, 72px)" }}
+            className="text-brand-800 font-extrabold"
           >
             My Journey
           </h1>
-          <p className="mt-6 text-brand-700/70 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-4 text-brand-700/70 text-sm md:text-lg max-w-2xl mx-auto leading-relaxed">
             A look back at the experiences, education, and milestones that shaped me into the engineer I am today.
           </p>
         </div>
@@ -127,55 +127,25 @@ const Experience = () => {
                   {!isLeft && card}
                 </div>
 
-                {/* Mobile: editorial card timeline */}
-                <div className="flex md:hidden w-full flex-col mb-6">
-                  <div
-                    className="relative rounded-3xl overflow-hidden shadow-md"
-                    style={{ background: "linear-gradient(135deg, #f6f8f5 60%, #ddebd3 100%)" }}
-                  >
-                    {/* Thick left accent bar */}
-                    <div
-                      className={`absolute left-0 top-0 bottom-0 w-1.5 rounded-l-3xl ${colors.dot}`}
-                    />
-
-                    <div className="pl-7 pr-5 py-6">
-                      {/* Type badge + icon */}
-                      <div className="flex items-center gap-2 mb-4">
-                        <div className={`w-9 h-9 rounded-xl flex items-center justify-center text-white text-base shadow-sm ${colors.dot}`}>
-                          {getIcon()}
-                        </div>
-                        <span className={`text-xs font-bold uppercase tracking-widest ${colors.icon}`}>
-                          {item.type === "work" ? "Work" : item.type === "education" ? "Education" : "Milestone"}
-                        </span>
-                      </div>
-
-                      {/* Title */}
-                      <h4
-                        style={{ fontFamily: "Forum, serif", fontSize: "22px", lineHeight: "1.2", color: "#243011" }}
-                        className="mb-1"
-                      >
-                        {item.title}
-                      </h4>
-
-                      {/* Company */}
-                      <p className="text-sm font-semibold text-brand/70 mb-3">{item.company}</p>
-
-                      {/* Date pill */}
-                      <span
-                        className="inline-block text-xs font-medium px-3 py-1 rounded-full"
-                        style={{ background: "#536942", color: "#fff", opacity: 0.75 }}
-                      >
-                        {item.date}
-                      </span>
-
-                      {item.description && <p className="text-brand-700/70 text-sm mt-3">{item.description}</p>}
+                {/* Mobile: left-rail timeline */}
+                <div className="flex md:hidden w-full gap-4">
+                  {/* Left rail: line + dot */}
+                  <div className="flex flex-col items-center">
+                    <div className={`w-8 h-8 rounded-full ${colors.dot} flex items-center justify-center text-white text-sm shrink-0 shadow-md z-10`}>
+                      {getIcon()}
                     </div>
+                    {index < timeline.length - 1 && (
+                      <div className="w-px flex-1 mt-1" style={{ background: "linear-gradient(to bottom, #536942 60%, transparent)", opacity: 0.25, minHeight: "32px" }} />
+                    )}
                   </div>
 
-                  {/* Connecting line between cards */}
-                  {index < timeline.length - 1 && (
-                    <div className="self-center w-0.5 h-6" style={{ background: "linear-gradient(to bottom, #536942, transparent)", opacity: 0.3 }} />
-                  )}
+                  {/* Card */}
+                  <div className="flex-1 pb-8">
+                    <p className="text-xs font-medium text-brand/50 mb-1 tracking-wide">{item.date}</p>
+                    <h4 className="font-bold text-brand leading-snug mb-0.5" style={{ fontSize: "16px" }}>{item.title}</h4>
+                    <p className="text-sm text-brand/60">{item.company}</p>
+                    {item.description && <p className="text-xs text-brand/50 mt-1">{item.description}</p>}
+                  </div>
                 </div>
               </motion.div>
             );

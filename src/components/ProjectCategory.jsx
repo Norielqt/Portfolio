@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
 import Seo from "./Seo";
@@ -67,7 +68,12 @@ const ProjectCategory = ({ category }) => {
         style={{ background: "radial-gradient(ellipse at 30% 60%, #ddebd3 0%, #f6f8f5 50%, #f0f4ec 100%)" }}
         className="pt-32 pb-16 px-4"
       >
-        <div className="max-w-6xl mx-auto w-full text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="max-w-6xl mx-auto w-full text-center"
+        >
           <button
             onClick={() => navigate("/projects")}
             className="flex items-center justify-center gap-2 text-brand/60 hover:text-brand transition mb-6 mx-auto text-sm font-semibold tracking-[0.15em] uppercase"
@@ -81,7 +87,7 @@ const ProjectCategory = ({ category }) => {
           >
             {categoryTitle}
           </h1>
-        </div>
+        </motion.div>
       </div>
       <Projects category={category} />
     </div>
