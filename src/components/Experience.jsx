@@ -72,7 +72,7 @@ const Experience = () => {
       <section className="pt-8 pb-16 px-4 max-w-3xl mx-auto" id="experience">
         <div className="relative">
           {/* Vertical rail - slightly left of center */}
-          <div className="absolute top-0 bottom-0 w-px" style={{ left: "38%", background: "linear-gradient(to bottom, #111111 80%, transparent)", opacity: 0.12 }} />
+          <div className="absolute top-0 bottom-0 w-px left-[25%] md:left-[38%]" style={{ background: "linear-gradient(to bottom, #111111 80%, transparent)", opacity: 0.12 }} />
 
           {timeline.map((item, index) => {
             const getIcon = () => {
@@ -92,14 +92,14 @@ const Experience = () => {
               >
                 {/* Icon dot */}
                 <div
-                  className="absolute w-10 h-10 rounded-full bg-[#111111] flex items-center justify-center text-white z-10 shadow-sm"
-                  style={{ left: "calc(38% - 20px)", marginTop: "2px" }}
+                  className="absolute w-10 h-10 rounded-full bg-[#111111] flex items-center justify-center text-white z-10 shadow-sm left-[calc(25%-20px)] md:left-[calc(38%-20px)]"
+                  style={{ marginTop: "2px" }}
                 >
                   {getIcon()}
                 </div>
 
                 {/* Content — right of dot */}
-                <div className="flex-1 pt-1.5" style={{ marginLeft: "calc(38% + 56px)" }}>
+                <div className="flex-1 pt-1.5 ml-[calc(25%+56px)] md:ml-[calc(38%+56px)]">
                   <p style={{ fontSize: "12px", color: "#11111166", letterSpacing: "0.06em", textTransform: "uppercase" }} className="font-medium mb-1">{item.date}</p>
                   <h4 style={{ fontFamily: "DM Sans, sans-serif", fontSize: "18px", fontWeight: 700, color: "#111111", letterSpacing: "-0.3px" }} className="leading-snug mb-0.5">{item.title}</h4>
                   <p style={{ fontSize: "14px", color: "#555555" }} className="font-medium">{item.company}</p>

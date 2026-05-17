@@ -120,7 +120,7 @@ const Services = ({ layout = "grid", showDescription = true }) => {
 
   return (
     <section
-      className={layout === "grid" ? "py-16 overflow-hidden text-brand dark:text-white" : "py-16 px-4 max-w-5xl mx-auto text-brand dark:text-white"}
+      className={layout === "grid" ? "py-16 overflow-hidden text-brand dark:text-white" : "pt-4 pb-16 md:py-16 px-4 max-w-5xl mx-auto text-brand dark:text-white"}
       id="services"
     >
       <div>
@@ -176,15 +176,15 @@ const Services = ({ layout = "grid", showDescription = true }) => {
               >
                 {/* MOBILE card */}
                 <div className="md:hidden rounded-3xl overflow-hidden shadow-md" style={{ background: "#F5F5F5" }}>
-                  {/* Image banner — compact height */}
-                  <div className="w-full overflow-hidden" style={{ height: "130px" }}>
+                  {/* Image banner */}
+                  <div className="w-full overflow-hidden" style={{ height: "200px" }}>
                     <img
                       src={service.image2x}
                       srcSet={`${service.image1x} 313w, ${service.image2x} 626w`}
                       sizes="313px"
                       alt={service.title}
                       loading="lazy"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover object-top"
                     />
                   </div>
 

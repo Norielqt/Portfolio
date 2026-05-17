@@ -181,10 +181,10 @@ const Home = () => {
       {/* ── WHAT I OFFER ─────────────────────────────────────────────────── */}
       <div style={{ background: "#F8F8F8" }}>
         <div className="max-w-5xl mx-auto px-6 pt-16 pb-4 text-center">
-        <h2 style={{ fontFamily: "DM Sans, sans-serif", letterSpacing: "-1px", fontSize: "42px" }} className="font-extrabold text-brand-800">
+        <h2 style={{ fontFamily: "DM Sans, sans-serif", letterSpacing: "-1px", fontSize: "clamp(26px, 7vw, 42px)" }} className="font-extrabold text-brand-800">
           What I Offer
         </h2>
-        <p className="mt-3 text-brand-700/70 max-w-md mx-auto leading-relaxed" style={{ fontSize: "18px" }}>
+        <p className="mt-3 text-brand-700/70 max-w-md mx-auto leading-relaxed" style={{ fontSize: "clamp(14px, 3.5vw, 18px)" }}>
           Practical solutions tailored to your business, from clean websites to systems that just work.
         </p>
       </div>
@@ -202,7 +202,7 @@ const Home = () => {
               key={index}
               onClick={() => navigate("/services")}
               className="group cursor-pointer rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex-shrink-0 relative"
-              style={{ width: "480px", height: "220px" }}
+              style={{ width: "clamp(260px, 72vw, 480px)", height: "clamp(150px, 42vw, 220px)" }}
             >
               <img
                 src={service.image}
