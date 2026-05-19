@@ -367,11 +367,11 @@ export default function ChatBot() {
                       </div>
                     )}
                     <div
-                      className={`min-w-0 ${msg.role === "user" ? "max-w-[75%]" : "max-w-[calc(100%-2.5rem)]"} px-3.5 py-2.5 text-sm leading-relaxed break-words overflow-hidden ${
+                      className={`min-w-0 ${
                         msg.role === "user"
-                          ? "text-white"
-                          : "text-gray-800"
-                      }`}
+                          ? "max-w-[75%] rounded-2xl rounded-tr-sm text-white"
+                          : "max-w-[calc(100%-2.5rem)] rounded-2xl rounded-tl-sm text-gray-800"
+                      } px-3.5 py-2.5 text-sm leading-relaxed break-words overflow-hidden`}
                       style={
                         msg.role === "user"
                           ? { background: "#111111" }
@@ -396,7 +396,7 @@ export default function ChatBot() {
                   <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "#111111", boxShadow: "0 0 8px rgba(17,17,17,0.3)" }}>
                     <HiSparkles className="w-3 h-3 text-white" />
                   </div>
-                  <div className="px-4 py-3 flex space-x-1.5 items-center" style={{ background: "#F5F5F5", border: "1px solid #E5E5E5" }}>
+                  <div className="px-4 py-3 flex space-x-1.5 items-center rounded-2xl rounded-tl-sm" style={{ background: "#F5F5F5", border: "1px solid #E5E5E5" }}>
                     {[0, 150, 300].map((delay) => (
                       <span key={delay} className="w-2 h-2 rounded-full animate-bounce bg-[#111111]" style={{ animationDelay: `${delay}ms` }} />
                     ))}
@@ -418,12 +418,13 @@ export default function ChatBot() {
                       <button
                         key={text}
                         onClick={() => sendMessage(text)}
-                        className={`group flex flex-col items-start gap-1 px-3 py-2.5 text-left transition-all duration-200 hover:bg-[#EBEBEB] active:scale-[0.98] focus:outline-none`}
+                        className={`group flex flex-col items-start gap-1.5 px-3 py-3 text-left transition-all duration-200 hover:bg-[#EBEBEB] active:scale-[0.98] focus:outline-none rounded-xl`}
                         style={{
                           background: "#F5F5F5",
                           border: "1px solid #E5E5E5",
                         }}
                       >
+                        <span className="text-base leading-none">{icon}</span>
                         <span className="text-xs font-semibold" style={{ color: "#111111" }}>{label}</span>
                         <span className="text-[10px] leading-tight text-gray-500">{text}</span>
                       </button>
@@ -448,14 +449,14 @@ export default function ChatBot() {
                 onKeyDown={handleKeyDown}
                 placeholder="Ask me anything..."
                 disabled={loading}
-                className="flex-1 text-sm px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-black/20 transition text-gray-900 placeholder-gray-400"
+                className="flex-1 text-sm px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-black/20 transition text-gray-900 placeholder-gray-400 rounded-full"
                 style={{ background: "#F5F5F5", border: "1px solid #E5E5E5" }}
               />
               <button
                 onClick={() => sendMessage()}
                 disabled={loading || !input.trim()}
                 aria-label="Send"
-                className="w-10 h-10 flex-shrink-0 flex items-center justify-center text-white transition-all duration-200 hover:scale-105 disabled:opacity-30 disabled:cursor-not-allowed focus:outline-none"
+                className="w-10 h-10 flex-shrink-0 flex items-center justify-center text-white transition-all duration-200 hover:scale-105 disabled:opacity-30 disabled:cursor-not-allowed focus:outline-none rounded-full"
                 style={{ background: "#111111" }}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
