@@ -48,6 +48,16 @@ import project6f from '../assets/Project6f.webp';
 import project6g from '../assets/Project6g.webp';
 import project6h from '../assets/Project6h.webp';
 
+import proveax1 from '../assets/proveax-1.png';
+import proveax2 from '../assets/proveax-2.png';
+import proveax3 from '../assets/proveax-3.png';
+import proveax4 from '../assets/proveax-4.png';
+import proveax5 from '../assets/proveax-5.png';
+import proveax6 from '../assets/proveax-6.png';
+import proveax7 from '../assets/proveax-7.png';
+import proveax8 from '../assets/proveax-8.png';
+import proveax9 from '../assets/proveax-9.png';
+
 import zentraCRM from '../assets/ZentraCRM.webp';
 import realtorHQ from '../assets/RealtorHQ.webp';
 import parkCabins from '../assets/ParkCabins.webp';
@@ -78,6 +88,27 @@ const projects = [
     stack: ["HTML", "CSS", "JavaScript"],
     thumbnail: lumierePreview,
     images: [],
+  },
+  {
+    id: 8,
+    title: "Proveax",
+    category: "web-application",
+    thumbnail: proveax2,
+    description:
+      "A full-stack, multi-tenant B2B SaaS platform built for real estate investment teams. Proveax unifies property research, lead management, team productivity tracking, and monetization into one cohesive platform. Features include multi-tenant workspace isolation, role-based access control, an interactive property map powered by Mapbox, subscription billing via Stripe, OAuth authentication, and automated email workflows through Resend and Brevo. Cloud storage is handled by Dropbox, with the backend deployed on Railway and the frontend on Vercel.",
+    stack: ["React", "Vite", "Tailwind CSS", "Laravel", "Railway", "Vercel"],
+    integrations: ["Stripe", "Mapbox", "Google OAuth", "Resend", "Brevo", "Dropbox"],
+    images: [
+      proveax1,
+      proveax2,
+      proveax3,
+      proveax4,
+      proveax5,
+      proveax6,
+      proveax7,
+      proveax8,
+      proveax9,
+    ],
   },
   {
     id: 1,
