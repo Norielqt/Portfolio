@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FiGithub, FiGlobe, FiArrowRight, FiCode, FiZap, FiLayers, FiLayout, FiMonitor } from "react-icons/fi";
 import robertImage from '../assets/RobertHerjavec.webp';
 import webdevImage from '../assets/webdev.webp';
-import veradaPreview from '../assets/Verada_preview.webp';
+import proveax1 from '../assets/proveax-1.png';
 import automationImage from '../assets/automation.webp';
 import softdevImage from '../assets/softdev.webp';
 import project3a from '../assets/Project3a.webp';
@@ -12,13 +12,12 @@ import {
   SiReact, SiVite, SiLaravel, SiMysql, SiTailwindcss, SiPython,
   SiHtml5, SiCss3, SiJavascript, SiTensorflow, SiPhp, SiDocker, SiVercel,
 } from "react-icons/si";
-import Services from "./Services";
 
 const categoryCards = [
   {
     title: "Websites",
     slug: "websites",
-    image: veradaPreview,
+    image: proveax1,
     icon: FiGlobe,
     description: "Clean, fast, and professional websites built for real businesses.",
     tags: ["HTML", "CSS", "JavaScript"],
@@ -61,7 +60,7 @@ function ParallaxCatImg({ src, alt }) {
         src={src}
         alt={alt}
         loading="lazy"
-        className="w-full h-full object-cover"
+        className="w-full h-full object-cover object-top"
         style={{ y, scale: 1.0 }}
       />
     </div>
@@ -169,7 +168,7 @@ export default function Projects({ category = null }) {
                     className="group relative rounded-2xl overflow-hidden text-left shadow-sm hover:shadow-xl transition-all duration-500 focus:outline-none focus:ring-2 focus:ring-brand/40"
                     style={{ background: "#F5F5F5" }}
                   >
-                    <div className="relative overflow-hidden" style={{ height: "220px" }}>
+                    <div className="relative overflow-hidden" style={{ height: "260px" }}>
                       <ParallaxCatImg src={cat.image} alt={cat.title} />
                       <div
                         className="absolute inset-0"
@@ -205,7 +204,6 @@ export default function Projects({ category = null }) {
                 <div className="md:hidden rounded-3xl overflow-hidden shadow-md" style={{ background: "#F5F5F5" }}>
                   <div
                     className="relative w-full overflow-hidden group"
-                    style={{ height: "180px" }}
                     onClick={() => project.images.length > 0 && openModal(project.id, 0)}
                   >
                     {(project.thumbnail || project.images[0]) ? (
@@ -214,7 +212,7 @@ export default function Projects({ category = null }) {
                           src={project.thumbnail || project.images[0]}
                           alt={project.title}
                           loading="lazy"
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          className="w-full h-auto block transition-transform duration-500 group-hover:scale-105"
                         />
                         <div className="absolute inset-0 transition-all" />
                         {project.images.length > 0 && (
@@ -274,7 +272,7 @@ export default function Projects({ category = null }) {
                 <div className="hidden md:flex flex-row gap-16 items-start">
                   <div className="md:w-1/2 flex-shrink-0 flex justify-center">
                     <div
-                      className="relative w-full h-64 sm:h-72 md:h-80 overflow-hidden shadow-lg"
+                      className="relative w-full overflow-hidden shadow-lg"
                       onClick={() => project.images.length > 0 && openModal(project.id, 0)}
                     >
                       {(project.thumbnail || project.images[0]) ? (
@@ -283,7 +281,7 @@ export default function Projects({ category = null }) {
                             src={project.thumbnail || project.images[0]}
                             alt={project.title}
                             loading="lazy"
-                            className="w-full h-full object-cover transition-transform group-hover:scale-105 cursor-pointer"
+                            className="w-full h-auto block transition-transform group-hover:scale-105 cursor-pointer"
                           />
                           <div className="absolute inset-0 transition-opacity" />
                           {project.images.length > 0 && (
@@ -322,16 +320,18 @@ export default function Projects({ category = null }) {
                       })}
                     </div>
                     {(project.github || project.demo) && (
-                      <div className="flex flex-wrap gap-0">
+                      <div className="flex items-center gap-3">
                         {project.demo && (
-                          <span style={{ fontSize: "15px" }} className="text-brand">
-                            Live: <a href={project.demo} target="_blank" rel="noreferrer" className="underline hover:opacity-70 transition">{project.demo}</a>
-                          </span>
+                          <a href={project.demo} target="_blank" rel="noreferrer"
+                            className="flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-full bg-brand text-white hover:opacity-80 transition">
+                            <FiGlobe size={14} /> Live
+                          </a>
                         )}
                         {project.github && (
-                          <span style={{ fontSize: "15px" }} className="text-brand">
-                            Github: <a href={project.github} target="_blank" rel="noreferrer" className="underline hover:opacity-70 transition">{project.github}</a>
-                          </span>
+                          <a href={project.github} target="_blank" rel="noreferrer"
+                            className="flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-full border border-brand/30 text-brand hover:bg-brand/5 transition">
+                            <FiGithub size={14} /> GitHub
+                          </a>
                         )}
                       </div>
                     )}

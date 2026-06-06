@@ -49,6 +49,7 @@ import project6g from '../assets/Project6g.webp';
 import project6h from '../assets/Project6h.webp';
 
 import proveax1 from '../assets/proveax-1.png';
+import proveaxWebsitePreview from '../assets/proveax-website-preview.png';
 import proveax2 from '../assets/proveax-2.png';
 import proveax3 from '../assets/proveax-3.png';
 import proveax4 from '../assets/proveax-4.png';
@@ -65,17 +66,29 @@ import saasProjectManagement from '../assets/SaasProjectManagement.webp';
 import zonify from '../assets/Zonify.webp';
 import veradaPreview from '../assets/Verada_preview.webp';
 import lumierePreview from '../assets/lumiere_preview.webp';
+import structureseal1 from '../assets/structureseal1.png';
 
 const projects = [
   {
-    id: 6,
-    title: "Verada Consulting",
+    id: 10,
+    title: "StructureSeal",
     category: "websites",
-    thumbnail: veradaPreview,
-    demo: "https://websites.norielfulgencio.com/verada",
+    demo: "https://structure-seal-website.vercel.app/",
     description:
-      "A production-ready consulting firm website I designed and developed. Features include a hero section with animated statistics, service cards with hover effects, a 4-step process visualization, client testimonials, and a functional contact form. Built with semantic HTML5, responsive CSS3 Grid/Flexbox, and vanilla JavaScript. Fully accessible and optimized for conversion.",
-    stack: ["HTML", "CSS", "JavaScript"],
+      "A waterproofing and epoxy flooring services landing page I designed and developed as a client showcase. Features a scroll-driven animated SVG cross-section diagram of the application methodology, a systems showcase, testimonials, and FAQ. Includes a polished loading screen and scroll-triggered reveals throughout. Built with React, Vite, TypeScript, Tailwind v4, and Framer Motion.",
+    stack: ["React", "Vite", "Tailwind CSS"],
+    thumbnail: structureseal1,
+    images: [],
+  },
+  {
+    id: 9,
+    title: "Proveax",
+    category: "websites",
+    demo: "https://proveax.vercel.app",
+    description:
+      "A real estate intelligence platform I designed and developed. Features a property search dashboard with an interactive map, advanced filters, and split list/map view. Includes a polished landing page with scroll-triggered animations and IntersectionObserver-powered reveals. Built with React, React Router, and Tailwind CSS.",
+    stack: ["React", "Tailwind CSS"],
+    thumbnail: proveaxWebsitePreview,
     images: [],
   },
   {
@@ -87,6 +100,17 @@ const projects = [
       "A luxury clean beauty brand website I designed and developed. Features a shoppable product grid, editorial journal with category filtering, brand philosophy page, and a functional cart with localStorage persistence. Built with semantic HTML5, CSS3, and vanilla JavaScript, including scroll-triggered animations, parallax effects, and IntersectionObserver-powered reveals.",
     stack: ["HTML", "CSS", "JavaScript"],
     thumbnail: lumierePreview,
+    images: [],
+  },
+  {
+    id: 6,
+    title: "Verada Consulting",
+    category: "websites",
+    thumbnail: veradaPreview,
+    demo: "https://websites.norielfulgencio.com/verada",
+    description:
+      "A production-ready consulting firm website I designed and developed. Features include a hero section with animated statistics, service cards with hover effects, a 4-step process visualization, client testimonials, and a functional contact form. Built with semantic HTML5, responsive CSS3 Grid/Flexbox, and vanilla JavaScript. Fully accessible and optimized for conversion.",
+    stack: ["HTML", "CSS", "JavaScript"],
     images: [],
   },
   {
@@ -114,7 +138,6 @@ const projects = [
     id: 1,
     title: "ZentraCRM",
     category: "web-application",
-    badge: "Featured Project",
     thumbnail: project6g,
     github: "https://github.com/Norielqt/Zentra-crm",
     demo: "https://zentra-crm-dun.vercel.app/",
@@ -136,7 +159,6 @@ const projects = [
     id: 2,
     title: "RealtorHQ",
     category: "web-application",
-    badge: "Featured Project",
     thumbnail: project5a,
     github: "https://github.com/Norielqt/real-estate-property-system",
     demo: "https://realtor-hq.vercel.app/",
@@ -158,7 +180,6 @@ const projects = [
     id: 3,
     title: "Park Cabins",
     category: "web-application",
-    badge: "Built & Deployed for a Real Company",
     thumbnail: project3a,
     description:
       "A production CRM deployed and actively used by a cabin manufacturing company. Covers 6 end-to-end workflows: enquiry, quoting, production tracking, project delivery, invoicing, and payment, replacing manual spreadsheet processes. Features a staff dashboard for managing customers, jobs, financials, and documents, plus a dedicated customer portal for real-time project progress visibility. Built with a fully relational MySQL schema to handle complex job and financial data.",

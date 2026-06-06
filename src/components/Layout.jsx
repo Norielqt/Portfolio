@@ -8,7 +8,6 @@ import grainTexture from "../assets/subtle-grain-noise.png";
 const NAV_LINKS = [
   { label: "Home", path: "/" },
   { label: "Timeline", path: "/timeline" },
-  { label: "Services", path: "/services" },
   { label: "Projects", path: "/projects" },
   { label: "Contact", path: "/contact" },
 ];
