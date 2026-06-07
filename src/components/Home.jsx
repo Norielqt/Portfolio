@@ -9,7 +9,7 @@ import heroImage    from "../assets/NorielFulgencio.webp";
 import joelImage    from "../assets/JoelSpolsky.webp";
 import aboutImage   from "../assets/NorielFulgencio_AboutMe.webp";
 import aboutImage1x from "../assets/NorielFulgencio_AboutMe_1x.webp";
-import svc1Image    from "../assets/Verada_preview.webp";
+import svc1Image    from "../assets/proveax-1.webp";
 import svc2Image    from "../assets/Project3a.webp";
 import svc3Image    from "../assets/n8npreview.webp";
 
@@ -25,7 +25,7 @@ import { FiLayout } from "react-icons/fi";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 const services = [
-  { image: svc1Image, title: "Website Development" },
+  { image: svc1Image, title: "Website Development", objectPosition: "top" },
   { image: svc2Image, title: "Web Application" },
   { image: svc3Image, title: "Automation", imageZoom: 1.02 },
 ];
@@ -200,8 +200,7 @@ const Home = () => {
           {[...services, ...services].map((service, index) => (
             <div
               key={index}
-              onClick={() => navigate("/services")}
-              className="group cursor-pointer rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex-shrink-0 relative"
+              className="group rounded-2xl overflow-hidden shadow-sm flex-shrink-0 relative"
               style={{ width: "clamp(260px, 72vw, 480px)", height: "clamp(150px, 42vw, 220px)" }}
             >
               <img
@@ -209,7 +208,7 @@ const Home = () => {
                 alt={service.title}
                 loading="lazy"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                style={service.imageZoom ? { transform: `scale(${service.imageZoom})` } : undefined}
+                style={{ objectPosition: service.objectPosition || "center", ...(service.imageZoom ? { transform: `scale(${service.imageZoom})` } : {}) }}
               />
               <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 50%, transparent 100%)" }} />
               <div className="absolute bottom-0 left-0 right-0 p-6">

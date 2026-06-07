@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FiGithub, FiGlobe, FiArrowRight, FiCode, FiZap, FiLayers, FiLayout, FiMonitor } from "react-icons/fi";
 import robertImage from '../assets/RobertHerjavec.webp';
 import webdevImage from '../assets/webdev.webp';
-import proveax1 from '../assets/proveax-1.png';
+import proveax1 from '../assets/proveax-1.webp';
 import automationImage from '../assets/automation.webp';
 import softdevImage from '../assets/softdev.webp';
 import project3a from '../assets/Project3a.webp';

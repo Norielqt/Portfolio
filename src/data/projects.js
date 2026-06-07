@@ -36,8 +36,6 @@ import project5c from '../assets/Project5c.webp';
 import project5d from '../assets/Project5d.webp';
 import project5e from '../assets/Project5e.webp';
 import project5f from '../assets/Project5f.webp';
-import project5g from '../assets/Project5g.webp';
-import project5h from '../assets/Project5h.webp';
 
 import project6a from '../assets/Project6a.webp';
 import project6b from '../assets/Project6b.webp';
@@ -48,16 +46,16 @@ import project6f from '../assets/Project6f.webp';
 import project6g from '../assets/Project6g.webp';
 import project6h from '../assets/Project6h.webp';
 
-import proveax1 from '../assets/proveax-1.png';
-import proveaxWebsitePreview from '../assets/proveax-website-preview.png';
-import proveax2 from '../assets/proveax-2.png';
-import proveax3 from '../assets/proveax-3.png';
-import proveax4 from '../assets/proveax-4.png';
-import proveax5 from '../assets/proveax-5.png';
-import proveax6 from '../assets/proveax-6.png';
-import proveax7 from '../assets/proveax-7.png';
-import proveax8 from '../assets/proveax-8.png';
-import proveax9 from '../assets/proveax-9.png';
+import proveax1 from '../assets/proveax-1.webp';
+import proveaxWebsitePreview from '../assets/proveax-website-preview.webp';
+import proveax2 from '../assets/proveax-2.webp';
+import proveax3 from '../assets/proveax-3.webp';
+import proveax4 from '../assets/proveax-4.webp';
+import proveax5 from '../assets/proveax-5.webp';
+import proveax6 from '../assets/proveax-6.webp';
+import proveax7 from '../assets/proveax-7.webp';
+import proveax8 from '../assets/proveax-8.webp';
+import proveax9 from '../assets/proveax-9.webp';
 
 import zentraCRM from '../assets/ZentraCRM.webp';
 import realtorHQ from '../assets/RealtorHQ.webp';
@@ -66,7 +64,7 @@ import saasProjectManagement from '../assets/SaasProjectManagement.webp';
 import zonify from '../assets/Zonify.webp';
 import veradaPreview from '../assets/Verada_preview.webp';
 import lumierePreview from '../assets/lumiere_preview.webp';
-import structureseal1 from '../assets/structureseal1.png';
+import structureseal1 from '../assets/structureseal1.webp';
 
 const projects = [
   {
@@ -135,6 +133,24 @@ const projects = [
     ],
   },
   {
+    id: 3,
+    title: "Park Cabins",
+    category: "web-application",
+    thumbnail: project3a,
+    description:
+      "A production CRM deployed and actively used by a cabin manufacturing company. Covers 6 end-to-end workflows: enquiry, quoting, production tracking, project delivery, invoicing, and payment, replacing manual spreadsheet processes. Features a staff dashboard for managing customers, jobs, financials, and documents, plus a dedicated customer portal for real-time project progress visibility. Built with a fully relational MySQL schema to handle complex job and financial data.",
+    stack: ["React", "Vite", "Laravel", "PHP", "MySQL", "Tailwind CSS"],
+    images: [
+      project3a,
+      project3b,
+      project3c,
+      project3d,
+      project3e,
+      project3f,
+      project3g,
+    ],
+  },
+  {
     id: 1,
     title: "ZentraCRM",
     category: "web-application",
@@ -172,26 +188,6 @@ const projects = [
       project5d,
       project5e,
       project5f,
-      project5g,
-      project5h,
-    ],
-  },
-  {
-    id: 3,
-    title: "Park Cabins",
-    category: "web-application",
-    thumbnail: project3a,
-    description:
-      "A production CRM deployed and actively used by a cabin manufacturing company. Covers 6 end-to-end workflows: enquiry, quoting, production tracking, project delivery, invoicing, and payment, replacing manual spreadsheet processes. Features a staff dashboard for managing customers, jobs, financials, and documents, plus a dedicated customer portal for real-time project progress visibility. Built with a fully relational MySQL schema to handle complex job and financial data.",
-    stack: ["React", "Vite", "Laravel", "PHP", "MySQL", "Tailwind CSS"],
-    images: [
-      project3a,
-      project3b,
-      project3c,
-      project3d,
-      project3e,
-      project3f,
-      project3g,
     ],
   },
   {
